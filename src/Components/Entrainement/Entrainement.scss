@@ -1,0 +1,52 @@
+.Entrainement {
+	height: 86%;
+	font-family: 'Spirax', cursive;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+
+	a {
+		margin: 7px;
+		padding: 5px 0;
+		padding-left: 14%;
+		text-align: left;
+		width: 143%;
+		font-size: 2.5rem;
+		color: black;
+		border-top-right-radius: 40px;
+		border-bottom-right-radius: 40px;
+
+		&:nth-child(1) {
+			background-color: rgba(255, 215, 0, 0.7);
+			transform: rotate(-35deg) translate(-100%, -119%);
+			animation: slide 0.5s forwards;
+		}
+		&:nth-child(2) {
+			background-color: rgba(192, 192, 192, 0.7);
+			transform: rotate(-35deg) translate(-100%, -119%);
+			animation: slide 0.5s 0.1s forwards;
+		}
+		&:nth-child(3) {
+			background-color: rgba(222, 184, 135, 0.7);
+			transform: rotate(-35deg) translate(-100%, -119%);
+			animation: slide 0.5s 0.2s forwards;
+		}
+		&:nth-child(4) {
+			background-color: rgba(165, 42, 42, 0.7);
+			transform: rotate(-35deg) translate(-100%, -119%);
+			animation: slide 0.5s 0.3s forwards;
+		}
+		&:nth-child(5) {
+			background-color: rgba(95, 158, 160, 0.5);
+			transform: rotate(-35deg) translate(-100%, -119%);
+			animation: slide 0.5s 0.4s forwards;
+		}
+	}
+
+}
+
+@keyframes slide {
+	to {
+		transform: rotate(-35deg) translate(-9%, -119%);
+	}
+}

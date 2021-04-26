@@ -1,0 +1,22 @@
+.NavBar {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	height: 8%;
+
+	.fas {
+		font-size: 2rem;
+		color: white;
+        text-shadow: 2px 2px 4px #000000;
+	}
+
+	.active {
+		.fas {
+			color: salmon;
+		}
+	}
+}

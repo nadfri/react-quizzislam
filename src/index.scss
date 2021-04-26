@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Spirax&display=swap');
+
+//Color Variables
+$texte-color: white;
+$navbar-color: #4b778d;
+$main-color: gray;
+$header-color: black;
+
+* {
+	box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+	height: 100%;
+}
+
+body {
+	margin: 0;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	background-color: #444857;
+	overflow-x: hidden;
+}
+
+a {
+	text-decoration: none;
+}
+
+.App {
+	background-color: $main-color;
+}
+
+.Header {
+	background-color: $header-color;
+}
+.NavBar {
+	background-color: $navbar-color;
+}
