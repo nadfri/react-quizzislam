@@ -9,7 +9,7 @@ function Entrainement(props) {
 			<Link to='/entrainement/quizz/histoire'>Histoire</Link>
 			<Link to='/entrainement/quizz/lesProphetes'>Les Prophètes</Link>
 			<Link to='/entrainement/quizz/jurisprudence'>JurisPrudence</Link>
-			<Link to='/entrainement/quizz/prophete'>Vie du Prophète</Link>
+			<Link to='/entrainement/quizz/prophete'>Vie du Prophète <span className="sws">ﷺ</span></Link>
 		</div>
 	);
 }

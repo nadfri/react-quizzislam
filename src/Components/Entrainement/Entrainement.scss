@@ -5,6 +5,11 @@
 	flex-direction: column;
 	overflow: hidden;
 
+    .sws {
+        position: relative;
+        top: 10%;
+    }
+
 	a {
 		margin: 7px;
 		padding: 5px 0;

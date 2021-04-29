@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Classement from '../Classement/Classement';
 import Competition from '../Competition/Competition';
+import Config from '../Config/Config';
 import Entrainement from '../Entrainement/Entrainement';
 import Header from '../Header/Header';
 import Home from '../Home/Home';
@@ -9,12 +10,21 @@ import NavBar from '../NavBar/NavBar';
 import Quizz from '../Quizz/Quizz';
 import './App.scss';
 import wallpaper from './background2.jpg';
+import fire from '../../firebase';
+import Connexion from '../Login/Connexion/Connexion';
 
 function App() {
+	const [user, setUser] = useState("");
+	useEffect(() => authListener(), []);
 
-  const background = { backgroundImage: `url(${wallpaper})` };
+	const authListener = () => {
+		fire.auth().onAuthStateChanged((user) => {
+			if (user) setUser(user);
+			else setUser("");
+		});
+	};
 
-
+	const background = { backgroundImage: `url(${wallpaper})` };
 
 	return (
 		<BrowserRouter>
@@ -27,6 +37,9 @@ function App() {
 					<Route exact path='/entrainement' component={Entrainement} />
 					<Route exact path='/entrainement/quizz/:theme' component={Quizz} />
 					<Route exact path='/classement' component={Classement} />
+					<Route exact path='/connexion' component={Connexion} />
+					<Route exact path='/config' render={() => ((user.email === "nadfri@gmail.com" || user.email === 'cheikhrichi@gmail.com')? <Config user={user}/> : <Connexion />)}/>
+
 					<Route component={Home} />
 				</Switch>
 

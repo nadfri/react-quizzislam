@@ -1,17 +1,19 @@
 .NavBar {
-	position: absolute;
+	position: fixed;
+
 	bottom: 0;
-	left: 0;
 	width: 100%;
+	max-width: 796px;
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
 	height: 8%;
+	transition: all 0.5s;
 
 	.fas {
 		font-size: 2rem;
 		color: white;
-        text-shadow: 2px 2px 4px #000000;
+		text-shadow: 2px 2px 4px #000000;
 	}
 
 	.active {
@@ -19,4 +21,9 @@
 			color: salmon;
 		}
 	}
+
+	&.hidden {
+		transform: translateY(100%);
+	}
 }
+

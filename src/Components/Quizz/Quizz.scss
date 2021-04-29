@@ -1,4 +1,26 @@
-.Quizz{
-    height: 86%;
-    border: solid 1px gold;
+.Quizz {
+	height: 86%;
+	border: solid 1px gold;
+
+	button {
+		border: none;
+		margin: 5px;
+		border-radius: 5px;
+
+		&.choice:focus {
+			background-color: cadetblue;
+		}
+
+        &.right{
+            background-color: rgb(128, 200, 128);
+        }
+
+        &.wrong{
+            background-color: rgb(177, 122, 122);
+        }
+
+        &.disabled{
+            pointer-events: none;
+        }
+	}
 }

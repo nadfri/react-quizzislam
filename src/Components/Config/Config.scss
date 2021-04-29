@@ -1,0 +1,135 @@
+.Config {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+
+	h1 {
+		margin: 5px;
+		background-color: rgba(211, 224, 234, 0.7);
+		padding: 5px 20px;
+		border-radius: 5px;
+		color: #2b9cff;
+		font-size: 2rem;
+		font-family: 'Spirax', cursive;
+		box-shadow: 0 0 10px 0 black;
+		font-size: 1.3rem;
+	}
+
+form{
+	width: 100%;
+}
+
+	fieldset {
+		background-color: rgba(211, 224, 234, 0.7);
+		border-radius: 5px;
+		border: solid 1px teal;
+		margin: 5px;
+		display: flex;
+		justify-content: space-around;
+		
+
+		&.column{
+			flex-direction: column;
+		}
+
+		legend {
+			text-align: left;
+			border-radius: 5px;
+			background-color: rgba(211, 224, 234, 1);
+			padding: 2px 5px;
+			border: solid 1px teal;
+		}
+	}
+
+	select {
+		border: none;
+		width: 80%;
+		border-radius: 5px;
+		padding: 3px;
+	}
+
+	.radio {
+		border: teal 1px solid;
+		border-radius: 5px;
+		padding: 2px 5px 2px 0px;
+		background-color: rgba(110, 183, 185, 0.5);
+
+		&.large {
+			width: 45%;
+			label {
+				display: inline-block;
+				width: 80%;
+			}
+		}
+
+		&.medium{
+			width: 20%;
+			label {
+				display: inline-block;
+				width: 60%;
+			}
+		}
+	}
+
+	input[type='text'] {
+		width: 100%;
+		border: none;
+		border-radius: 5px;
+		padding: 3px;
+		margin: 2px;
+	}
+
+	button{
+		border: none;
+		border-radius: 5px;
+		background-color:tomato;
+		color: white;
+		font-weight: bold;
+		padding: 5px;
+		width: 98%;
+		margin-bottom: 8%;
+		cursor: pointer;
+		font-size: 1.2rem;
+		
+
+		&:active{
+			background-color:red;
+		}
+	}
+
+	.modale{
+		position: absolute;
+		top:0;
+		left:0;
+		right:0;
+		bottom:0;
+		background-color: rgba(0, 0, 0, 0.7);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+
+		.box{
+			width: 80%;
+			padding: 20px 10px;
+			background-color: rgba(211, 224, 234, 0.7);
+			border-radius: 5px;
+			color: #2b9cff;
+			font-size: 2rem;
+			font-family: 'Spirax', cursive;
+			box-shadow: 0 0 10px 0 black;
+		}
+
+		h1{
+			box-shadow: none;
+			background-color: rgba(211, 224, 234, 0.7);
+		}
+
+		button{
+			background-color: rgba(134, 255, 144, 0.8);
+			margin: 0;
+			width: 50%;
+		}
+	}
+}
