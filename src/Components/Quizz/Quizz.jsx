@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import './Quizz.scss';
-import { dataBase } from './dataBase';
+import { db } from '../../firebase';
+import Loader from '../Loader/Loader';
 
 function Quizz(props) {
 	const theme = props.match.params.theme;
+	const baseID = 'hz2fK3KpYDlCG7af12t9';
 
 	const [state, setState] = useState([{ choix: [] }]);
 	const [maxQuestion] = useState(10);
@@ -12,11 +14,22 @@ function Quizz(props) {
 	const [diplayBtnValider, setdiplayBtnValider] = useState(false);
 	const [diplayBtnSuivant, setdiplayBtnSuivant] = useState(false);
 	const [choice, setChoice] = useState(null);
+	const [loader, setLoader] = useState(false);
 
-    const btns = document.querySelectorAll('button');
+	const btns = document.querySelectorAll('button');
 
 	useEffect(() => {
-		setState(dataBase);
+		setLoader(true);
+		db.collection('dataBase')
+			.doc(baseID)
+			.get()
+			.then((doc) => {
+				setLoader(false);
+				console.log(doc.data().questions.filter(question=>question.theme === theme));
+				setState(doc.data().questions.filter(question=>question.theme === theme));
+				//localStorage.setItem('questions', JSON.stringify(doc.data().questions));
+			})
+			.catch((err) => console.log(err));
 	}, []);
 
 	const handleChoice = (index) => {
@@ -25,13 +38,10 @@ function Quizz(props) {
 	};
 
 	const valider = () => {
-		
-		if (choice === state[countQuestion].reponse) {
+		if (choice+1 == state[countQuestion].reponse) {
 			setScore((prev) => ++prev);
 			btns[choice].classList.add('right');
-		}
-
-        else btns[choice].classList.add('wrong');
+		} else btns[choice].classList.add('wrong');
 
 		setdiplayBtnValider(false);
 		setdiplayBtnSuivant(true);
@@ -43,18 +53,20 @@ function Quizz(props) {
 
 		setdiplayBtnValider(false);
 		setdiplayBtnSuivant(false);
-        btns[choice].className = "";
-
+		btns[choice].className = '';
 	};
 
-	const displayChoice = state[countQuestion].choix.map((choice, index) => (
-		<button key={index} onClick={() => handleChoice(index)} className='choice'>
-			{choice}
-		</button>
-	));
+	const displayChoice = state[countQuestion].choix
+		.filter((choice) => choice !== '')
+		.map((choice, index) => (
+			<button key={index} onClick={() => handleChoice(index)} className='choice'>
+				{choice}
+			</button>
+		));
 
 	return (
 		<div className='Quizz'>
+			{loader && <Loader />}
 			<h1>Theme: {theme}</h1>
 			<h2>
 				Score: {score}/{maxQuestion}
@@ -63,10 +75,10 @@ function Quizz(props) {
 				Question {countQuestion + 1}/{maxQuestion}
 			</h2>
 			{state[countQuestion].question}
-			<hr />
-			{displayChoice}
 
-			<hr />
+			<div className='container-choix'>{displayChoice}</div>
+
+	
 			{diplayBtnValider && <button onClick={valider}>Valider</button>}
 
 			{diplayBtnSuivant && (

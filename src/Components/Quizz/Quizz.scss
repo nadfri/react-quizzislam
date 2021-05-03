@@ -1,11 +1,19 @@
 .Quizz {
-	height: 86%;
-	border: solid 1px gold;
+	height: 90vh;
+	border: solid 2px red;
 
+
+	.container-choix{
+		display: flex;
+		justify-content: center;
+		flex-wrap: wrap;
+
+	
 	button {
 		border: none;
 		margin: 5px;
 		border-radius: 5px;
+		width: 45%;
 
 		&.choice:focus {
 			background-color: cadetblue;
@@ -23,4 +31,5 @@
             pointer-events: none;
         }
 	}
+}
 }

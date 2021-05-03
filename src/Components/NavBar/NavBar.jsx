@@ -5,13 +5,12 @@ import { NavLink } from 'react-router-dom';
 function NavBar(props) {
 	const [display, setDisplay] = useState(true);
 
-	const handleScroll = () => {
-		if (document.body.scrollTop > 10 || document.documentElement.scrollTop > 10)
-			setDisplay(false);
-		else setDisplay(true);
-	};
-
 	useEffect(() => {
+		let posY = 0;
+		const handleScroll = () => {
+			window.scrollY > posY ? setDisplay(false) : setDisplay(true);
+			posY = window.scrollY;
+		};
 		document.addEventListener('scroll', handleScroll);
 		return () => document.addEventListener('scroll', handleScroll);
 	}, []);

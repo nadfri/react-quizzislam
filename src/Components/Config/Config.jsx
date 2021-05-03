@@ -3,6 +3,8 @@ import Loader from './../Loader/Loader';
 import { db, fireTab } from '../../firebase';
 //import { dataBase } from '../Quizz/dataBase';
 import './Config.scss';
+import Modal from '../Modal/Modal';
+import { Link } from 'react-router-dom';
 
 function Config() {
 	const baseID = 'hz2fK3KpYDlCG7af12t9';
@@ -13,7 +15,7 @@ function Config() {
 	const [niveau, setNiveau] = useState('1');
 	const [competition, setCompetition] = useState(false);
 	const [question, setQuestion] = useState('');
-	const [choix, setChoix] = useState(["","","",""]);
+	const [choix, setChoix] = useState(['', '', '', '']);
 	const [reponse, setReponse] = useState('');
 	const [info, setInfo] = useState('');
 	const [loader, setLoader] = useState(false);
@@ -29,27 +31,25 @@ function Config() {
 				setLoader(false);
 				console.log(doc.data().questions);
 				setQuestions(doc.data().questions);
+				//localStorage.setItem('questions', JSON.stringify(doc.data().questions));
 			})
 			.catch((err) => console.log(err));
 	}, []);
 
 	//Gestion du Formulaire
-
-	const handleQuestion = (value) => setQuestion(value.replace('sws', 'ﷺ'));
-
 	const handleChoix = (value, id) => {
 		const conversion = { choix1: 0, choix2: 1, choix3: 2, choix4: 3 };
-		const copy = [...choix];
+		const copyChoix = [...choix];
 		const index = conversion[id];
-		copy[index] = value.replace('sws', 'ﷺ');
-		setChoix(copy);
+		copyChoix[index] = value.replace('sws', 'ﷺ');
+		setChoix(copyChoix);
 	};
 
 	const handleCompetition = (value) =>
 		value === 'true' ? setCompetition(true) : setCompetition(false);
 
 	//const updateDB = () => db.collection('dataBase').doc(baseID).set({ dataBase });
-
+	//Soumission du Formulaire
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
@@ -59,13 +59,12 @@ function Config() {
 			niveau,
 			private: competition,
 			question,
-			choix: choix.filter(choice=> choice !== ""),
+			choix,
 			reponse,
 			info,
 		};
 
-		const copy = [...questions];
-		copy.push(newQuestion);
+		const copy = [...questions, newQuestion];
 		setQuestions(copy);
 
 		db.collection('dataBase')
@@ -73,6 +72,14 @@ function Config() {
 			.update({ questions: fireTab.arrayUnion(newQuestion) });
 
 		setDisplayModal(true);
+
+		setTheme('');
+		setNiveau('');
+		setCompetition(false);
+		setQuestion('');
+		setChoix(['', '', '', '']);
+		setReponse('');
+		setInfo('');
 	};
 
 	/********************Rendu JSX********************/
@@ -91,6 +98,8 @@ function Config() {
 						<option value='jurisprudence'>Jurisprudence</option>
 						<option value='lesProphetes'>Les Prophètes</option>
 						<option value='prophete'>Prophète ﷺ</option>
+						<option value='compagnons'>Les Compagnons</option>
+						<option value='textes'>Textes En Islam</option>
 					</select>
 				</fieldset>
 				<fieldset>
@@ -164,7 +173,7 @@ function Config() {
 					<input
 						type='text'
 						value={question}
-						onChange={(e) => handleQuestion(e.target.value)}
+						onChange={(e) => setQuestion(e.target.value.replace('sws', 'ﷺ'))}
 						placeholder='Ecrire ici la question'
 						required
 					/>
@@ -263,23 +272,20 @@ function Config() {
 					<input
 						type='text'
 						value={info}
-						onChange={(e) => setInfo(e.target.value)}
+						onChange={(e) => setInfo(e.target.value.replace('sws', 'ﷺ'))}
 						placeholder="Complément d'information sur la réponse"
 					/>
 				</fieldset>
 
 				<button type='submit'>Ajouter</button>
 			</form>
-			{/* <button onClick={updateDB}>Mise à jour</button> */}
+
+			<Link to='/config/list'>Voir la Liste des Questions</Link>
+
+			
 
 			{displayModal && (
-				<div className='modale'>
-					<div className='box'>
-						<h1>Ajouter avec Succès</h1>
-
-						<button onClick={() => setDisplayModal(!displayModal)}>OK</button>
-					</div>
-				</div>
+				<Modal h1='Ajouter avec Succès' close={() => setDisplayModal(false)} />
 			)}
 		</div>
 	);

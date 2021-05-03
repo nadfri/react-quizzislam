@@ -1,0 +1,208 @@
+.ListQuestion {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	h1 {
+		margin: 5px;
+		background-color: rgba(211, 224, 234, 0.7);
+		padding: 5px 20px;
+		border-radius: 5px;
+		color: #2b9cff;
+		font-size: 2rem;
+		font-family: 'Spirax', cursive;
+		box-shadow: 0 0 10px 0 black;
+		text-shadow: 1px 1px 2px black;
+		font-size: 2rem;
+	}
+
+	ul {
+		margin: 0;
+		text-align: left;
+		ul {
+			padding: 0;
+			li {
+				margin-left: 20px;
+			}
+		}
+	}
+
+    .nb-question{
+        float: right;
+        color: #0086fb;
+        text-shadow: 1px 1px 2px black;
+    }
+
+	.form-container {
+		background-color: rgba(0, 0, 0, 0.7);
+		backdrop-filter: blur(5px);
+		position: fixed;
+		top: 0;
+		left: 0;
+		height: 100vh;
+		width: 100%;
+		overflow: auto;
+		z-index: 3;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+
+		form {
+			width: 100%;
+			max-width: 800px;
+			padding: 5px;
+			background-color: rgba(211, 224, 234, 0.7);
+			border-radius: 5px;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			animation: zoom 0.7s forwards;
+
+			h1 {
+				background-color: transparent;
+				box-shadow: none;
+			}
+
+			fieldset {
+				display: flex;
+				justify-content: space-around;
+			}
+
+			.container-button {
+				width: 100%;
+				button {
+					width: 45%;
+				}
+
+				.gray {
+					background-color: gray;
+
+					&:active {
+						background-color: rgb(66, 66, 66);
+					}
+				}
+			}
+		}
+	}
+
+	fieldset {
+		position: relative;
+		width: 95%;
+		background-color: rgba(211, 224, 234, 0.7);
+		border-radius: 5px;
+		border: solid 1px teal;
+		margin: 5px;
+
+		&.column {
+			flex-direction: column;
+		}
+
+		legend {
+			text-align: left;
+			border-radius: 5px;
+			background-color: rgba(211, 224, 234, 1);
+			padding: 2px 5px;
+			border: solid 1px teal;
+			color: #0086fb;
+		}
+	}
+
+	select {
+		border: none;
+		width: 80%;
+		border-radius: 5px;
+		padding: 3px;
+	}
+
+	.radio {
+		border: teal 1px solid;
+		border-radius: 5px;
+		padding: 2px 5px 2px 0px;
+		background-color: rgba(110, 183, 185, 0.5);
+
+		&.large {
+			width: 45%;
+			label {
+				display: inline-block;
+				width: 80%;
+			}
+		}
+
+		&.medium {
+			width: 20%;
+			label {
+				display: inline-block;
+				width: 60%;
+			}
+		}
+	}
+
+	input[type='text'] {
+		width: 100%;
+		border: none;
+		border-radius: 5px;
+		padding: 3px;
+		margin: 2px;
+	}
+
+	button {
+		border: none;
+		border-radius: 5px;
+		background-color: tomato;
+		color: white;
+		font-weight: bold;
+		padding: 5px;
+		cursor: pointer;
+		margin: 5px;
+		width: 80%;
+
+		&:active {
+			background-color: red;
+		}
+
+		&.black {
+			color: black;
+		}
+	}
+
+	.Modal {
+		button {
+			margin: 10px;
+			width: 40%;
+		}
+
+		.red {
+			background-color: orangered;
+		}
+
+		.red:active {
+			background-color: red;
+		}
+	}
+
+	.container-icons {
+		display: flex;
+		flex-direction: column;
+
+		position: absolute;
+		top: -5px;
+		right: 5px;
+
+		.icons {
+			margin-bottom: 10px;
+			border-radius: 50%;
+			background-color: white;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 2rem;
+			height: 2rem;
+			box-shadow: 1px 1px 4px 1px black;
+			cursor: pointer;
+
+			.fa-edit {
+				padding-left: 3px;
+			}
+		}
+	}
+}

@@ -16,7 +16,7 @@ function Connexion(props) {
 		fire
 			.auth()
 			.signInWithEmailAndPassword(email, password)
-			.then((res) => { props.history.push('/config');
+			.then((res) => { props.history.goBack();
 			})
 			.catch((error) => setError(error.message));
 	}

@@ -9,26 +9,24 @@ import Home from '../Home/Home';
 import NavBar from '../NavBar/NavBar';
 import Quizz from '../Quizz/Quizz';
 import './App.scss';
-import wallpaper from './background2.jpg';
 import fire from '../../firebase';
 import Connexion from '../Login/Connexion/Connexion';
+import ListQuestions from '../Config/ListQuestions/ListQuestions';
 
 function App() {
-	const [user, setUser] = useState("");
+	const [user, setUser] = useState('');
 	useEffect(() => authListener(), []);
 
 	const authListener = () => {
 		fire.auth().onAuthStateChanged((user) => {
 			if (user) setUser(user);
-			else setUser("");
+			else setUser('');
 		});
 	};
 
-	const background = { backgroundImage: `url(${wallpaper})` };
-
 	return (
 		<BrowserRouter>
-			<div className='App' style={background}>
+			<div className='App' id='App'>
 				<Header />
 
 				<Switch>
@@ -38,7 +36,16 @@ function App() {
 					<Route exact path='/entrainement/quizz/:theme' component={Quizz} />
 					<Route exact path='/classement' component={Classement} />
 					<Route exact path='/connexion' component={Connexion} />
-					<Route exact path='/config' render={() => ((user.email === "nadfri@gmail.com" || user.email === 'cheikhrichi@gmail.com')? <Config user={user}/> : <Connexion />)}/>
+					<Route
+						exact
+						path='/config'
+						render={() => (user ? <Config /> : <Connexion />)}
+					/>
+					<Route
+						exact
+						path='/config/list'
+						render={() => (user ? <ListQuestions /> : <Connexion />)}
+					/>
 
 					<Route component={Home} />
 				</Switch>
