@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Loader from './../Loader/Loader';
 import { db, fireTab } from '../../firebase';
-//import { dataBase } from '../Quizz/dataBase';
 import './Config.scss';
 import Modal from '../Modal/Modal';
 import { Link } from 'react-router-dom';

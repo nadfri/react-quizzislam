@@ -26,7 +26,7 @@ function Quizz(props) {
 			.then((doc) => {
 				setLoader(false);
 				console.log(doc.data().questions.filter(question=>question.theme === theme));
-				setState(doc.data().questions.filter(question=>question.theme === theme));
+				setState(doc.data().questions.filter(question=>question.theme === theme && !question.private));
 				//localStorage.setItem('questions', JSON.stringify(doc.data().questions));
 			})
 			.catch((err) => console.log(err));

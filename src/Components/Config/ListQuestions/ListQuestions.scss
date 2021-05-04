@@ -26,11 +26,7 @@
 		}
 	}
 
-    .nb-question{
-        float: right;
-        color: #0086fb;
-        text-shadow: 1px 1px 2px black;
-    }
+
 
 	.form-container {
 		background-color: rgba(0, 0, 0, 0.7);
@@ -85,6 +81,8 @@
 		}
 	}
 
+
+
 	fieldset {
 		position: relative;
 		width: 95%;
@@ -92,6 +90,11 @@
 		border-radius: 5px;
 		border: solid 1px teal;
 		margin: 5px;
+
+        b{
+            font-style: italic;
+            color:#2467a1
+        }
 
 		&.column {
 			flex-direction: column;
@@ -105,6 +108,20 @@
 			border: solid 1px teal;
 			color: #0086fb;
 		}
+
+        &.fieldset-filtre{
+            display: flex;
+            justify-content:space-around;
+
+            select{
+                width:25%;
+            }
+
+            .nb-question{
+                color: #0086fb;
+                text-shadow: 1px 1px 2px black;
+            }
+        }
 	}
 
 	select {

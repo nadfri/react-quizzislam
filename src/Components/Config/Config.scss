@@ -40,6 +40,10 @@
 			border: solid 1px teal;
 			color: #0086fb;
 		}
+
+		label, input[type="radio"]{
+			cursor: pointer;
+		}
 	}
 
 	select {
@@ -54,6 +58,7 @@
 		border-radius: 5px;
 		padding: 2px 5px 2px 0px;
 		background-color: rgba(110, 183, 185, 0.5);
+		
 
 		&.large {
 			width: 45%;

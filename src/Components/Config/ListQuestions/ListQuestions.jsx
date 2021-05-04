@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import Loader from '../../Loader/Loader';
 import { db, fireTab } from '../../../firebase';
-import './ListQuestions.scss';
+import Loader from '../../Loader/Loader';
 import Modal from '../../Modal/Modal';
+import './ListQuestions.scss';
 
 function ListQuestions(props) {
 	const baseID = 'hz2fK3KpYDlCG7af12t9';
@@ -15,13 +15,16 @@ function ListQuestions(props) {
 	const [displayModalSucces, setDisplayModalSucces] = useState(false);
 	const [displayModalSupression, setDisplayModalSupression] = useState(false);
 	const [displayModalForm, setDisplayModalForm] = useState(false);
-	const [filtre, setFiltre] = useState('');
+	//State pour le filtre
+	const [filtreTheme, setFiltreTheme] = useState('');
+	const [filtreNiveau, setFiltreNiveau] = useState('');
+	const [filtrePrivate, setFiltrePrivate] = useState('');
 	const [filtered, setFiltered] = useState([]);
 	//State pour l'édition
 	const [selectedQuestion, setSelectedQuestion] = useState({});
 	const [theme, setTheme] = useState('');
 	const [niveau, setNiveau] = useState('1');
-	const [competition, setCompetition] = useState(false);
+	const [_private, setPrivate] = useState(false);
 	const [question, setQuestion] = useState('');
 	const [choix, setChoix] = useState(['', '', '', '']);
 	const [reponse, setReponse] = useState('');
@@ -35,12 +38,28 @@ function ListQuestions(props) {
 			.get()
 			.then((doc) => {
 				setLoader(false);
-				console.log(doc.data().questions);
+				//console.log(doc.data().questions);
 				setQuestions(doc.data().questions.sort((a, b) => a.id - b.id));
-				setFiltered(doc.data().questions.sort((a, b) => a.id - b.id));
 			})
 			.catch((err) => console.log(err));
 	}, []);
+
+	//Gestion du Filtre
+	useEffect(() => {
+		let finalFilter = [...questions];
+		const privateCopy = filtrePrivate === 'oui' ? true : false; //conversion string en boolean
+
+		if (filtreTheme !== '')
+			finalFilter = finalFilter.filter((question) => question.theme === filtreTheme);
+
+		if (filtreNiveau !== '')
+			finalFilter = finalFilter.filter((question) => question.niveau === filtreNiveau);
+
+		if (filtrePrivate !== '')
+			finalFilter = finalFilter.filter((question) => question.private === privateCopy);
+
+		setFiltered(finalFilter);
+	}, [filtreTheme, filtreNiveau, filtrePrivate, questions]);
 
 	//Gestion de la suppression et l'édition
 	const handleDelete = (question) => {
@@ -51,7 +70,7 @@ function ListQuestions(props) {
 	const deleteQuestion = (question) => {
 		const copyQuestions = [...questions].filter((quest) => quest.id !== question.id);
 		setQuestions(copyQuestions);
-		setFiltered(copyQuestions.filter((question) => question.theme === filtre));
+		setFiltered(copyQuestions.filter((question) => question.theme === filtreTheme));
 
 		db.collection('dataBase')
 			.doc(baseID)
@@ -64,7 +83,7 @@ function ListQuestions(props) {
 	const editQuestion = (question) => {
 		setTheme(question.theme);
 		setNiveau(question.niveau);
-		setCompetition(question.private);
+		setPrivate(question.private);
 		setQuestion(question.question);
 		setChoix(question.choix);
 		setReponse(question.reponse);
@@ -82,8 +101,8 @@ function ListQuestions(props) {
 		setChoix(copyChoix);
 	};
 
-	const handleCompetition = (value) =>
-		value === 'true' ? setCompetition(true) : setCompetition(false);
+	const handlePrivate = (value) =>
+		value === 'true' ? setPrivate(true) : setPrivate(false);
 
 	//Soumission du Formulaire Edition
 	const handleSubmit = (e) => {
@@ -94,16 +113,16 @@ function ListQuestions(props) {
 			.doc(baseID)
 			.update({ questions: fireTab.arrayRemove(selectedQuestion) });
 
-		//Supprresion du state
+		//Supprresion du State
 		let copyQuestions = [...questions];
 		copyQuestions = copyQuestions.filter((quest) => quest.id !== selectedQuestion.id);
 
-		//Ajout de l'entrée modifié dans le State
+		//Ajout de l'entrée modifiée dans le State
 		const edited = {
 			id: selectedQuestion.id,
 			theme,
 			niveau,
-			private: competition,
+			private: _private,
 			question,
 			choix,
 			reponse,
@@ -112,7 +131,11 @@ function ListQuestions(props) {
 
 		copyQuestions.push(edited);
 		setQuestions(copyQuestions);
-		setFiltered(copyQuestions.filter((question) => question.theme === filtre).sort((a, b) => a.id - b.id));
+		setFiltered(
+			copyQuestions
+				.filter((question) => question.theme === filtreTheme)
+				.sort((a, b) => a.id - b.id),
+		);
 
 		//Ajout dans la base de donnée
 		db.collection('dataBase')
@@ -124,51 +147,80 @@ function ListQuestions(props) {
 		setDisplayModalSucces(true);
 	};
 
-	const handleFiltre = (value) => {
-		setFiltre(value);
-		value !== ''
-			? setFiltered(questions.filter((question) => question.theme === value))
-			: setFiltered(questions);
-	};
-
 	/*********************Rendu JSX*********************/
 	return (
 		<div className='ListQuestion'>
 			{loader && <Loader />}
 			<h1>Liste des Questions</h1>
 
-			<fieldset>
-				<legend><i className="fas fa-search"></i> Filtrer par Thème</legend>
-				<select value={filtre} onChange={(e) => handleFiltre(e.target.value)}>
+			<fieldset className='fieldset-filtre'>
+				<legend>
+					<i className='fas fa-search'></i> Filtrer
+				</legend>
+				<select value={filtreTheme} onChange={(e) => setFiltreTheme(e.target.value)}>
 					<option value=''>Choisir un Thème</option>
 					<option value='coran'>Coran</option>
 					<option value='histoire'>Histoire</option>
 					<option value='jurisprudence'>Jurisprudence</option>
 					<option value='lesProphetes'>Les Prophètes</option>
-					<option value='prophete'>Prophète ﷺ</option>
+					<option value='prophete'>Muhammad ﷺ</option>
 					<option value='compagnons'>Les Compagnons</option>
 					<option value='textes'>Textes En Islam</option>
 				</select>
-				<span className="nb-question">{filtered.length}/{questions.length}</span>
+
+				<select value={filtreNiveau} onChange={(e) => setFiltreNiveau(e.target.value)}>
+					<option value=''>Choisir un Niveau</option>
+					<option value='1'>Débutant</option>
+					<option value='2'>Intermédiaire</option>
+					<option value='3'>Expert</option>
+				</select>
+
+				<select value={filtrePrivate} onChange={(e) => setFiltrePrivate(e.target.value)}>
+					<option value=''>Caché?</option>
+					<option value='oui'>Oui</option>
+					<option value='non'>Non</option>
+				</select>
+				<span className='nb-question'>
+					{filtered.length}/{questions.length}
+				</span>
 			</fieldset>
 
 			{filtered.map((question) => (
 				<fieldset key={question.id}>
 					<legend>Question #{question.id}</legend>
 					<ul>
-						<li>Thème: {question.theme}</li>
-						<li>Niveau: {tabNiveau[question.niveau]}</li>
-						<li>Question : {question.question}</li>
+						<li>
+							<b>Thème: </b>
+							{question.theme}
+						</li>
+						<li>
+							<b>Caché: </b>
+							{question.private ? 'Oui' : 'Non'}
+						</li>
+						<li>
+							<b>Niveau: </b>
+							{tabNiveau[question.niveau]}
+						</li>
+						<li>
+							<b>Question: </b>
+							{question.question}
+						</li>
 						<li>
 							<ul>
-								Choix
+								<b>Choix</b>
 								{question.choix.map((choice, index) => (
 									<li key={index}>{choice}</li>
 								))}
 							</ul>
 						</li>
-						<li>Réponse: {question.reponse}</li>
-						<li>Explication: {question.info}</li>
+						<li>
+							<b>Réponse: </b>
+							{question.reponse}
+						</li>
+						<li>
+							<b>Explication: </b>
+							{question.info}
+						</li>
 					</ul>
 
 					<div className='container-icons'>
@@ -261,10 +313,10 @@ function ListQuestions(props) {
 								<input
 									type='radio'
 									id='non'
-									name='competition'
+									name='private'
 									value={false}
-									checked={competition === false}
-									onChange={(e) => handleCompetition(e.target.value)}
+									checked={_private === false}
+									onChange={(e) => handlePrivate(e.target.value)}
 									required
 								/>
 								<label htmlFor='non'>Non</label>
@@ -273,10 +325,10 @@ function ListQuestions(props) {
 								<input
 									type='radio'
 									id='oui'
-									name='competition'
+									name='private'
 									value={true}
-									checked={competition === true}
-									onChange={(e) => handleCompetition(e.target.value)}
+									checked={_private === true}
+									onChange={(e) => handlePrivate(e.target.value)}
 								/>
 								<label htmlFor='oui'>Oui</label>
 							</span>
