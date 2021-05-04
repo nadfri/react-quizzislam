@@ -40,6 +40,7 @@ function ListQuestions(props) {
 				setLoader(false);
 				//console.log(doc.data().questions);
 				setQuestions(doc.data().questions.sort((a, b) => a.id - b.id));
+				setFiltered(doc.data().questions.sort((a, b) => a.id - b.id))
 			})
 			.catch((err) => console.log(err));
 	}, []);
@@ -70,7 +71,7 @@ function ListQuestions(props) {
 	const deleteQuestion = (question) => {
 		const copyQuestions = [...questions].filter((quest) => quest.id !== question.id);
 		setQuestions(copyQuestions);
-		setFiltered(copyQuestions.filter((question) => question.theme === filtreTheme));
+
 
 		db.collection('dataBase')
 			.doc(baseID)
@@ -131,11 +132,6 @@ function ListQuestions(props) {
 
 		copyQuestions.push(edited);
 		setQuestions(copyQuestions);
-		setFiltered(
-			copyQuestions
-				.filter((question) => question.theme === filtreTheme)
-				.sort((a, b) => a.id - b.id),
-		);
 
 		//Ajout dans la base de donnée
 		db.collection('dataBase')
