@@ -40,7 +40,7 @@ function ListQuestions(props) {
 				setLoader(false);
 				//console.log(doc.data().questions);
 				setQuestions(doc.data().questions.sort((a, b) => a.id - b.id));
-				setFiltered(doc.data().questions.sort((a, b) => a.id - b.id))
+				setFiltered(doc.data().questions.sort((a, b) => a.id - b.id));
 			})
 			.catch((err) => console.log(err));
 	}, []);
@@ -71,7 +71,6 @@ function ListQuestions(props) {
 	const deleteQuestion = (question) => {
 		const copyQuestions = [...questions].filter((quest) => quest.id !== question.id);
 		setQuestions(copyQuestions);
-
 
 		db.collection('dataBase')
 			.doc(baseID)
@@ -157,11 +156,12 @@ function ListQuestions(props) {
 					<option value=''>Choisir un Thème</option>
 					<option value='coran'>Coran</option>
 					<option value='histoire'>Histoire</option>
-					<option value='jurisprudence'>Jurisprudence</option>
-					<option value='lesProphetes'>Les Prophètes</option>
 					<option value='prophete'>Muhammad ﷺ</option>
+					<option value='lesProphetes'>Les Prophètes</option>
+					<option value='jurisprudence'>Jurisprudence</option>
+					<option value='textes'>Textes en Islam</option>
 					<option value='compagnons'>Les Compagnons</option>
-					<option value='textes'>Textes En Islam</option>
+					<option value='culture'>Culture Générale</option>
 				</select>
 
 				<select value={filtreNiveau} onChange={(e) => setFiltreNiveau(e.target.value)}>
@@ -257,11 +257,12 @@ function ListQuestions(props) {
 								<option value=''>Choisir un Thème</option>
 								<option value='coran'>Coran</option>
 								<option value='histoire'>Histoire</option>
-								<option value='jurisprudence'>Jurisprudence</option>
+								<option value='prophete'>Muhammad ﷺ</option>
 								<option value='lesProphetes'>Les Prophètes</option>
-								<option value='prophete'>Prophète ﷺ</option>
+								<option value='jurisprudence'>Jurisprudence</option>
+								<option value='textes'>Textes en Islam</option>
 								<option value='compagnons'>Les Compagnons</option>
-								<option value='textes'>Textes En Islam</option>
+								<option value='culture'>Culture Générale</option>
 							</select>
 						</fieldset>
 						<fieldset>

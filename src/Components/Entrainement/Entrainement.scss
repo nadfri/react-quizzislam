@@ -11,12 +11,12 @@
     }
 
 	a {
-		margin: 6px;
+		margin: 5px;
 		padding: 2px 0;
-		padding-left: 14%;
+		padding-left: 20%;
 		text-align: left;
-		width: 143%;
-		font-size: 2.5rem;
+		width: 148%;
+		font-size: 2.2rem;
 		color: black;
 		border-top-right-radius: 40px;
 		border-bottom-right-radius: 40px;
@@ -37,7 +37,7 @@
 			animation: slide 0.5s 0.2s forwards;
 		}
 		&:nth-child(4) {
-			background-color: rgba(165, 42, 42, 0.7);
+			background-color: rgba(216, 101, 101, 0.7);
 			transform: rotate(-35deg) translate(-100%, -119%);
 			animation: slide 0.5s 0.3s forwards;
 		}
@@ -56,12 +56,17 @@
 			transform: rotate(-35deg) translate(-100%, -119%);
 			animation: slide 0.5s 0.6s forwards;
 		}
+		&:nth-child(8) {
+			background-color: rgba(174, 255, 123,0.5);
+			transform: rotate(-35deg) translate(-100%, -119%);
+			animation: slide 0.5s 0.7s forwards;
+		}
 	}
 
 }
 
 @keyframes slide {
 	to {
-		transform: rotate(-35deg) translate(-10%, -119%);
+		transform: rotate(-35deg) translate(-8%, -199%);
 	}
 }

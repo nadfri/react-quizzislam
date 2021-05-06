@@ -1,25 +1,39 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
-  "icons": [
-    {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
-    },
-    {
-      "src": "logo192.png",
-      "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "logo512.png",
-      "type": "image/png",
-      "sizes": "512x512"
-    }
-  ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+	"lang": "fr",
+	"theme_color": "#000",
+	"background_color": "#2b9cff",
+	"display": "standalone",
+	"orientation": "portrait",
+	"start_url": ".",
+	"name": "Quizz Islam",
+	"short_name": "QuizzIslam",
+	"description": "Quizz sur l'Islam",
+	"icons": [
+		{
+			"src": "images/icons/icon192.png",
+			"sizes": "192x192",
+			"type": "image/png"
+		},
+		{
+			"src": "images/icons/icon256.png",
+			"sizes": "256x256",
+			"type": "image/png"
+		},
+		{
+			"src": "images/icons/icon384.png",
+			"sizes": "384x384",
+			"type": "image/png"
+		},
+		{
+			"src": "images/icons/icon512.png",
+			"sizes": "512x512",
+			"type": "image/png"
+		},
+		{
+			"src": "images/icons/maskable_icon.png",
+			"sizes": "192x192",
+			"type": "image/png",
+			"purpose": "any maskable"
+		}
+	]
 }

@@ -2,6 +2,7 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+
 	h1 {
 		margin: 5px;
 		background-color: rgba(211, 224, 234, 0.7);
@@ -25,8 +26,6 @@
 			}
 		}
 	}
-
-
 
 	.form-container {
 		background-color: rgba(0, 0, 0, 0.7);
@@ -81,8 +80,6 @@
 		}
 	}
 
-
-
 	fieldset {
 		position: relative;
 		width: 95%;
@@ -91,10 +88,10 @@
 		border: solid 1px teal;
 		margin: 5px;
 
-        b{
-            font-style: italic;
-            color:#2467a1
-        }
+		b {
+			font-style: italic;
+			color: #2467a1;
+		}
 
 		&.column {
 			flex-direction: column;
@@ -109,19 +106,19 @@
 			color: #0086fb;
 		}
 
-        &.fieldset-filtre{
-            display: flex;
-            justify-content:space-around;
+		&.fieldset-filtre {
+			display: flex;
+			justify-content: space-around;
 
-            select{
-                width:25%;
-            }
+			select {
+				width: 25%;
+			}
 
-            .nb-question{
-                color: #0086fb;
-                text-shadow: 1px 1px 2px black;
-            }
-        }
+			.nb-question {
+				color: #0086fb;
+				text-shadow: 1px 1px 2px black;
+			}
+		}
 	}
 
 	select {
@@ -161,6 +158,7 @@
 		padding: 3px;
 		margin: 2px;
 	}
+
 
 	button {
 		border: none;
