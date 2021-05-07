@@ -3,6 +3,7 @@
 	flex-direction: column;
 	align-items: center;
 
+
 	h1 {
 		margin: 5px;
 		background-color: rgba(211, 224, 234, 0.7);
@@ -111,12 +112,18 @@
 			justify-content: space-around;
 
 			select {
-				width: 25%;
+				width: 20%;
 			}
 
 			.nb-question {
 				color: #0086fb;
 				text-shadow: 1px 1px 2px black;
+			}
+
+			input {
+				border: none;
+				border-radius: 5px;
+				width: 20%;
 			}
 		}
 	}
@@ -159,7 +166,6 @@
 		margin: 2px;
 	}
 
-
 	button {
 		border: none;
 		border-radius: 5px;
@@ -190,7 +196,8 @@
 			background-color: orangered;
 		}
 
-		.red:active {
+		.red:active,
+		.red:hover {
 			background-color: red;
 		}
 	}
@@ -214,9 +221,14 @@
 			height: 2rem;
 			box-shadow: 1px 1px 4px 1px black;
 			cursor: pointer;
+			transition: all 0.5s;
 
 			.fa-edit {
 				padding-left: 3px;
+			}
+
+			&:hover {
+				background-color: tomato;
 			}
 		}
 	}

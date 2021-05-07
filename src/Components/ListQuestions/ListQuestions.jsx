@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { db, fireTab } from '../../../firebase';
-import Loader from '../../Loader/Loader';
-import Modal from '../../Modal/Modal';
+import { db, fireTab } from '../../firebase';
+import Loader from '../Loader/Loader';
+import Modal from '../Modal/Modal';
 import './ListQuestions.scss';
 
 function ListQuestions(props) {
@@ -20,6 +20,7 @@ function ListQuestions(props) {
 	const [filtreNiveau, setFiltreNiveau] = useState('');
 	const [filtrePrivate, setFiltrePrivate] = useState('');
 	const [filtered, setFiltered] = useState([]);
+	const [filtreWord, setFiltreWord] = useState('');
 	//State pour l'édition
 	const [selectedQuestion, setSelectedQuestion] = useState({});
 	const [theme, setTheme] = useState('');
@@ -58,9 +59,12 @@ function ListQuestions(props) {
 
 		if (filtrePrivate !== '')
 			finalFilter = finalFilter.filter((question) => question.private === privateCopy);
+		
+		if (filtreWord.length > 2)
+			finalFilter = finalFilter.filter((question) => question.question.toLowerCase().includes(filtreWord.toLowerCase()));
 
 		setFiltered(finalFilter);
-	}, [filtreTheme, filtreNiveau, filtrePrivate, questions]);
+	}, [filtreTheme, filtreNiveau, filtrePrivate, filtreWord, questions]);
 
 	//Gestion de la suppression et l'édition
 	const handleDelete = (question) => {
@@ -176,9 +180,13 @@ function ListQuestions(props) {
 					<option value='oui'>Oui</option>
 					<option value='non'>Non</option>
 				</select>
+
+				<input type="search" placeholder="Chercher un mot" value={filtreWord} onChange={e=>setFiltreWord(e.target.value)}/>
+
 				<span className='nb-question'>
 					{filtered.length}/{questions.length}
 				</span>
+
 			</fieldset>
 
 			{filtered.map((question) => (

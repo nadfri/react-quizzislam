@@ -5,10 +5,14 @@
 	flex-direction: column;
 	overflow: hidden;
 
-    .sws {
-        position: relative;
-        top: 10%;
-    }
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+
+	.sws {
+		position: relative;
+		top: 10%;
+	}
 
 	a {
 		margin: 5px;
@@ -47,22 +51,21 @@
 			animation: slide 0.5s 0.4s forwards;
 		}
 		&:nth-child(6) {
-			background-color: rgba(255, 127, 80,0.5);
+			background-color: rgba(255, 127, 80, 0.5);
 			transform: rotate(-35deg) translate(-100%, -119%);
 			animation: slide 0.5s 0.5s forwards;
 		}
 		&:nth-child(7) {
-			background-color: rgba(100, 149, 237,0.5);
+			background-color: rgba(100, 149, 237, 0.5);
 			transform: rotate(-35deg) translate(-100%, -119%);
 			animation: slide 0.5s 0.6s forwards;
 		}
 		&:nth-child(8) {
-			background-color: rgba(174, 255, 123,0.5);
+			background-color: rgba(174, 255, 123, 0.5);
 			transform: rotate(-35deg) translate(-100%, -119%);
 			animation: slide 0.5s 0.7s forwards;
 		}
 	}
-
 }
 
 @keyframes slide {

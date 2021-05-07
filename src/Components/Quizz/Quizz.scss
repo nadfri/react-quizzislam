@@ -1,35 +1,119 @@
 .Quizz {
 	height: 90vh;
-	border: solid 2px red;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	animation: zoom 0.7s forwards;
 
+	.etat {
+		display: flex;
+		justify-content: space-between;
+		color: gold;
+		margin: 0 10px;
+	}
 
-	.container-choix{
+	.theme {
+		text-transform: capitalize;
+	}
+
+	p {
+		background-color: #5ab4ea;
+		border-radius: 5px;
+		margin: 10px;
+		padding: 5px;
+	}
+
+	button {
+		margin: 10px;
+		width: 90%;
+		background-color: tomato;
+		color: white;
+		&:active, &:hover{
+			background-color: red;
+		}
+	}
+
+	.blue{
+		background-color: #2b9cff;
+	}
+
+	.question {
+		height: 35%;
+		background-color: rgba(211, 224, 234, 0.7);
+		border-radius: 5px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-size: 1.5rem;
+		margin: 10px;
+		padding: 5px;
+		text-shadow: 1px 2px 3px #36694c;
+	}
+
+	.container-choix {
 		display: flex;
 		justify-content: center;
 		flex-wrap: wrap;
 
-	
-	button {
-		border: none;
-		margin: 5px;
-		border-radius: 5px;
-		width: 45%;
+		button {
+			border: none;
+			margin: 5px;
+			border-radius: 5px;
+			width: 46%;
+			height: 50px;
+			font-size: 1rem;
+			text-shadow: 0px 0px 1px black;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			border: solid transparent;
+			color: black;
 
-		&.choice:focus {
-			background-color: cadetblue;
+			&.disabled {
+				pointer-events: none;
+			}
+
+			&:nth-child(1) {
+				background-color: deepskyblue;
+				&:active, :hover{
+					background-color: rgb(0, 126, 168);
+				}
+			}
+
+			&:nth-child(3) {
+				background-color: chocolate;
+				&:active, :hover{
+					background-color: rgb(149, 62, 0);
+				}
+			}
+			&:nth-child(2) {
+				background-color: gold;
+				&:active, :hover{
+					background-color: rgb(160, 136, 0);
+				}
+			}
+			&:nth-child(4) {
+				background-color: orchid;
+				&:active, :hover{
+					background-color: rgb(211, 37, 205);
+				}
+			}
+
+			&.choice:focus {
+				border: solid white;
+			}
+
+			&.right {
+				border: solid green;
+				background-color: green;
+				color: white;
+			}
+
+			&.wrong {
+				border: solid red;
+				background-color: red;
+				color: white;
+			}
 		}
-
-        &.right{
-            background-color: rgb(128, 200, 128);
-        }
-
-        &.wrong{
-            background-color: rgb(177, 122, 122);
-        }
-
-        &.disabled{
-            pointer-events: none;
-        }
 	}
-}
 }

@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import './Connexion.scss';
+import '../Connexion/Connexion.scss';
+import fire from '../../../firebase';
 import { Link } from 'react-router-dom';
-import fire from "../../../firebase"
 
-function Connexion(props) {
+function Forget(props) {
 	//State
 	const [email, setEmail] = useState('');
-	const [password, setPassword] = useState('');
 	const [error, setError] = useState('');
+	const [success, setSuccess] = useState('');
 
 	/******************LOGIN******************/
 	function submitHandler(e) {
@@ -15,18 +15,20 @@ function Connexion(props) {
 
 		fire
 			.auth()
-			.signInWithEmailAndPassword(email, password)
-			.then((res) => { props.history.goBack();
+			.sendPasswordResetEmail(email)
+			.then((res) => {
+				setSuccess("Cliquez sur le lien de l'email envoyé");
+				setTimeout(() => props.history.push('/connexion'), 5000);
 			})
 			.catch((error) => setError(error.message));
 	}
 
-	/********************Rendu JSX********************/
 	return (
 		<div className='logBox'>
-			<h1>Connexion</h1>
+			<h1>Réinitialiser</h1>
 			<form onSubmit={submitHandler} className='form'>
 				{error !== '' && <div className='alert'>{error}</div>}
+				{success !== '' && <div className='success'>{success}</div>}
 				<label>
 					Email:
 					<br />
@@ -38,22 +40,11 @@ function Connexion(props) {
 						onChange={(e) => setEmail(e.target.value)}
 					/>
 				</label>
-				<label>
-					Mot de Passe: <br />
-					<input
-						type='password'
-						placeholder='Mot de Passe'
-						minLength='6'
-						autoComplete='current-password'
-						required
-						onChange={(e) => setPassword(e.target.value)}
-					/>
-				</label>
 
-				<button type='submit'>Se Connecter</button>
+				<button type='submit'>Récuperer</button>
 				<div className='deja-container'>
-					<Link to='/settings/forget' className='deja'>
-						Mot de Passe oublié?
+					<Link to='/connexion' className='deja'>
+						Se Connecter?
 					</Link>
 				</div>
 			</form>
@@ -61,4 +52,4 @@ function Connexion(props) {
 	);
 }
 
-export default Connexion;
+export default Forget;

@@ -29,7 +29,7 @@ function NavBar(props) {
 			<NavLink exact to='/classement'>
 				<i className='fas fa-medal'></i>
 			</NavLink>
-			<NavLink exact to='/settings'>
+			<NavLink to='/settings'>
 				<i className='fas fa-tools'></i>
 			</NavLink>
 		</div>

@@ -24,19 +24,20 @@
 		h1 {
 			box-shadow: none;
 			background-color: transparent;
-            background-color: rgba(211, 224, 234, 0.7);
-            font-size: 1.6rem;
+			background-color: rgba(211, 224, 234, 0.7);
+			font-size: 1.6rem;
 		}
 
 		button {
 			background-color: #2b9cff;
 			margin: 0;
 			width: 20%;
-            font-size: 1.3rem;
+			font-size: 1.3rem;
 
-            &:active{
-                background-color: #0086fb;
-            }
+			&:active,
+			&:hover {
+				background-color: #0086fb;
+			}
 		}
 	}
 }

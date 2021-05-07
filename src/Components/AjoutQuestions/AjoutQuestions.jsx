@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import Loader from './../Loader/Loader';
+
 import { db, fireTab } from '../../firebase';
-import './Config.scss';
+import './AjoutQuestions.scss';
 import Modal from '../Modal/Modal';
 import { Link } from 'react-router-dom';
+import Loader from '../Loader/Loader';
 
-function Config() {
+function AjoutQuestions() {
 	const baseID = 'hz2fK3KpYDlCG7af12t9';
 
 	//State
@@ -85,7 +86,7 @@ function Config() {
 	return (
 		<div className='Config'>
 			{loader && <Loader />}
-			<h1>Configuration</h1>
+			<h1>Ajout de Questions</h1>
 
 			<form onSubmit={handleSubmit} className='form'>
 				<fieldset>
@@ -280,7 +281,7 @@ function Config() {
 				<button type='submit'>Ajouter</button>
 			</form>
 
-			<Link to='/config/list'>Voir la Liste des Questions</Link>
+			<Link to='/settings/list'>Voir la Liste des Questions</Link>
 
 			
 
@@ -291,4 +292,4 @@ function Config() {
 	);
 }
 
-export default Config;
+export default AjoutQuestions;
