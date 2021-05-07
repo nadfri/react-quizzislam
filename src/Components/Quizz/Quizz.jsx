@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './Quizz.scss';
 import { db } from '../../firebase';
 import Loader from '../Loader/Loader';
+import backCoran from '../../Backgrounds/background10.jpg';
 import backMoh from '../../Backgrounds/background3.jpg';
 import backComp from '../../Backgrounds/background5.jpg';
 import backHist from '../../Backgrounds/background2.jpg';
@@ -78,6 +79,9 @@ function Quizz(props) {
 				break;
 			case 'lesProphetes':
 				setBackground(backProph);
+				break;
+			case 'coran':
+				setBackground(backCoran);
 				break;
 
 			default:
