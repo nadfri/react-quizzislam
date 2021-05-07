@@ -6,10 +6,10 @@ import backCoran from '../../Backgrounds/background10.jpg';
 import backMoh from '../../Backgrounds/background3.jpg';
 import backComp from '../../Backgrounds/background5.jpg';
 import backHist from '../../Backgrounds/background2.jpg';
-import backText from '../../Backgrounds/background1.jpg';
 import backCult from '../../Backgrounds/background13.jpg';
 import backJuri from '../../Backgrounds/background9.jpg';
 import backProph from '../../Backgrounds/background12.jpg';
+import backText from '../../Backgrounds/background15.jpg';
 
 function Quizz(props) {
 	const theme = props.match.params.theme;
