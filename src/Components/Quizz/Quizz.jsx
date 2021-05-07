@@ -14,6 +14,17 @@ import backText from '../../Backgrounds/background15.jpg';
 function Quizz(props) {
 	const theme = props.match.params.theme;
 	const baseID = 'hz2fK3KpYDlCG7af12t9';
+	const background ={
+		coran : backCoran,
+		prophete : backMoh,
+		lesProphetes : backProph,
+		compagnons : backComp,
+		histoire : backHist,
+		textes : backText,
+		culture : backCult,
+		jurisprudence : backJuri
+	};
+
 
 	const [state, setState] = useState([{ choix: [] }]);
 	const [maxQuestion] = useState(10);
@@ -23,7 +34,6 @@ function Quizz(props) {
 	const [diplayBtnSuivant, setdiplayBtnSuivant] = useState(false);
 	const [choice, setChoice] = useState(null);
 	const [loader, setLoader] = useState(false);
-	const [background, setBackground] = useState('');
 
 	const btns = document.querySelectorAll('button');
 
@@ -57,36 +67,6 @@ function Quizz(props) {
 				);
 			})
 			.catch((err) => console.log(err));
-
-		switch (theme) {
-			case 'prophete':
-				setBackground(backMoh);
-				break;
-			case 'compagnons':
-				setBackground(backComp);
-				break;
-			case 'histoire':
-				setBackground(backHist);
-				break;
-			case 'textes':
-				setBackground(backText);
-				break;
-			case 'culture':
-				setBackground(backCult);
-				break;
-			case 'jurisprudence':
-				setBackground(backJuri);
-				break;
-			case 'lesProphetes':
-				setBackground(backProph);
-				break;
-			case 'coran':
-				setBackground(backCoran);
-				break;
-
-			default:
-				break;
-		}
 	}, [theme]);
 
 	const handleChoice = (index) => {
@@ -127,7 +107,7 @@ function Quizz(props) {
 		));
 
 	return (
-		<div className='Quizz' style={{ backgroundImage: `url(${background}` }}>
+		<div className='Quizz' style={{ backgroundImage: `url(${background[theme]}` }}>
 			{loader && <Loader />}
 			<div className='etat'>
 				<span>
@@ -135,7 +115,7 @@ function Quizz(props) {
 				</span>
 				<span className='theme'>{theme}</span>
 				<span>
-					Question {countQuestion + 1}/{maxQuestion}
+					Question: {countQuestion + 1}/{maxQuestion}
 				</span>
 			</div>
 			<div className='question'>{state[countQuestion].question}</div>
