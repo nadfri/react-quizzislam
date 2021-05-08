@@ -12,19 +12,19 @@ import backProph from '../../Backgrounds/background12.jpg';
 import backText from '../../Backgrounds/background15.jpg';
 
 function Quizz(props) {
+	const btns = document.querySelectorAll('button');
 	const theme = props.match.params.theme;
 	const baseID = 'hz2fK3KpYDlCG7af12t9';
-	const background ={
-		coran : backCoran,
-		prophete : backMoh,
-		lesProphetes : backProph,
-		compagnons : backComp,
-		histoire : backHist,
-		textes : backText,
-		culture : backCult,
-		jurisprudence : backJuri
+	const background = {
+		coran: backCoran,
+		prophete: backMoh,
+		lesProphetes: backProph,
+		compagnons: backComp,
+		histoire: backHist,
+		textes: backText,
+		culture: backCult,
+		jurisprudence: backJuri,
 	};
-
 
 	const [state, setState] = useState([{ choix: [] }]);
 	const [maxQuestion] = useState(10);
@@ -34,8 +34,6 @@ function Quizz(props) {
 	const [diplayBtnSuivant, setdiplayBtnSuivant] = useState(false);
 	const [choice, setChoice] = useState(null);
 	const [loader, setLoader] = useState(false);
-
-	const btns = document.querySelectorAll('button');
 
 	function randomize(tab) {
 		var i, j, tmp;
@@ -55,7 +53,7 @@ function Quizz(props) {
 			.get()
 			.then((doc) => {
 				setLoader(false);
-				console.log(doc.data().questions.filter((question) => question.theme === theme));
+				//console.log(doc.data().questions.filter((question) => question.theme === theme));
 				setState(
 					randomize(
 						doc
@@ -83,7 +81,15 @@ function Quizz(props) {
 			btns[choice].classList.add('wrong');
 			btns[reponse - 1].classList.add('right');
 		}
-		btns.forEach((btn) => btn.classList.add('disabled'));
+		//btns.forEach((btn) => {btn.classList.add('disabled', 'dezoom'));}
+		for (let btn of btns) {
+			if (btn.classList.contains('right') || btn.classList.contains('wrong'))
+				btn.classList.add('disabled');
+			else {
+				btn.classList.add('translate');
+				setTimeout(() => (btn.style.display = 'none'), 700);
+			}
+		}
 
 		setdiplayBtnValider(false);
 		setdiplayBtnSuivant(true);
@@ -96,6 +102,7 @@ function Quizz(props) {
 		setdiplayBtnValider(false);
 		setdiplayBtnSuivant(false);
 		btns.forEach((btn) => (btn.className = 'choice'));
+		btns.forEach((btn) => (btn.style.display = ''));
 	};
 
 	const displayChoice = state[countQuestion].choix
