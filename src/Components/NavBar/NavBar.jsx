@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './NavBar.scss';
 import { NavLink } from 'react-router-dom';
 
-function NavBar(props) {
+function NavBar() {
 	const [display, setDisplay] = useState(true);
 
 	useEffect(() => {
@@ -29,7 +29,7 @@ function NavBar(props) {
 			<NavLink exact to='/classement'>
 				<i className='fas fa-medal'></i>
 			</NavLink>
-			<NavLink to='/settings'>
+			<NavLink exact to='/settings'>
 				<i className='fas fa-tools'></i>
 			</NavLink>
 		</div>

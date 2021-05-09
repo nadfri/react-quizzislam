@@ -34,6 +34,7 @@ function Quizz(props) {
 	const [diplayBtnSuivant, setdiplayBtnSuivant] = useState(false);
 	const [choice, setChoice] = useState(null);
 	const [loader, setLoader] = useState(false);
+	//const [niveau, setNiveau] = useState(null);
 
 	function randomize(tab) {
 		var i, j, tmp;
@@ -86,13 +87,13 @@ function Quizz(props) {
 			if (btn.classList.contains('right') || btn.classList.contains('wrong'))
 				btn.classList.add('disabled');
 			else {
-				btn.classList.add('translate');
+				btn.classList.add('dezoom');
 				setTimeout(() => (btn.style.display = 'none'), 700);
 			}
 		}
 
 		setdiplayBtnValider(false);
-		setdiplayBtnSuivant(true);
+		setTimeout(() => setdiplayBtnSuivant(true), 700);
 	};
 
 	const suivant = () => {

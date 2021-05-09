@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { db, fireTab } from '../../firebase';
 import Loader from '../Loader/Loader';
 import Modal from '../Modal/Modal';
+import ScrollTop from '../ScrollTop/ScrollTop';
 import './ListQuestions.scss';
 
 function ListQuestions(props) {
@@ -150,6 +151,7 @@ function ListQuestions(props) {
 	return (
 		<div className='ListQuestion'>
 			{loader && <Loader />}
+			<ScrollTop />
 			<h1>Liste des Questions</h1>
 
 			<fieldset className='fieldset-filtre'>

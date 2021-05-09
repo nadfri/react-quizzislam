@@ -2,7 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 
-
 //Color Variables
 $texte-color: white;
 $navbar-color: #4b778d;
@@ -26,7 +25,7 @@ body {
 	background-color: #0f0f11;
 	overflow-x: hidden;
 	font-family: 'Roboto Slab', serif;
-	background-image: url("./Backgrounds/background.jpg");
+	background-image: url('./Backgrounds/background.jpg');
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
@@ -38,12 +37,12 @@ body {
 	}
 
 	&::-webkit-scrollbar-track {
-		background-color: rgba(211, 224, 234,0.5); /* color of the tracking area */
+		background-color: rgba(211, 224, 234, 0.5); /* color of the tracking area */
 	}
 
 	&::-webkit-scrollbar-thumb {
 		background-color: teal; /* color of the scroll thumb */
-		border-radius: 20px; 
+		border-radius: 20px;
 	}
 }
 
@@ -52,9 +51,7 @@ a {
 	color: black;
 }
 
-
-
-button{
+button {
 	font-family: 'Lobster', cursive;
 	cursor: pointer;
 	padding: 5px;
@@ -66,15 +63,12 @@ button{
 	transition: all 0.5s;
 }
 
-
 .Header {
 	background-color: $header-color;
 }
 .NavBar {
 	background-color: $navbar-color;
 }
-
-
 
 /*Animation*/
 @keyframes zoom {
@@ -95,7 +89,6 @@ button{
 	}
 }
 
-.dezoom{
+.dezoom {
 	animation: dezoom 0.7s forwards;
 }
-

@@ -29,7 +29,7 @@ function AjoutQuestions() {
 			.get()
 			.then((doc) => {
 				setLoader(false);
-				console.log(doc.data().questions);
+				//console.log(doc.data().questions);
 				setQuestions(doc.data().questions);
 				localStorage.setItem('questions', JSON.stringify(doc.data().questions));
 			})

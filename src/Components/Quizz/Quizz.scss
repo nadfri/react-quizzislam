@@ -18,17 +18,20 @@
 	}
 
 	p {
-		background-color: #5ab4ea;
+		background-color: rgba(137, 245, 186, 0.8);
 		border-radius: 5px;
 		margin: 10px;
 		padding: 5px;
+		animation: zoom 0.5s forwards;
+		font-style: oblique;
 	}
 
 	button {
-		margin: 10px;
-		width: 90%;
+		margin: 10px 5px;
+		width: 95%;
 		background-color: tomato;
 		color: white;
+		padding: 5px;
 		&:active, &:hover{
 			background-color: red;
 		}
@@ -36,6 +39,7 @@
 
 	.blue{
 		background-color: #2b9cff;
+		animation: zoom 0.5s forwards;
 	}
 
 	.question {
@@ -61,7 +65,7 @@
 			margin: 5px;
 			border-radius: 5px;
 			width: 46%;
-			height: 50px;
+			min-height: 50px;
 			font-size: 1.2rem;
 			text-shadow: none;
 			display: flex;
@@ -69,6 +73,7 @@
 			justify-content: center;
 			border: solid transparent 3px;
 			color: black;
+			padding:0;
 
 
 			&.disabled {
@@ -119,11 +124,5 @@
 			}
 		}
 	}
-
-	.translate{
-		transform: translateX(-300%);
-		transition: transform 2s;
-	}
-
 
 }

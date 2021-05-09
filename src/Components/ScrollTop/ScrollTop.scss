@@ -1,0 +1,16 @@
+.ScrollTop {
+	position: fixed;
+	top: 50%;
+	transform: translateY(-50%);
+	align-self: flex-end;
+	z-index: 3;
+	display: flex;
+	flex-direction: column;
+
+	.fas {
+		font-size: 1.5rem;
+		color: rgba(43, 156, 255, 0.8);
+		cursor: pointer;
+		margin: 2px 0;
+	}
+}
