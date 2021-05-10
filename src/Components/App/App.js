@@ -14,6 +14,7 @@ import ListQuestions from '../ListQuestions/ListQuestions';
 import Settings from '../Settings/Settings';
 import Forget from '../Login/Forget/Forget';
 import AjoutQuestions from '../AjoutQuestions/AjoutQuestions';
+import Niveau from '../Niveau/Niveau';
 
 function App() {
 	const [user, setUser] = useState('');
@@ -35,7 +36,8 @@ function App() {
 					<Route exact path='/' component={Home} />
 					<Route exact path='/competition' component={Competition} />
 					<Route exact path='/entrainement' component={Entrainement} />
-					<Route exact path='/entrainement/quizz/:theme' component={Quizz} />
+					<Route exact path='/entrainement/quizz/:theme' component={Niveau} />
+					<Route exact path='/entrainement/quizz/:theme/:niveau' component={Quizz} />
 					<Route exact path='/classement' component={Classement} />
 					<Route exact path='/connexion' component={Connexion} />
 					<Route exact path='/settings' component={Settings} />

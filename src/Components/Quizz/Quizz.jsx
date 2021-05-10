@@ -14,6 +14,7 @@ import backText from '../../Backgrounds/background15.jpg';
 function Quizz(props) {
 	const btns = document.querySelectorAll('button');
 	const theme = props.match.params.theme;
+	const niveau = props.match.params.niveau > 3 ? "3" :props.match.params.niveau ;
 	const baseID = 'hz2fK3KpYDlCG7af12t9';
 	const background = {
 		coran: backCoran,
@@ -34,7 +35,6 @@ function Quizz(props) {
 	const [diplayBtnSuivant, setdiplayBtnSuivant] = useState(false);
 	const [choice, setChoice] = useState(null);
 	const [loader, setLoader] = useState(false);
-	//const [niveau, setNiveau] = useState(null);
 
 	function randomize(tab) {
 		var i, j, tmp;
@@ -60,13 +60,18 @@ function Quizz(props) {
 						doc
 							.data()
 							.questions.filter(
-								(question) => question.theme === theme && !question.private,
+								(question) =>
+									question.theme === theme &&
+									question.niveau === niveau &&
+									!question.private,
 							),
 					),
 				);
 			})
 			.catch((err) => console.log(err));
-	}, [theme]);
+	}, [theme, niveau]);
+
+
 
 	const handleChoice = (index) => {
 		setChoice(index);
@@ -82,7 +87,7 @@ function Quizz(props) {
 			btns[choice].classList.add('wrong');
 			btns[reponse - 1].classList.add('right');
 		}
-		//btns.forEach((btn) => {btn.classList.add('disabled', 'dezoom'));}
+
 		for (let btn of btns) {
 			if (btn.classList.contains('right') || btn.classList.contains('wrong'))
 				btn.classList.add('disabled');
@@ -117,11 +122,12 @@ function Quizz(props) {
 	return (
 		<div className='Quizz' style={{ backgroundImage: `url(${background[theme]}` }}>
 			{loader && <Loader />}
+
 			<div className='etat'>
 				<span>
 					Score: {score}/{maxQuestion}
 				</span>
-				<span className='theme'>{theme}</span>
+				<span className='theme'>{theme} {niveau}</span>
 				<span>
 					Question: {countQuestion + 1}/{maxQuestion}
 				</span>

@@ -88,6 +88,14 @@ button {
 		transform: scale(0);
 	}
 }
+@keyframes slideX {
+	from {
+		transform: translateX(-100vw)
+	}
+	to {
+		transform: translateX(0);
+	}
+}
 
 .dezoom {
 	animation: dezoom 0.7s forwards;

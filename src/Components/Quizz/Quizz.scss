@@ -5,6 +5,8 @@
 	background-size: cover;
 	animation: zoom 0.7s forwards;
 
+	
+
 	.etat {
 		display: flex;
 		justify-content: space-between;
@@ -32,12 +34,13 @@
 		background-color: tomato;
 		color: white;
 		padding: 5px;
-		&:active, &:hover{
+		&:active,
+		&:hover {
 			background-color: red;
 		}
 	}
 
-	.blue{
+	.blue {
 		background-color: #2b9cff;
 		animation: zoom 0.5s forwards;
 	}
@@ -73,8 +76,7 @@
 			justify-content: center;
 			border: solid transparent 3px;
 			color: black;
-			padding:0;
-
+			padding: 0;
 
 			&.disabled {
 				pointer-events: none;
@@ -82,26 +84,30 @@
 
 			&:nth-child(1) {
 				background-color: deepskyblue;
-				&:active, :hover{
+				&:active,
+				:hover {
 					background-color: rgb(0, 126, 168);
 				}
 			}
 
 			&:nth-child(3) {
 				background-color: burlywood;
-				&:active, :hover{
+				&:active,
+				:hover {
 					background-color: rgb(204, 144, 65);
 				}
 			}
 			&:nth-child(2) {
 				background-color: gold;
-				&:active, :hover{
+				&:active,
+				:hover {
 					background-color: rgb(160, 136, 0);
 				}
 			}
 			&:nth-child(4) {
 				background-color: orchid;
-				&:active, :hover{
+				&:active,
+				:hover {
 					background-color: rgb(211, 37, 205);
 				}
 			}
