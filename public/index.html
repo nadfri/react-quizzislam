@@ -27,17 +27,11 @@
 	<body>
 		<noscript>You need to enable JavaScript to run this app.</noscript>
 		<!-- A little help for the Netlify post-processing bots -->
-		<form name="contact" netlify netlify-honeypot="bot-field" hidden>
-			<select required name='select'>
-				<option value=''>Choisir une erreur</option>
-				<option value='reponse'>Réponse fausse</option>
-				<option value='orthographe'>Orthographe</option>
-				<option value='forumation'>Question mal formulée</option>
-				<option value='infomartion'>Information érronée</option>
-				<option value='autre'>Autre</option>
+		<form name="Signalement" netlify netlify-honeypot="bot-field" hidden>
+			<select name="select">
 			</select>
 			<textarea name="message"></textarea>
-		</form>
+			</form>	
 		<div id="root"></div>
 	</body>
 </html>
