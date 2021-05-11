@@ -191,4 +191,14 @@
 			}
 		}
 	}
+
+	.erreur{
+		position: absolute;
+		left:2px;
+		bottom: 10px;
+		text-decoration: underline;
+		text-shadow: 0px 0px 5px white;
+		font-size: 10px;
+		cursor: pointer;
+	}
 }

@@ -14,6 +14,7 @@ import correctURL from '../../Sounds/correct.mp3';
 import incorrectURL from '../../Sounds/incorrect.mp3';
 import Notes from '../Notes/Notes';
 import Speaker from '../Speaker/Speaker';
+import FormError from '../FormError/FormError';
 
 function Quizz(props) {
 	/***VARIABLES GLOBALES***/
@@ -21,7 +22,7 @@ function Quizz(props) {
 	const btns = document.querySelectorAll('button');
 	const interfaceDiv = document.querySelector('.interfaceDiv');
 	const skew = document.querySelector('.skew');
-	
+
 	/*AUDIO*/
 	const muteStorage = JSON.parse(localStorage.getItem('mute')) || false;
 	const correct = new Audio(correctURL);
@@ -50,7 +51,7 @@ function Quizz(props) {
 		coran: 'Coran',
 		histoire: 'Histoire',
 		lesprophetes: 'Les Prophetes',
-		Jurisprudence: 'Jurisprudence',
+		jurisprudence: 'Jurisprudence',
 		textes: 'Textes',
 		compagnons: 'Compagnons',
 		culture: 'Culture',
@@ -59,14 +60,15 @@ function Quizz(props) {
 	/***STATE HOOKS***/
 	const [state, setState] = useState([{ choix: [] }]);
 	const [countQuestion, setcountQuestion] = useState(0);
+	const [maxQuestions, setMaxQuestions] = useState(20);
 	const [score, setScore] = useState(0);
-	const [diplayBtnValider, setdiplayBtnValider] = useState(false);
-	const [diplayBtnSuivant, setdiplayBtnSuivant] = useState(false);
 	const [choice, setChoice] = useState(null);
 	const [loader, setLoader] = useState(false);
-	const [maxQuestions, setMaxQuestions] = useState(20);
+	const [diplayBtnValider, setdiplayBtnValider] = useState(false);
+	const [diplayBtnSuivant, setdiplayBtnSuivant] = useState(false);
 	const [displayQuizz, setDisplayQuizz] = useState(true);
 	const [displayNotes, setDisplayNote] = useState(false);
+	const [displayFormError, setDisplayFormError] = useState(false);
 	const [skewText, setSkewText] = useState('');
 	const [mute, setMute] = useState(muteStorage);
 
@@ -232,6 +234,15 @@ function Quizz(props) {
 						</>
 					)}
 				</>
+			)}
+			<div className='erreur' onClick={() => setDisplayFormError(true)}>
+				Signaler une erreur?
+			</div>
+			{displayFormError && (
+				<FormError
+					question={state[countQuestion]}
+					closeForm={() => setDisplayFormError(false)}
+				/>
 			)}
 		</div>
 	);
