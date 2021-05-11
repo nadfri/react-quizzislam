@@ -5,18 +5,46 @@ import './FormError.scss';
 function FormError(props) {
 	const [displaySuccess, setDisplaySuccess] = useState(false);
 	const [displayForm, setDisplayForm] = useState(true);
+	const [erreur, setErreur] = useState('');
+	const [complement, setComplement] = useState('');
+
+	const encode = (data) => {
+		return Object.keys(data)
+			.map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+			.join('&');
+	};
+
+	const handleSubmit = (e) => {
+		fetch('/', {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+			body: encode({
+				'form-name': 'Signalement',
+				erreur,
+				complement,
+				numero: props.question.id,
+				question: props.question.question,
+			}),
+		});
+
+		e.preventDefault();
+		setDisplayForm(false);
+		setDisplaySuccess(true);
+	};
 
 	return (
 		<div className='FormError'>
 			{displayForm && (
 				<fieldset>
 					<legend>Soumettre une erreur</legend>
-					{/* <form name='contact' method='post' onSubmit={handleSubmit} data-netlify='true'>
-						<input type='hidden' name='form-name' value='contact' />
-						<input type='hidden' name='contact' value={props.question.id} />
-						<input type='hidden' name='question' value={props.question.question} />
+					<form
+						onSubmit={handleSubmit}
+						name='Signalement'
+						data-netlify='true'
+						data-netlify-honeypot='bot-field'>
+						<input type='hidden' name='form-name' value='Signalement' />
 
-						<select required name='select'>
+						<select required name='erreur' onChange={(e) => setErreur(e.target.data)}>
 							<option value=''>Choisir une erreur</option>
 							<option value='reponse'>Réponse fausse</option>
 							<option value='orthographe'>Orthographe</option>
@@ -26,10 +54,11 @@ function FormError(props) {
 						</select>
 
 						<textarea
-							name='message'
+							name='complement'
 							placeholder="Complément d'information..."
 							rows='5'
 							cols='33'
+							onChange={(e) => setComplement(e.target.value)}
 						/>
 
 						<button type='submit' className='blue'>
@@ -38,39 +67,6 @@ function FormError(props) {
 						<button type='button' className='tomato' onClick={props.closeForm}>
 							Annuler
 						</button>
-					</form> */}
-					<form
-						name='contact'
-						method='post'
-						data-netlify='true'
-						data-netlify-honeypot='bot-field'
-						onSubmit='submit'>
-						<input type='hidden' name='form-name' value='contact' />
-						<input type='hidden' name='question'  value={props.question.question} />
-						<input type='hidden' name='form-name' value='contact' />
-
-						<select required name='select'>
-							<option value=''>Choisir une erreur</option>
-							<option value='reponse'>Réponse fausse</option>
-							<option value='orthographe'>Orthographe</option>
-							<option value='forumation'>Question mal formulée</option>
-							<option value='infomartion'>Information érronée</option>
-							<option value='autre'>Autre</option>
-						</select>
-
-						<label>
-							Your Name: <input type='text' name='name' />
-						</label>
-
-						<label>
-							Your Email: <input type='email' name='email' />
-						</label>
-
-						<label>
-							Message: <textarea name='message'></textarea>
-						</label>
-
-						<button type='submit'>Send</button>
 					</form>
 				</fieldset>
 			)}
