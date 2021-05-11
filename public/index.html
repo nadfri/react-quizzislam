@@ -25,11 +25,20 @@
 <body>
 	<!-- A little help for the Netlify post-processing bots -->
 	<form name="contact" netlify netlify-honeypot="bot-field" hidden>
+		<input type='hidden' name='question'/>
+		<select name='select'>
+			<option value=''>Choisir une erreur</option>
+			<option value='reponse'>Réponse fausse</option>
+			<option value='orthographe'>Orthographe</option>
+			<option value='forumation'>Question mal formulée</option>
+			<option value='infomartion'>Information érronée</option>
+			<option value='autre'>Autre</option>
+		</select>
 		<input type="text" name="name" />
 		<input type="email" name="email" />
 		<textarea name="message"></textarea>
 	</form>
-	
+
 	<noscript>You need to enable JavaScript to run this app.</noscript>
 	<div id="root"></div>
 </body>
