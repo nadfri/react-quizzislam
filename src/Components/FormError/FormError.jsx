@@ -19,14 +19,13 @@ function FormError(props) {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 			body: encode({
-				'form-name': 'Signalement',
+				'form-name': 'contact',
 				erreur,
 				complement,
 				numero: props.question.id,
 				question: props.question.question,
 			}),
-		});
-
+		}).then((res) => console.log(res));
 		e.preventDefault();
 		setDisplayForm(false);
 		setDisplaySuccess(true);
@@ -39,12 +38,12 @@ function FormError(props) {
 					<legend>Soumettre une erreur</legend>
 					<form
 						onSubmit={handleSubmit}
-						name='Signalement'
+						name='contact'
 						data-netlify='true'
 						data-netlify-honeypot='bot-field'>
-						<input type='hidden' name='form-name' value='Signalement' />
+						<input type='hidden' name='form-name' value='contact' />
 
-						<select required name='erreur' onChange={(e) => setErreur(e.target.data)}>
+						<select required name='erreur' onChange={(e) => setErreur(e.target.value)}>
 							<option value=''>Choisir une erreur</option>
 							<option value='reponse'>Réponse fausse</option>
 							<option value='orthographe'>Orthographe</option>
