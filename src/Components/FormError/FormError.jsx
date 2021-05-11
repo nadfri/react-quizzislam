@@ -7,6 +7,9 @@ function FormError(props) {
 	const [displayForm, setDisplayForm] = useState(true);
 	const [erreur, setErreur] = useState('');
 	const [complement, setComplement] = useState('');
+	const [name, setName] = useState('');
+	const [email, setEmail] = useState('');
+	const [message, setMessage] = useState('');
 
 	const encode = (data) => {
 		return Object.keys(data)
@@ -14,29 +17,78 @@ function FormError(props) {
 			.join('&');
 	};
 
-	const handleSubmit = (e) => {
-		fetch('/', {
-			method: 'POST',
-			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-			body: encode({
-				'form-name': 'contact',
-				erreur,
-				complement,
-				numero: props.question.id,
-				question: props.question.question,
-			}),
-		}).then((res) => console.log(res));
+	// const handleSubmit = (e) => {
+	// 	fetch('/', {
+	// 		method: 'POST',
+	// 		headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+	// 		body: encode({
+	// 			'form-name': 'contact',
+	// 			erreur,
+	// 			complement,
+	// 			numero: props.question.id,
+	// 			question: props.question.question,
+	// 		}),
+	// 	}).then((res) => console.log(res));
+	// 	e.preventDefault();
+	// 	setDisplayForm(false);
+	// 	setDisplaySuccess(true);
+	// };
+	const handleSubmit = e => {
+		fetch("/", {
+		  method: "POST",
+		  headers: { "Content-Type": "application/x-www-form-urlencoded" },
+		  body: encode({ "form-name": "contact", name, email,message})
+		})
+
+
 		e.preventDefault();
 		setDisplayForm(false);
 		setDisplaySuccess(true);
-	};
+	  };
+
+	
 
 	return (
 		<div className='FormError'>
 			{displayForm && (
 				<fieldset>
 					<legend>Soumettre une erreur</legend>
-					<form
+
+					<form onSubmit={handleSubmit}>
+						<p>
+							<label>
+								Your Name:
+								<input
+									type='text'
+									name='name'
+									value={name}
+									onChange={e=>setName(e.target.value)}
+								/>
+							</label>
+						</p>
+						<p>
+							<label>
+								Your Email:
+								<input
+									type='email'
+									name='email'
+									value={email}
+									onChange={e=>setEmail(e.target.value)}
+								/>
+							</label>
+						</p>
+						<p>
+							<label>
+								Message:
+								<textarea name='message' value={message} onChange={e=>setMessage(e.target.value)} />
+							</label>
+						</p>
+						<p>
+							<button type='submit'>Send</button>
+						</p>
+					</form>
+
+					{/* <form
 						onSubmit={handleSubmit}
 						name='contact'
 						data-netlify='true'
@@ -66,7 +118,7 @@ function FormError(props) {
 						<button type='button' className='tomato' onClick={props.closeForm}>
 							Annuler
 						</button>
-					</form>
+					</form> */}
 				</fieldset>
 			)}
 			{displaySuccess && <Modal h1={'Message Envoyé'} close={props.closeForm} />}
