@@ -1,37 +1,36 @@
 <!DOCTYPE html>
 <html lang="fr">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" href="%PUBLIC_URL%/favicon.png" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="theme-color" content="#000000" />
-		<meta name="description" content="Quizz Sur L'Islam" />
-		<meta name="author" content="NadfriJS" />
-		<link rel="apple-touch-icon" href="%PUBLIC_URL%/images/icons/icon192.png" />
-		<link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
 
-		<meta property="og:title" content="Quizz Islam" />
-		<meta property="og:site_name" content="QuizzIslam" />
-		<meta property="og:url" content="https://quizzislam.netlify.app/" />
-		<meta property="og:description" content="Quizz sur l'Islam" />
-		<meta property="og:type" content="website" />
-		<meta property="og:image" content="https://quizzislam.netlify.app/card.png" />
-		<script
-			src="https://kit.fontawesome.com/8591e18e6d.js"
-			crossorigin="anonymous"
-		></script>
+<head>
+	<meta charset="utf-8" />
+	<link rel="icon" href="%PUBLIC_URL%/favicon.png" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="theme-color" content="#000000" />
+	<meta name="description" content="Quizz Sur L'Islam" />
+	<meta name="author" content="NadfriJS" />
+	<link rel="apple-touch-icon" href="%PUBLIC_URL%/images/icons/icon192.png" />
+	<link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
 
-		<title>Quizz Islam</title>
-	</head>
+	<meta property="og:title" content="Quizz Islam" />
+	<meta property="og:site_name" content="QuizzIslam" />
+	<meta property="og:url" content="https://quizzislam.netlify.app/" />
+	<meta property="og:description" content="Quizz sur l'Islam" />
+	<meta property="og:type" content="website" />
+	<meta property="og:image" content="https://quizzislam.netlify.app/card.png" />
+	<script src="https://kit.fontawesome.com/8591e18e6d.js" crossorigin="anonymous"></script>
 
-	<body>
-		<noscript>You need to enable JavaScript to run this app.</noscript>
-		<!-- A little help for the Netlify post-processing bots -->
-		<form name="Signalement" netlify netlify-honeypot="bot-field" hidden>
-			<select name="select">
-			</select>
-			<textarea name="message"></textarea>
-			</form>	
-		<div id="root"></div>
-	</body>
+	<title>Quizz Islam</title>
+</head>
+
+<body>
+	<noscript>You need to enable JavaScript to run this app.</noscript>
+	<!-- A little help for the Netlify post-processing bots -->
+	<form name="contact" netlify netlify-honeypot="bot-field" hidden>
+		<input type="hidden" name="form-name" value="contact" />
+		<input type="text" name="name" />
+		<textarea name="message"></textarea>
+	</form>
+	<div id="root"></div>
+</body>
+
 </html>

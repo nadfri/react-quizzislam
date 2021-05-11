@@ -7,6 +7,7 @@ function FormError(props) {
 	const [displayForm, setDisplayForm] = useState(true);
 	const [erreur, setErreur] = useState('');
 	const [texte, setTexte] = useState('');
+	const [name, setName] = useState('');
 
 	const encode = (data) => {
 		return Object.keys(data)
@@ -19,8 +20,8 @@ function FormError(props) {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 			body: encode({
-				'form-name': 'Signalement',
-				erreur,
+				"form-name": "contact",
+				name,
 				texte,
 				question: props.question.question,
 				id: props.question.id,
@@ -71,15 +72,11 @@ function FormError(props) {
 						</button>
 					</form> */}
 					<form onSubmit={handleSubmit}>
-						<select value={erreur} onChange={(e) => setErreur(e.target.value)} required name="select">
-							<option value=''>Choisir une erreur</option>
-							<option value='reponse'>Réponse fausse</option>
-							<option value='orthographe'>Orthographe</option>
-							<option value='forumation'>Question mal formulée</option>
-							<option value='infomartion'>Information érronée</option>
-							<option value='autre'>Autre</option>
-						</select>
-
+					<input type="hidden" name="form-name" value="contact" />
+						<label>
+							Your Name:
+							<input type='text' name='name' value={name} onChange={e=>setName(e.target.value)} />
+						</label>
 						<textarea
 							name='message'
 							value={texte}
