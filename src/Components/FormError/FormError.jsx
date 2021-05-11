@@ -55,6 +55,7 @@ function FormError(props) {
 					<legend>Soumettre une erreur</legend>
 
 					<form onSubmit={handleSubmit}>
+					<input type="hidden" name="form-name" value="contact" />
 						<p>
 							<label>
 								Your Name:
