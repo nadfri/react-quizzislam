@@ -20,5 +20,15 @@
 		.toggle {
 			vertical-align: middle;
 		}
+
+		&.hidden {
+			animation: hidden 0.5s forwards;
+		}
+	}
+
+	@keyframes hidden {
+		to {
+			opacity: 0;
+		}
 	}
 }

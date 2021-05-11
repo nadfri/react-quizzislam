@@ -15,8 +15,10 @@ function ToggleBtn() {
 		fire.auth().signOut();
 	};
 
+	const classToggle = checked? "ToggleBtn" : "ToggleBtn hidden"
+
 	return (
-		<div className='ToggleBtn'>
+		<div className={classToggle}>
 			<Toggle
 				className='toggle'
 				onChange={logOut}

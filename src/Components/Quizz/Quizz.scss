@@ -1,9 +1,10 @@
 .Quizz {
-	height: 90vh;
+	height: 87vh;
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
 	overflow: hidden;
+	position: relative;
 
 	.etat {
 		display: flex;
@@ -99,7 +100,7 @@
 
 	fieldset {
 		border: none;
-		background-color: rgba(211, 224, 234, 0.5);
+		background-color: rgba(211, 224, 234, 0.7);
 		border-radius: 5px;
 		font-size: 1.3rem;
 		margin: 10px;

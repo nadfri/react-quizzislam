@@ -10,19 +10,28 @@ import backCult from '../../Backgrounds/background13.jpg';
 import backJuri from '../../Backgrounds/background9.jpg';
 import backProph from '../../Backgrounds/background12.jpg';
 import backText from '../../Backgrounds/background15.jpg';
-import correctURL from "../../Sounds/correct.mp3"
-import incorrectURL from "../../Sounds/incorrect.mp3"
+import correctURL from '../../Sounds/correct.mp3';
+import incorrectURL from '../../Sounds/incorrect.mp3';
 import Notes from '../Notes/Notes';
+import Speaker from '../Speaker/Speaker';
 
 function Quizz(props) {
+	/***VARIABLES GLOBALES***/
+	/*DOM*/
 	const btns = document.querySelectorAll('button');
 	const interfaceDiv = document.querySelector('.interfaceDiv');
+	const skew = document.querySelector('.skew');
+	
+	/*AUDIO*/
+	const muteStorage = JSON.parse(localStorage.getItem('mute')) || false;
 	const correct = new Audio(correctURL);
 	const incorrect = new Audio(incorrectURL);
-	const skew = document.querySelector('.skew');
+	const audios = [correct, incorrect];
+
+	/*DATAS*/
+	const baseID = 'hz2fK3KpYDlCG7af12t9';
 	const theme = props.match.params.theme;
 	const niveau = props.match.params.niveau > 3 ? '3' : props.match.params.niveau;
-	const baseID = 'hz2fK3KpYDlCG7af12t9';
 	const background = {
 		coran: backCoran,
 		prophete: backMoh,
@@ -33,7 +42,6 @@ function Quizz(props) {
 		culture: backCult,
 		jurisprudence: backJuri,
 	};
-
 	const conversion = {
 		1: 'Débutant',
 		2: 'Intermédiaire',
@@ -48,6 +56,7 @@ function Quizz(props) {
 		culture: 'Culture',
 	};
 
+	/***STATE HOOKS***/
 	const [state, setState] = useState([{ choix: [] }]);
 	const [countQuestion, setcountQuestion] = useState(0);
 	const [score, setScore] = useState(0);
@@ -58,8 +67,8 @@ function Quizz(props) {
 	const [maxQuestions, setMaxQuestions] = useState(20);
 	const [displayQuizz, setDisplayQuizz] = useState(true);
 	const [displayNotes, setDisplayNote] = useState(false);
-	const [skewText, setSkewText] = useState("");
-
+	const [skewText, setSkewText] = useState('');
+	const [mute, setMute] = useState(muteStorage);
 
 	function randomize(tab) {
 		var i, j, tmp;
@@ -72,6 +81,7 @@ function Quizz(props) {
 		return tab;
 	}
 
+	/***USE EFFECT***/
 	useEffect(() => {
 		setLoader(true);
 		db.collection('dataBase')
@@ -97,6 +107,7 @@ function Quizz(props) {
 			.catch((err) => console.log(err));
 	}, [theme, niveau]);
 
+	/***GESTION DES CHOIX DES REPONSES***/
 	const handleChoice = (index) => {
 		setChoice(index);
 		setdiplayBtnValider(true);
@@ -110,23 +121,21 @@ function Quizz(props) {
 			</button>
 		));
 
-
-
+	/***VALIDATION DES REPONSES***/
 	const valider = () => {
 		const reponse = Number(state[countQuestion].reponse);
 		skew.classList.add('slideSkew');
 		if (choice + 1 === reponse) {
 			setScore((prev) => ++prev);
 			btns[choice].classList.add('right');
-			setSkewText("EXACT!");
-			skew.classList.add("green");
+			setSkewText('EXACT!');
+			skew.classList.add('green');
 			correct.play();
-
 		} else {
 			btns[choice].classList.add('wrong');
 			btns[reponse - 1].classList.add('right');
-			setSkewText("FAUX!");
-			skew.classList.add("red");
+			setSkewText('FAUX!');
+			skew.classList.add('red');
 			incorrect.play();
 		}
 
@@ -145,12 +154,13 @@ function Quizz(props) {
 		setdiplayBtnValider(false);
 	};
 
+	/***QUESTION SUIVANTE***/
 	const suivant = () => {
 		if (countQuestion + 1 === maxQuestions) {
 			setDisplayQuizz(false);
 			setDisplayNote(true);
 		} else {
-			skew.className = "skew";
+			skew.className = 'skew';
 			setcountQuestion((count) => count + 1);
 			setdiplayBtnSuivant(false);
 
@@ -164,9 +174,19 @@ function Quizz(props) {
 		}
 	};
 
+	/***GESTION DE L'AUDIO***/
+	for (let audio of audios) audio.muted = mute;
+	const toggleMute = () => {
+		localStorage.setItem('mute', !mute);
+		setMute(!mute);
+		for (let audio of audios) audio.muted = mute;
+	};
+
+	/***RENDU JSX***/
 	return (
 		<div className='Quizz' style={{ backgroundImage: `url(${background[theme]}` }}>
 			{loader && <Loader />}
+			<Speaker toggleMute={toggleMute} mute={mute} />
 			{displayNotes && (
 				<Notes score={score} maxQuestions={maxQuestions} params={props.match.params} />
 			)}
@@ -178,7 +198,7 @@ function Quizz(props) {
 							<div className='score'>
 								{score}/{maxQuestions}
 							</div>
-							<div className="skew">{skewText}</div>
+							<div className='skew'>{skewText}</div>
 						</div>
 
 						<div className='skews'>
