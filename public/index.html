@@ -24,8 +24,7 @@
 
 <body>
 	<!-- A little help for the Netlify post-processing bots -->
-	<!-- <form name="signalement" netlify netlify-honeypot="bot-field" hidden>
-
+	<form name="signalement" netlify netlify-honeypot="bot-field" hidden action="/thank-you/">
 		<select name='erreur'>
 			<option value=''>Choisir une erreur</option>
 			<option value='reponse'>Réponse fausse</option>
@@ -36,12 +35,6 @@
 		</select>
 
 		<textarea name="complement"></textarea>
-	</form> -->
-
-	<form name="signalement" netlify netlify-honeypot="bot-field" hidden action="/thank-you/">
-		<input type="text" name="name" />
-		<input type="email" name="email" />
-		<textarea name="message"></textarea>
 	</form>
 
 	<noscript>You need to enable JavaScript to run this app.</noscript>

@@ -7,9 +7,6 @@ function FormError(props) {
 	const [displayForm, setDisplayForm] = useState(true);
 	const [erreur, setErreur] = useState('');
 	const [complement, setComplement] = useState('');
-	const [name, setName] = useState('');
-	const [email, setEmail] = useState('');
-	const [message, setMessage] = useState('');
 
 	const encode = (data) => {
 		return Object.keys(data)
@@ -17,27 +14,17 @@ function FormError(props) {
 			.join('&');
 	};
 
-	// const handleSubmit = (e) => {
-	// 	fetch('/', {
-	// 		method: 'POST',
-	// 		headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-	// 		body: encode({
-	// 			'form-name': 'signalement',
-	// 			erreur,
-	// 			complement,
-	// 			numero: props.question.id,
-	// 			question: props.question.question,
-	// 		}),
-	// 	}).then((res) => console.log(res));
-	// 	e.preventDefault();
-	// 	setDisplayForm(false);
-	// 	setDisplaySuccess(true);
-	// };
 	const handleSubmit = (e) => {
 		fetch('/', {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-			body: encode({ 'form-name': 'signalement', name, email, message }),
+			body: encode({
+				'form-name': 'signalement',
+				erreur,
+				question: props.question.question,
+				id: props.question.id,
+				complement,
+			}),
 		});
 
 		e.preventDefault();
@@ -51,52 +38,7 @@ function FormError(props) {
 				<fieldset>
 					<legend>Soumettre une erreur</legend>
 
-					<form onSubmit={handleSubmit} action="/thank-you/">
-						<input type='hidden' name='form-name' value='signalement' />
-						<p>
-							<label>
-								Your Name:
-								<input
-									type='text'
-									name='name'
-									value={name}
-									onChange={(e) => setName(e.target.value)}
-								/>
-							</label>
-						</p>
-						<p>
-							<label>
-								Your Email:
-								<input
-									type='email'
-									name='email'
-									value={email}
-									onChange={(e) => setEmail(e.target.value)}
-								/>
-							</label>
-						</p>
-						<p>
-							<label>
-								Message:
-								<textarea
-									name='message'
-									value={message}
-									onChange={(e) => setMessage(e.target.value)}
-								/>
-							</label>
-						</p>
-						<p>
-							<button type='submit'>Send</button>
-						</p>
-					</form>
-
-					{/* <form
-						onSubmit={handleSubmit}
-						name='signalement'
-						data-netlify='true'
-						data-netlify-honeypot='bot-field'>
-						<input type='hidden' name='form-name' value='signalement' />
-
+					<form onSubmit={handleSubmit} action='/thank-you/' data-netlify='true'>
 						<select required name='erreur' onChange={(e) => setErreur(e.target.value)}>
 							<option value=''>Choisir une erreur</option>
 							<option value='reponse'>Réponse fausse</option>
@@ -120,7 +62,7 @@ function FormError(props) {
 						<button type='button' className='tomato' onClick={props.closeForm}>
 							Annuler
 						</button>
-					</form> */}
+					</form>
 				</fieldset>
 			)}
 			{displaySuccess && <Modal h1={'Message Envoyé'} close={props.closeForm} />}
