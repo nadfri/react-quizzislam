@@ -3,35 +3,82 @@
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
-	animation: zoom 0.7s forwards;
-
-	
+	overflow: hidden;
 
 	.etat {
 		display: flex;
 		justify-content: space-between;
-		color: gold;
-		margin: 0 5px;
-		text-shadow: 1px 1px 2px black;
+
+		.skew {
+			color: white;
+			font-weight: bold;
+			text-transform: uppercase;
+			margin: 5px 0;
+			transform: skewX(-17deg) translateX(-100vw);
+			padding: 5px 20px 5px 60px;
+			box-shadow: 0px 0px 5px 1px #191919;
+			transition: all 0.5s;
+
+			&.slideSkew {
+				transform: skewX(-17deg) translateX(-40px);
+			}
+
+			&.red {
+				background-color: red;
+			}
+
+			&.green {
+				background-color: green;
+			}
+		}
+
+		.score {
+			width: 50px;
+			height: 50px;
+			border-radius: 50%;
+			background-color: rgba(75, 119, 141, 0.7);
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			box-shadow: 0px 0px 5px 1px #191919;
+			animation: slideIn 0.5s forwards;
+			color: gold;
+			margin: 5px;
+		}
+
+		.skews {
+			animation: slideToLeft 0.5s forwards;
+
+			div {
+				background-color: red;
+				color: white;
+				font-weight: bold;
+				text-transform: uppercase;
+				margin: 5px 0;
+				transform: skewX(-17deg) translateX(40px);
+				padding: 5px 50px 5px 10px;
+				box-shadow: 0px 0px 5px 1px #191919;
+			}
+		}
 	}
 
 	.theme {
 		text-transform: capitalize;
 	}
 
-	p {
+	.info {
 		background-color: rgba(137, 245, 186, 0.8);
 		border-radius: 5px;
 		margin: 10px;
 		padding: 5px;
-		animation: zoom 0.5s forwards;
 		font-style: oblique;
+		animation: slideToLeft 0.3s forwards;
 	}
 
 	button {
 		margin: 10px 5px;
 		width: 95%;
-		background-color: tomato;
+
 		color: white;
 		padding: 5px;
 		&:active,
@@ -40,22 +87,35 @@
 		}
 	}
 
-	.blue {
-		background-color: #2b9cff;
-		animation: zoom 0.5s forwards;
+	.tomato {
+		background-color: tomato;
+		animation: zoom 0.3s forwards;
 	}
 
-	.question {
-		height: 30%;
+	.blue {
+		background-color: #2b9cff;
+		animation: zoom 0.3s forwards;
+	}
+
+	fieldset {
+		border: none;
 		background-color: rgba(211, 224, 234, 0.5);
 		border-radius: 5px;
-		display: flex;
-		justify-content: center;
-		align-items: center;
 		font-size: 1.3rem;
 		margin: 10px;
-		padding: 5px;
+		padding: 5px 5px 10px 5px;
 		text-shadow: 1px 2px 3px #36694c;
+
+		legend {
+			font-size: 1rem;
+			background-color: rgba(211, 224, 234, 0.8);
+			border-radius: 5px;
+			padding: 2px 5px;
+		}
+
+		p {
+			margin: 0;
+		}
 	}
 
 	.container-choix {
@@ -130,5 +190,4 @@
 			}
 		}
 	}
-
 }

@@ -10,11 +10,18 @@ import backCult from '../../Backgrounds/background13.jpg';
 import backJuri from '../../Backgrounds/background9.jpg';
 import backProph from '../../Backgrounds/background12.jpg';
 import backText from '../../Backgrounds/background15.jpg';
+import correctURL from "../../Sounds/correct.mp3"
+import incorrectURL from "../../Sounds/incorrect.mp3"
+import Notes from '../Notes/Notes';
 
 function Quizz(props) {
 	const btns = document.querySelectorAll('button');
+	const interfaceDiv = document.querySelector('.interfaceDiv');
+	const correct = new Audio(correctURL);
+	const incorrect = new Audio(incorrectURL);
+	const skew = document.querySelector('.skew');
 	const theme = props.match.params.theme;
-	const niveau = props.match.params.niveau > 3 ? "3" :props.match.params.niveau ;
+	const niveau = props.match.params.niveau > 3 ? '3' : props.match.params.niveau;
 	const baseID = 'hz2fK3KpYDlCG7af12t9';
 	const background = {
 		coran: backCoran,
@@ -27,14 +34,32 @@ function Quizz(props) {
 		jurisprudence: backJuri,
 	};
 
+	const conversion = {
+		1: 'Débutant',
+		2: 'Intermédiaire',
+		3: 'Expert',
+		prophete: 'Muhammad ﷺ ',
+		coran: 'Coran',
+		histoire: 'Histoire',
+		lesprophetes: 'Les Prophetes',
+		Jurisprudence: 'Jurisprudence',
+		textes: 'Textes',
+		compagnons: 'Compagnons',
+		culture: 'Culture',
+	};
+
 	const [state, setState] = useState([{ choix: [] }]);
-	const [maxQuestion] = useState(10);
 	const [countQuestion, setcountQuestion] = useState(0);
 	const [score, setScore] = useState(0);
 	const [diplayBtnValider, setdiplayBtnValider] = useState(false);
 	const [diplayBtnSuivant, setdiplayBtnSuivant] = useState(false);
 	const [choice, setChoice] = useState(null);
 	const [loader, setLoader] = useState(false);
+	const [maxQuestions, setMaxQuestions] = useState(20);
+	const [displayQuizz, setDisplayQuizz] = useState(true);
+	const [displayNotes, setDisplayNote] = useState(false);
+	const [skewText, setSkewText] = useState("");
+
 
 	function randomize(tab) {
 		var i, j, tmp;
@@ -55,60 +80,26 @@ function Quizz(props) {
 			.then((doc) => {
 				setLoader(false);
 				//console.log(doc.data().questions.filter((question) => question.theme === theme));
-				setState(
-					randomize(
-						doc
-							.data()
-							.questions.filter(
-								(question) =>
-									question.theme === theme &&
-									question.niveau === niveau &&
-									!question.private,
-							),
-					),
+				const questions = randomize(
+					doc
+						.data()
+						.questions.filter(
+							(question) =>
+								question.theme === theme &&
+								question.niveau === niveau &&
+								!question.private,
+						),
 				);
+				setState(questions);
+
+				setMaxQuestions(questions.length >= 20 ? 20 : questions.length);
 			})
 			.catch((err) => console.log(err));
 	}, [theme, niveau]);
 
-
-
 	const handleChoice = (index) => {
 		setChoice(index);
 		setdiplayBtnValider(true);
-	};
-
-	const valider = () => {
-		const reponse = Number(state[countQuestion].reponse);
-		if (choice + 1 === reponse) {
-			setScore((prev) => ++prev);
-			btns[choice].classList.add('right');
-		} else {
-			btns[choice].classList.add('wrong');
-			btns[reponse - 1].classList.add('right');
-		}
-
-		for (let btn of btns) {
-			if (btn.classList.contains('right') || btn.classList.contains('wrong'))
-				btn.classList.add('disabled');
-			else {
-				btn.classList.add('dezoom');
-				setTimeout(() => (btn.style.display = 'none'), 700);
-			}
-		}
-
-		setdiplayBtnValider(false);
-		setTimeout(() => setdiplayBtnSuivant(true), 700);
-	};
-
-	const suivant = () => {
-		if (countQuestion + 1 > maxQuestion) setcountQuestion(0);
-		else setcountQuestion((count) => count + 1);
-
-		setdiplayBtnValider(false);
-		setdiplayBtnSuivant(false);
-		btns.forEach((btn) => (btn.className = 'choice'));
-		btns.forEach((btn) => (btn.style.display = ''));
 	};
 
 	const displayChoice = state[countQuestion].choix
@@ -119,28 +110,107 @@ function Quizz(props) {
 			</button>
 		));
 
+
+
+	const valider = () => {
+		const reponse = Number(state[countQuestion].reponse);
+		skew.classList.add('slideSkew');
+		if (choice + 1 === reponse) {
+			setScore((prev) => ++prev);
+			btns[choice].classList.add('right');
+			setSkewText("EXACT!");
+			skew.classList.add("green");
+			correct.play();
+
+		} else {
+			btns[choice].classList.add('wrong');
+			btns[reponse - 1].classList.add('right');
+			setSkewText("FAUX!");
+			skew.classList.add("red");
+			incorrect.play();
+		}
+
+		for (let btn of btns) {
+			btn.classList.add('disabled', 'dezoom');
+			setTimeout(() => (btn.style.display = 'none'), 300);
+		}
+
+		setTimeout(() => {
+			btns[choice].style.display = '';
+			btns[reponse - 1].style.display = '';
+			btns[choice].classList.replace('dezoom', 'zoom');
+			btns[reponse - 1].classList.replace('dezoom', 'zoom');
+			setdiplayBtnSuivant(true);
+		}, 300);
+		setdiplayBtnValider(false);
+	};
+
+	const suivant = () => {
+		if (countQuestion + 1 === maxQuestions) {
+			setDisplayQuizz(false);
+			setDisplayNote(true);
+		} else {
+			skew.className = "skew";
+			setcountQuestion((count) => count + 1);
+			setdiplayBtnSuivant(false);
+
+			btns.forEach((btn) => (btn.className = 'choice'));
+			btns.forEach((btn) => (btn.style.display = ''));
+
+			interfaceDiv.classList.replace('slideIn', 'slideOut');
+			setTimeout(() => {
+				interfaceDiv.classList.replace('slideOut', 'slideIn');
+			}, 300);
+		}
+	};
+
 	return (
 		<div className='Quizz' style={{ backgroundImage: `url(${background[theme]}` }}>
 			{loader && <Loader />}
+			{displayNotes && (
+				<Notes score={score} maxQuestions={maxQuestions} params={props.match.params} />
+			)}
 
-			<div className='etat'>
-				<span>
-					Score: {score}/{maxQuestion}
-				</span>
-				<span className='theme'>{theme} {niveau}</span>
-				<span>
-					Question: {countQuestion + 1}/{maxQuestion}
-				</span>
-			</div>
-			<div className='question'>{state[countQuestion].question}</div>
-			<div className='container-choix'>{displayChoice}</div>
-			{diplayBtnValider && <button onClick={valider}>Valider</button>}
-			{diplayBtnSuivant && (
+			{displayQuizz && state.length > 1 && (
 				<>
-					{state[countQuestion].info !== '' && <p>{state[countQuestion].info}</p>}
-					<button onClick={suivant} className='blue'>
-						Suivant
-					</button>
+					<div className='etat'>
+						<div>
+							<div className='score'>
+								{score}/{maxQuestions}
+							</div>
+							<div className="skew">{skewText}</div>
+						</div>
+
+						<div className='skews'>
+							<div>{conversion[theme]}</div>
+							<div>{conversion[niveau]}</div>
+						</div>
+					</div>
+
+					<div className='interfaceDiv slideIn'>
+						<fieldset>
+							<legend>
+								Question {countQuestion + 1}/{maxQuestions}
+							</legend>
+							<p>{state[countQuestion].question}</p>
+						</fieldset>
+						<div className='container-choix'>{displayChoice}</div>
+					</div>
+					{diplayBtnValider && (
+						<button className='tomato' onClick={valider}>
+							Valider
+						</button>
+					)}
+					{diplayBtnSuivant && (
+						<>
+							{state[countQuestion].info !== '' && (
+								<div className='info'>{state[countQuestion].info}</div>
+							)}
+							<button onClick={suivant} className='blue'>
+								Suivant
+							</button>
+						</>
+					)}
 				</>
 			)}
 		</div>

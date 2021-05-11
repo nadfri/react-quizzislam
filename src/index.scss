@@ -70,7 +70,7 @@ button {
 	background-color: $navbar-color;
 }
 
-/*Animation*/
+/*Animations*/
 @keyframes zoom {
 	from {
 		transform: scale(0);
@@ -88,15 +88,47 @@ button {
 		transform: scale(0);
 	}
 }
-@keyframes slideX {
+
+@keyframes slideIn {
 	from {
-		transform: translateX(-100vw)
+		transform: translateX(-100vw);
 	}
 	to {
 		transform: translateX(0);
 	}
 }
 
+@keyframes slideOut {
+	from {
+		transform: translateX(0);
+	}
+	to {
+		transform: translateX(100vw);
+	}
+}
+
+@keyframes slideToLeft {
+	from {
+		transform: translateX(100vw);
+	}
+	to {
+		transform: translateX(0);
+	}
+}
+
+
+.zoom{
+	animation: zoom 0.5s forwards;
+}
+
 .dezoom {
-	animation: dezoom 0.7s forwards;
+	animation: dezoom 0.5s forwards;
+}
+
+.slideIn{
+	animation: slideIn 0.25s forwards;
+}
+
+.slideOut{
+	animation: slideOut 0.25s forwards;
 }

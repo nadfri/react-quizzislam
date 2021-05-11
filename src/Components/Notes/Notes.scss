@@ -1,0 +1,127 @@
+.Notes {
+	height: 100%;
+	overflow: hidden;
+
+	.header {
+		display: flex;
+		justify-content: space-between;
+
+		.score {
+			width: 150px;
+			height: 150px;
+			border-radius: 50%;
+			background-color: rgba(75, 119, 141, 0.7);
+			font-size: 2rem;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin: 5px 10px 30px;
+			box-shadow: 0px 0px 5px 1px #191919;
+			animation: slideIn 0.5s forwards;
+			color: white;
+		}
+
+		.skews {
+			animation: slideToLeft 0.7s forwards;
+
+			div {
+				background-color: red;
+				color: white;
+				font-weight: bold;
+				text-transform: uppercase;
+				margin: 30px 0;
+				transform: skewX(-17deg) translateX(40px);
+				padding: 5px 50px 5px 10px;
+				box-shadow: 0px 0px 5px 1px #191919;
+			}
+		}
+	}
+
+	.texte {
+		width: 90%;
+		margin: 10px;
+		padding: 10px;
+		border-radius: 10px;
+		box-shadow: 0px 0px 5px 1px #191919;
+		font-size: 1.3rem;
+		font-style: oblique;
+		animation: slideIn 0.5s forwards;
+		margin: auto;
+	}
+
+	.note {
+		font-size: 3.5rem;
+		font-weight: bold;
+		position: relative;
+		bottom: 0.5rem;
+	}
+
+	.red {
+		color: red;
+	}
+
+	.orange {
+		color: orange;
+	}
+
+	.green {
+		color: lime;
+	}
+
+	.backRed {
+		background-color: rgba(245, 191, 191, 0.6);
+	}
+	.backOrange {
+		background-color: rgba(255, 165, 0, 0.7);
+	}
+	.backGreen {
+		background-color: rgba(137, 245, 186, 0.7);
+	}
+
+	.links {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		animation: slideToLeft 0.7s forwards;
+		margin-top: 50px;
+
+		a {
+			width: 70%;
+			max-width: 300px;
+			margin: 10px;
+			padding: 0 10px;
+			background-color: #4b778d;
+			font-family: 'Lobster', cursive;
+			cursor: pointer;
+			padding: 5px;
+			border: none;
+			font-size: 1.5rem;
+			text-shadow: 1px 1px 2px black;
+			box-shadow: 0px 0px 5px 1px #191919;
+			border-radius: 3px;
+			transition: all 0.5s;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			color: white;
+			font-size: 22px;
+
+			& > * {
+				margin: 0 10px;
+			}
+			&:active,
+			&:hover {
+				background-color: #0b5b84;
+			}
+		}
+	}
+	.fas {
+		font-size: 2rem;
+		color: white;
+		text-shadow: 2px 2px 4px #000;
+	}
+
+	.fa-trophy {
+		color: gold;
+	}
+}

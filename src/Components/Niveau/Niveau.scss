@@ -1,6 +1,6 @@
 .Niveau {
 	height: 100%;
-	animation: slideX 0.5s forwards;
+	animation: slideIn 0.5s forwards;
 	position: relative;
 
 	h1 {
@@ -25,17 +25,17 @@
 			width: 85%;
 			margin: 20px;
 			background-color: #2b9cff;
-            font-family: 'Lobster', cursive;
-            cursor: pointer;
-            padding: 5px;
-            border: none;
-            font-size: 1.5rem;
-            text-shadow: 1px 1px 2px black;
-            box-shadow: 0px 0px 5px 1px #191919;
-            border-radius: 3px;
-            transition: all 0.5s;
-            display: block;
-            color:white;
+			font-family: 'Lobster', cursive;
+			cursor: pointer;
+			padding: 5px;
+			border: none;
+			font-size: 1.5rem;
+			text-shadow: 1px 1px 2px black;
+			box-shadow: 0px 0px 5px 1px #191919;
+			border-radius: 3px;
+			transition: all 0.5s;
+			display: block;
+			color: white;
 
 			&:active,
 			&:hover {
