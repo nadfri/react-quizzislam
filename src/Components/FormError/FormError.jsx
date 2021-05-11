@@ -22,7 +22,7 @@ function FormError(props) {
 	// 		method: 'POST',
 	// 		headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 	// 		body: encode({
-	// 			'form-name': 'contact',
+	// 			'form-name': 'signalement',
 	// 			erreur,
 	// 			complement,
 	// 			numero: props.question.id,
@@ -33,20 +33,17 @@ function FormError(props) {
 	// 	setDisplayForm(false);
 	// 	setDisplaySuccess(true);
 	// };
-	const handleSubmit = e => {
-		fetch("/", {
-		  method: "POST",
-		  headers: { "Content-Type": "application/x-www-form-urlencoded" },
-		  body: encode({ "form-name": "contact", name, email,message})
-		})
-
+	const handleSubmit = (e) => {
+		fetch('/', {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+			body: encode({ 'form-name': 'signalement', name, email, message }),
+		});
 
 		e.preventDefault();
 		setDisplayForm(false);
 		setDisplaySuccess(true);
-	  };
-
-	
+	};
 
 	return (
 		<div className='FormError'>
@@ -54,8 +51,8 @@ function FormError(props) {
 				<fieldset>
 					<legend>Soumettre une erreur</legend>
 
-					<form onSubmit={handleSubmit}>
-					<input type="hidden" name="form-name" value="contact" />
+					<form onSubmit={handleSubmit} action="/thank-you/">
+						<input type='hidden' name='form-name' value='signalement' />
 						<p>
 							<label>
 								Your Name:
@@ -63,7 +60,7 @@ function FormError(props) {
 									type='text'
 									name='name'
 									value={name}
-									onChange={e=>setName(e.target.value)}
+									onChange={(e) => setName(e.target.value)}
 								/>
 							</label>
 						</p>
@@ -74,14 +71,18 @@ function FormError(props) {
 									type='email'
 									name='email'
 									value={email}
-									onChange={e=>setEmail(e.target.value)}
+									onChange={(e) => setEmail(e.target.value)}
 								/>
 							</label>
 						</p>
 						<p>
 							<label>
 								Message:
-								<textarea name='message' value={message} onChange={e=>setMessage(e.target.value)} />
+								<textarea
+									name='message'
+									value={message}
+									onChange={(e) => setMessage(e.target.value)}
+								/>
 							</label>
 						</p>
 						<p>
@@ -91,10 +92,10 @@ function FormError(props) {
 
 					{/* <form
 						onSubmit={handleSubmit}
-						name='contact'
+						name='signalement'
 						data-netlify='true'
 						data-netlify-honeypot='bot-field'>
-						<input type='hidden' name='form-name' value='contact' />
+						<input type='hidden' name='form-name' value='signalement' />
 
 						<select required name='erreur' onChange={(e) => setErreur(e.target.value)}>
 							<option value=''>Choisir une erreur</option>

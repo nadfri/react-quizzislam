@@ -25,11 +25,11 @@
 			animation: slideToLeft 0.7s forwards;
 
 			div {
-				background-color: red;
+				background-color: goldenrod;
 				color: white;
 				font-weight: bold;
 				text-transform: uppercase;
-				margin: 30px 0;
+				margin: 10px 0;
 				transform: skewX(-17deg) translateX(40px);
 				padding: 5px 50px 5px 10px;
 				box-shadow: 0px 0px 5px 1px #191919;
@@ -47,6 +47,7 @@
 		font-style: oblique;
 		animation: slideIn 0.5s forwards;
 		margin: auto;
+		text-shadow: 0 0 4px #414141;
 	}
 
 	.note {

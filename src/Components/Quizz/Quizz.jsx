@@ -143,7 +143,7 @@ function Quizz(props) {
 
 		for (let btn of btns) {
 			btn.classList.add('disabled', 'dezoom');
-			setTimeout(() => (btn.style.display = 'none'), 300);
+			setTimeout(() => (btn.style.display = 'none'), 200);
 		}
 
 		setTimeout(() => {
@@ -152,7 +152,7 @@ function Quizz(props) {
 			btns[choice].classList.replace('dezoom', 'zoom');
 			btns[reponse - 1].classList.replace('dezoom', 'zoom');
 			setdiplayBtnSuivant(true);
-		}, 300);
+		}, 200);
 		setdiplayBtnValider(false);
 	};
 

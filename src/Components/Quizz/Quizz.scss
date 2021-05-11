@@ -51,7 +51,7 @@
 			animation: slideToLeft 0.5s forwards;
 
 			div {
-				background-color: red;
+				background-color: goldenrod;
 				color: white;
 				font-weight: bold;
 				text-transform: uppercase;
@@ -125,7 +125,6 @@
 		flex-wrap: wrap;
 
 		button {
-			border: none;
 			margin: 5px;
 			border-radius: 5px;
 			width: 46%;
@@ -135,7 +134,7 @@
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			border: solid transparent 3px;
+			border: solid transparent 4px;
 			color: black;
 			padding: 0;
 
@@ -176,6 +175,7 @@
 			&.choice:focus {
 				border: solid white 3px;
 				color: white;
+				text-shadow: 0px 0px 7px black;
 			}
 
 			&.right {
@@ -185,20 +185,33 @@
 			}
 
 			&.wrong {
+				position: relative;
 				border: solid maroon;
 				background-color: red;
 				color: white;
+				//text-decoration: line-through black 2px;
+				&:before{
+					content: "";
+					height: 3px;
+					width: 70%;
+					background-color: maroon;
+					position: absolute;
+					top: 20px;
+					border-radius: 30px;
+					transform: rotate(-16deg);
+
+				}
 			}
 		}
 	}
 
-	.erreur{
+	.erreur {
 		position: absolute;
-		left:2px;
+		left: 2px;
 		bottom: 3.5vh;
 		text-decoration: underline;
 		text-shadow: 0px 0px 5px white;
-		font-size: 10px;
+		font-size: 14px;
 		cursor: pointer;
 	}
 }
