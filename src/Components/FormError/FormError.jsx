@@ -19,7 +19,7 @@ function FormError(props) {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 			body: encode({
-				'form-name': 'signalement2',
+				'form-name': 'Signalement',
 				erreur,
 				question: props.question.question,
 				id: props.question.id,
@@ -39,7 +39,7 @@ function FormError(props) {
 					<legend>Soumettre une erreur</legend>
 
 					<form onSubmit={handleSubmit} action='/thank-you/' data-netlify='true'>
-						<input type='hidden' name='form-name' value='signalement2' />
+						<input type='hidden' name='form-name' value='Signalement' />
 
 						<select required name='erreur' onChange={(e) => setErreur(e.target.value)}>
 							<option value=''>Choisir une erreur</option>
