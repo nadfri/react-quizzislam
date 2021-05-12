@@ -8,6 +8,9 @@ function FormError(props) {
 	const [erreur, setErreur] = useState('');
 	const [complement, setComplement] = useState('');
 
+	const numero = props.question.id;
+	const question = props.question.question;
+
 	const encode = (data) => {
 		return Object.keys(data)
 			.map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
@@ -20,9 +23,9 @@ function FormError(props) {
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 			body: encode({
 				'form-name': 'Signalement',
+				numero,
+				question,
 				erreur,
-				question: props.question.question,
-				id: props.question.id,
 				complement,
 			}),
 		});
@@ -40,6 +43,8 @@ function FormError(props) {
 
 					<form onSubmit={handleSubmit} action='/thank-you/' data-netlify='true'>
 						<input type='hidden' name='form-name' value='Signalement' />
+						<input type='hidden' name='numero' value={numero} />
+						<input type='hidden' name='question' value={question} />
 
 						<select required name='erreur' onChange={(e) => setErreur(e.target.value)}>
 							<option value=''>Choisir une erreur</option>

@@ -24,7 +24,9 @@
 
 <body>
 	<!-- A little help for the Netlify post-processing bots -->
-	<form name="Signalement" netlify netlify-honeypot="bot-field" hidden>
+	<form name="Signalement" netlify hidden>
+		<input name='numero'  />
+		<input name='question'/>
 		<select name='erreur'>
 			<option value=''>Choisir une erreur</option>
 			<option value='reponse'>Réponse fausse</option>
