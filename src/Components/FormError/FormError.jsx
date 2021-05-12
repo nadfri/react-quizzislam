@@ -41,18 +41,19 @@ function FormError(props) {
 				<fieldset>
 					<legend>Soumettre une erreur</legend>
 
-					<form onSubmit={handleSubmit} action='/thank-you/' data-netlify='true'>
+					<form onSubmit={handleSubmit}>
 						<input type='hidden' name='form-name' value='Signalement' />
+
 						<input type='hidden' name='numero' value={numero} />
 						<input type='hidden' name='question' value={question} />
 
 						<select required name='erreur' onChange={(e) => setErreur(e.target.value)}>
 							<option value=''>Choisir une erreur</option>
-							<option value='reponse'>Réponse fausse</option>
-							<option value='orthographe'>Orthographe</option>
-							<option value='forumation'>Question mal formulée</option>
-							<option value='infomartion'>Information érronée</option>
-							<option value='autre'>Autre</option>
+							<option value='Reponse'>Réponse fausse</option>
+							<option value='Orthographe'>Orthographe</option>
+							<option value='Forumation'>Question mal formulée</option>
+							<option value='Infomartion'>Information érronée</option>
+							<option value='Autre'>Autre Raison</option>
 						</select>
 
 						<textarea
