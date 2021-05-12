@@ -61,7 +61,7 @@ function FormError(props) {
 			<button type='submit' className='blue'>
 				Envoyer
 			</button>
-			<button type='button' className='tomato'>
+			<button type='button' className='tomato' onClick={props.closeForm}>
 				Annuler
 			</button>
 		</form>

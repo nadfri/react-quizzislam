@@ -50,7 +50,7 @@ function Quizz(props) {
 		prophete: 'Muhammad ﷺ ',
 		coran: 'Coran',
 		histoire: 'Histoire',
-		lesprophetes: 'Les Prophetes',
+		lesProphetes: 'Prophètes',
 		jurisprudence: 'Jurisprudence',
 		textes: 'Textes',
 		compagnons: 'Compagnons',
