@@ -1,5 +1,5 @@
 .Quizz {
-	height: 89vh;
+	height: 86%;
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
@@ -115,7 +115,6 @@
 			text-shadow: 0px 1px 2px #000000;
 			font-weight: bold;
 			color: #2b9cff;
-
 		}
 
 		p {
@@ -194,8 +193,8 @@
 				background-color: red;
 				color: white;
 				//text-decoration: line-through black 2px;
-				&:before{
-					content: "";
+				&:before {
+					content: '';
 					height: 3px;
 					width: 70%;
 					background-color: maroon;
@@ -203,7 +202,6 @@
 					top: 20px;
 					border-radius: 30px;
 					transform: rotate(-16deg);
-
 				}
 			}
 		}
@@ -212,7 +210,7 @@
 	.erreur {
 		position: absolute;
 		left: 2px;
-		bottom: 3.5vh;
+		bottom: 1%;
 		text-decoration: underline;
 		text-shadow: 0px 0px 5px white;
 		font-size: 14px;

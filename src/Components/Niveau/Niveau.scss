@@ -20,14 +20,17 @@
 	}
 
 	.links {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
 		a {
 			transform: skewX(-17deg);
 			width: 85%;
-			margin: 20px;
+			margin-bottom: 30px;
 			background-color: #2b9cff;
 			font-family: 'Lobster', cursive;
 			cursor: pointer;
-			padding: 5px;
+			padding: 10px;
 			border: none;
 			font-size: 1.5rem;
 			text-shadow: 1px 1px 2px black;
@@ -36,6 +39,8 @@
 			transition: all 0.5s;
 			display: block;
 			color: white;
+
+
 
 			&:active,
 			&:hover {

@@ -5,13 +5,17 @@
 	justify-content: space-evenly;
 	height: 86%;
 	animation: zoom 0.7s forwards;
+
+	h1{
+		border: solid red;
+		background-color: white;;
+		color: red;
+		padding: 10px 20px;
+	}
+
+	.fa-wrench{
+		animation: construction 1.5s infinite;
+	}
 }
 
-@keyframes zoom {
-	from {
-		transform: scale(0);
-	}
-	to {
-		transform: scale(1);
-	}
-}
+

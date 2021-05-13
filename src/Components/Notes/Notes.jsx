@@ -21,18 +21,31 @@ function Notes(props) {
 	};
 
 	switch (true) {
-		case score > 14:
+		case score / maxQuestions === 1:
 			couleur = 'green';
-			texte = 'Machallah, Essaie le Mode Compétition!';
+			texte = 'Parfait Machallah! Essaie le Mode Compétition!';
 			background = 'backGreen';
 			break;
-		case score > 10 && score < 15:
+
+		case score / maxQuestions > 0.75 && niveau < 3:
+			couleur = 'green';
+			texte = 'Machallah, Essaie le Niveau suivant!';
+			background = 'backGreen';
+			break;
+
+		case score / maxQuestions > 0.75 && niveau === 3:
+			couleur = 'green';
+			texte = 'Machallah, Encore un peu et ça sera parfait!';
+			background = 'backGreen';
+			break;
+
+		case score / maxQuestions >= 0.5 && score / maxQuestions < 0.75:
 			couleur = 'orange';
 			texte =
 				'Entraine toi encore pour avoir un meilleur score la prochaine fois Inchallah!';
 			background = 'backOrange';
 			break;
-		case score < 10:
+		case score / maxQuestions < 0.5:
 			couleur = 'red';
 			texte = "Ne désespère pas, continue de t'entrainer!";
 			background = 'backRed';

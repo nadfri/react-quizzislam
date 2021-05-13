@@ -116,6 +116,15 @@ button {
 	}
 }
 
+@keyframes construction {
+	from {
+		transform: rotate(0);
+	}
+	to {
+		transform: rotate(50deg);
+	}
+}
+
 
 .zoom{
 	animation: zoom 0.5s forwards;

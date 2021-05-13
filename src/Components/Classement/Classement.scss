@@ -1,3 +1,19 @@
-.Classement{
-    
+.Classement {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-evenly;
+	height: 86%;
+	animation: zoom 0.7s forwards;
+
+	h1 {
+		border: solid red;
+		background-color: white;
+		color: red;
+		padding: 10px 20px;
+	}
+
+	.fa-wrench{
+		animation: construction 1.5s infinite;
+	}
 }
