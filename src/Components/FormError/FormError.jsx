@@ -40,7 +40,7 @@ function FormError(props) {
 					<form onSubmit={handleSubmit}>
 						<input type='hidden' name='form-name' value='Signalement' />
 
-						<input type='hidden' name='numero' value={numero} />
+						<input type='hidden' name='numero' value={`Question #${numero}`} />
 						<input type='hidden' name='question' value={question} />
 
 						<select required name='erreur' onChange={(e) => setErreur(e.target.value)}>
