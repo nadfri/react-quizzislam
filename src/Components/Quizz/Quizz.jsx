@@ -15,6 +15,7 @@ import incorrectURL from '../../Sounds/incorrect.mp3';
 import Notes from '../Notes/Notes';
 import Speaker from '../Speaker/Speaker';
 import FormError from '../FormError/FormError';
+import { useRef } from 'react';
 
 function Quizz(props) {
 	/***VARIABLES GLOBALES***/
@@ -57,6 +58,7 @@ function Quizz(props) {
 		culture: 'Culture',
 	};
 
+
 	/***STATE HOOKS***/
 	const [state, setState] = useState([{ choix: [] }]);
 	const [countQuestion, setcountQuestion] = useState(0);
@@ -71,6 +73,7 @@ function Quizz(props) {
 	const [displayFormError, setDisplayFormError] = useState(false);
 	const [skewText, setSkewText] = useState('');
 	const [mute, setMute] = useState(muteStorage);
+	const reponses = useRef();
 
 	function randomize(tab) {
 		var i, j, tmp;
@@ -102,8 +105,9 @@ function Quizz(props) {
 								!question.private,
 						),
 				);
-				setState(questions);
-
+				reponses.current = questions;
+				const questionsSansRep  = questions.map(({reponse, ...rest})=> rest);
+				setState(questionsSansRep); //questions sans les réponses
 				setMaxQuestions(questions.length >= 20 ? 20 : questions.length);
 			})
 			.catch((err) => console.log(err));
@@ -125,7 +129,8 @@ function Quizz(props) {
 
 	/***VALIDATION DES REPONSES***/
 	const valider = () => {
-		const reponse = Number(state[countQuestion].reponse);
+		//const reponse = Number(state[countQuestion].reponse);
+		const reponse = Number(reponses.current[countQuestion].reponse);
 		skew.classList.add('slideSkew');
 		if (choice + 1 === reponse) {
 			setScore((prev) => ++prev);
@@ -249,3 +254,5 @@ function Quizz(props) {
 }
 
 export default Quizz;
+
+
