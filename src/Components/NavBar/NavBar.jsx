@@ -11,7 +11,9 @@ function NavBar() {
 			window.scrollY > posY ? setDisplay(false) : setDisplay(true);
 			posY = window.scrollY;
 		};
+
 		document.addEventListener('scroll', handleScroll);
+
 		return () => document.addEventListener('scroll', handleScroll);
 	}, []);
 

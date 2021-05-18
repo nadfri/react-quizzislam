@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './Quizz.scss';
 import { db } from '../../firebase';
 import Loader from '../Loader/Loader';
@@ -15,7 +15,7 @@ import incorrectURL from '../../Sounds/incorrect.mp3';
 import Notes from '../Notes/Notes';
 import Speaker from '../Speaker/Speaker';
 import FormError from '../FormError/FormError';
-import { useRef } from 'react';
+
 
 function Quizz(props) {
 	/***VARIABLES GLOBALES***/
@@ -57,7 +57,6 @@ function Quizz(props) {
 		compagnons: 'Compagnons',
 		culture: 'Culture',
 	};
-
 
 	/***STATE HOOKS***/
 	const [state, setState] = useState([{ choix: [] }]);
@@ -106,7 +105,7 @@ function Quizz(props) {
 						),
 				);
 				reponses.current = questions;
-				const questionsSansRep  = questions.map(({reponse, ...rest})=> rest);
+				const questionsSansRep = questions.map(({ reponse, ...rest }) => rest);
 				setState(questionsSansRep); //questions sans les réponses
 				setMaxQuestions(questions.length >= 20 ? 20 : questions.length);
 			})
@@ -254,5 +253,3 @@ function Quizz(props) {
 }
 
 export default Quizz;
-
-
