@@ -1,0 +1,97 @@
+.Pseudo {
+	height: 100%;
+	animation: slideIn 0.5s forwards;
+
+	h1 {
+		display: inline-block;
+		margin: 5px 0 20px 0;
+		background-color: rgba(211, 224, 234, 0.5);
+		padding: 5px 20px;
+		border-radius: 5px;
+		color: #2b9cff;
+		font-size: 1.7rem;
+		font-family: 'Spirax', cursive;
+		box-shadow: 0 0 10px 0 black;
+		text-shadow: 1px 1px 2px black;
+		text-transform: capitalize;
+		width: 80%;
+		max-width: 500px;
+	}
+
+	form {
+		display: flex;
+		border: solid 1px #2b9cff;
+		height: 50px;
+		border-radius: 5px;
+		width: 95%;
+		max-width: 500px;
+		margin: auto;
+		box-shadow: 0px 0px 5px 1px #aeaeae;
+		transition: all 0.5s;
+
+		&:hover {
+			border: solid 1px #007ce9;
+		}
+	}
+
+	input {
+		font-family: 'Lobster', cursive;
+		font-size: 1.8rem;
+		text-align: center;
+		border: none;
+		background-color: rgba(75, 119, 141, 0.6);
+		color: gold;
+		text-shadow: 1px 2px 2px black;
+		outline: none;
+		text-transform: capitalize;
+		width: 80%;
+
+		&::placeholder {
+			color: white;
+		}
+	}
+
+	button {
+		border-radius: 0;
+		box-shadow: none;
+		width: 21%;
+		margin: 0;
+		background-color: #2b9cff;
+
+		& :active {
+			background-color: #007ce9;
+		}
+	}
+
+	form:hover button {
+		background-color: #007ce9;
+	}
+
+	fieldset{
+		margin-top: 10px;
+		font-size: 1rem;
+		
+		legend{
+			padding: 2px 15px;
+		}
+
+		p{
+			margin-bottom: 10px;
+		}
+	}
+
+	.green{
+		color: green;
+	}
+
+	.red{
+		color: red
+	}
+
+	.gold{
+		color:gold;
+	}
+
+
+
+}

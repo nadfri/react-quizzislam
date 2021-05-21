@@ -11,61 +11,47 @@
 		display: flex;
 		justify-content: space-between;
 
-		.skew {
-			color: white;
-			font-weight: bold;
-			text-transform: uppercase;
-			margin: 5px 0;
-			transform: skewX(-17deg) translateX(-100vw);
-			padding: 5px 20px 5px 60px;
-			box-shadow: 0px 0px 5px 1px #191919;
-			transition: all 0.5s;
-
-			&.slideSkew {
-				transform: skewX(-17deg) translateX(-40px);
-			}
-
-			&.red {
-				background-color: red;
-			}
-
-			&.green {
-				background-color: green;
-			}
-		}
-
-		.score {
-			width: 50px;
-			height: 50px;
-			border-radius: 50%;
-			background-color: rgba(75, 119, 141, 0.7);
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			box-shadow: 0px 0px 5px 1px #191919;
+		.score-container {
 			animation: slideIn 0.5s forwards;
-			color: gold;
-			margin: 5px;
-		}
 
-		.skews {
-			animation: slideToLeft 0.5s forwards;
+			.score {
+				border-radius: 5px;
+				background-color: rgba(75, 119, 141, 0.7);
+				transform: skewX(-17deg) translateX(-10px);
+				box-shadow: 0px 0px 5px 1px #191919;
+				color: gold;
+				margin: 5px 0;
+				padding: 0px 5px 0px 25px;
+				font-size: 1.5rem;
+				text-align: right;
+				width: 150px;
+			}
 
-			div {
-				background-color: goldenrod;
+			.skew {
+				border-radius: 5px;
 				color: white;
 				font-weight: bold;
 				text-transform: uppercase;
 				margin: 5px 0;
-				transform: skewX(-17deg) translateX(40px);
-				padding: 5px 50px 5px 10px;
+				transform: skewX(-17deg) translateX(-100vw);
+				background-color: gray;
+				padding: 5px 20px 5px 60px;
 				box-shadow: 0px 0px 5px 1px #191919;
+				transition: all 0.5s;
+
+				&.slideSkew {
+					transform: skewX(-17deg) translateX(-40px);
+				}
+
+				&.red {
+					background-color: red;
+				}
+
+				&.green {
+					background-color: green;
+				}
 			}
 		}
-	}
-
-	.theme {
-		text-transform: capitalize;
 	}
 
 	button {
@@ -95,7 +81,7 @@
 		background-color: rgba(211, 224, 234, 0.7);
 		border-radius: 5px;
 		font-size: 1.3rem;
-		margin: 10px;
+		margin: -10px 10px 10px;
 		padding: 5px 5px 10px 5px;
 		text-shadow: 1px 2px 3px #36694c;
 

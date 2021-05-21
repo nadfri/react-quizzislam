@@ -125,6 +125,17 @@ button {
 	}
 }
 
+@keyframes beat{
+	from {
+		transform: scale(1.5);
+
+	}
+
+	to {
+		transform: scale(1);
+	}
+}
+
 
 .zoom{
 	animation: zoom 0.5s forwards;
@@ -141,3 +152,5 @@ button {
 .slideOut{
 	animation: slideOut 0.25s forwards;
 }
+
+

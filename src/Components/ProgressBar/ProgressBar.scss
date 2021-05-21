@@ -1,0 +1,21 @@
+.ProgressBar {
+    display: flex;
+    justify-content: center;
+    animation: slideToLeft 0.5s forwards;
+    margin-top: 5px;
+    margin-right: 5px;
+
+    svg{
+        background-color: #2b9cff52;
+        border-radius: 50%;
+    }
+
+	.value {
+		font-size: 2.5rem;
+        text-shadow: 0px 2px 2px #000000;
+	}
+
+    .danger{
+        animation: beat 1s infinite;
+    }
+}

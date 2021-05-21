@@ -15,6 +15,10 @@ function Competition(props) {
 	const btns = document.querySelectorAll('button');
 	const interfaceDiv = document.querySelector('.interfaceDiv');
 	const skew = document.querySelector('.skew');
+	const duree = 240;
+	const bonus = 1000;
+	const malus = -300;
+	const min = 100;
 
 	/*AUDIO*/
 	const muteStorage = JSON.parse(localStorage.getItem('mute')) || false;
@@ -42,16 +46,19 @@ function Competition(props) {
 	/***STATE HOOKS***/
 	const [state, setState] = useState([{ choix: [] }]);
 	const [countQuestion, setcountQuestion] = useState(0);
-	const [maxQuestions, setMaxQuestions] = useState(20);
 	const [score, setScore] = useState(0);
 	const [choice, setChoice] = useState(null);
 	const [loader, setLoader] = useState(false);
 	const [diplayBtnValider, setdiplayBtnValider] = useState(false);
-	const [displayQuizz, setDisplayQuizz] = useState(false);
+	const [displayQuizz, setDisplayQuizz] = useState(true);
 	const [displayPseudo, setDisplayPseudo] = useState(true);
+	const [pseudo, setPseudo] = useState('');
 	const [skewText, setSkewText] = useState('');
 	const [mute, setMute] = useState(muteStorage);
-	const [pseudo, setPseudo] = useState("");
+	const [displayProgress, setDisplayProgress] = useState(true);
+	const [minuteur, setMinuteur] = useState(duree);
+	const [startTime, setStartTime] = useState(null);
+
 	const reponses = useRef();
 
 	function randomize(tab) {
@@ -67,27 +74,55 @@ function Competition(props) {
 
 	/***USE EFFECT***/
 	useEffect(() => {
-		setLoader(true);
+		//setLoader(true);
 		db.collection('dataBase')
 			.doc(baseID)
 			.get()
 			.then((doc) => {
-				setLoader(false);
+				//setLoader(false);
 				//console.log(doc.data().questions.filter((question) => question.theme === theme));
 				const questions = randomize(doc.data().questions);
 
 				reponses.current = questions;
 				const questionsSansRep = questions.map(({ reponse, ...rest }) => rest);
 				setState(questionsSansRep); //questions sans les réponses
-				setMaxQuestions(questions.length >= 20 ? 20 : questions.length);
+				setStartTime(Date.now());
 			})
 			.catch((err) => console.log(err));
 	}, []);
 
+	/***Gestion du Minuteur ****/
+	useEffect(() => {
+		const timer = minuteur > 0 && setTimeout(() => setMinuteur(minuteur - 1), 1000);
+		return () => clearInterval(timer);
+	}, [minuteur]);
+
 	/***GESTION DES CHOIX DES REPONSES***/
 	const handleChoice = (index) => {
 		setChoice(index);
-		setdiplayBtnValider(true);
+		//setdiplayBtnValider(true);
+		//valider();
+		const endTime = Date.now();
+		const reponse = Number(reponses.current[countQuestion].reponse);
+		skew.classList.add('slideSkew');
+		if (index + 1 === reponse) {
+			btns[index].classList.add('right');
+			setSkewText('EXACT!');
+			skew.classList.add('green');
+			correct.play();
+
+			let newScore = Math.floor(1100 - (endTime - startTime) / 10);
+			if (newScore < 0) newScore = 100;
+
+			setScore((prev) => prev + newScore);
+		} else {
+			btns[index].classList.add('wrong');
+			setSkewText('FAUX!');
+			skew.classList.add('red');
+			incorrect.play();
+		}
+
+		setTimeout(suivant, 500);
 	};
 
 	const displayChoice = state[countQuestion].choix
@@ -100,53 +135,44 @@ function Competition(props) {
 
 	/***VALIDATION DES REPONSES***/
 	const valider = () => {
+		const endTime = Date.now();
 		const reponse = Number(reponses.current[countQuestion].reponse);
 		skew.classList.add('slideSkew');
 		if (choice + 1 === reponse) {
-			setScore((prev) => ++prev);
 			btns[choice].classList.add('right');
 			setSkewText('EXACT!');
 			skew.classList.add('green');
 			correct.play();
+
+			let newScore = Math.floor(bonus + 100 - (endTime - startTime) / 10);
+			if (newScore < 0) newScore = 100;
+
+			setScore((prev) => prev + newScore);
 		} else {
 			btns[choice].classList.add('wrong');
-			btns[reponse - 1].classList.add('right');
 			setSkewText('FAUX!');
 			skew.classList.add('red');
 			incorrect.play();
+			setScore((prev) => prev - malus);
 		}
 
-		for (let btn of btns) {
-			btn.classList.add('disabled', 'dezoom');
-			setTimeout(() => (btn.style.display = 'none'), 200);
-		}
-
-		setTimeout(() => {
-			btns[choice].style.display = '';
-			btns[reponse - 1].style.display = '';
-			btns[choice].classList.replace('dezoom', 'zoom');
-			btns[reponse - 1].classList.replace('dezoom', 'zoom');
-		}, 200);
 		setdiplayBtnValider(false);
+		setTimeout(suivant, 700);
 	};
 
 	/***QUESTION SUIVANTE***/
 	const suivant = () => {
-		if (countQuestion + 1 === maxQuestions) {
-			setDisplayQuizz(false);
-		} else {
-			skew.className = 'skew';
-			setcountQuestion((count) => count + 1);
+		setStartTime(Date.now());
+		skew.className = 'skew';
+		setcountQuestion((count) => count + 1);
 
+		btns.forEach((btn) => (btn.className = 'choice'));
+		//btns.forEach((btn) => (btn.style.display = ''));
 
-			btns.forEach((btn) => (btn.className = 'choice'));
-			btns.forEach((btn) => (btn.style.display = ''));
-
-			interfaceDiv.classList.replace('slideIn', 'slideOut');
-			setTimeout(() => {
-				interfaceDiv.classList.replace('slideOut', 'slideIn');
-			}, 300);
-		}
+		interfaceDiv.classList.replace('slideIn', 'slideOut');
+		setTimeout(() => {
+			interfaceDiv.classList.replace('slideOut', 'slideIn');
+		}, 300);
 	};
 
 	/***GESTION DE L'AUDIO***/
@@ -157,37 +183,37 @@ function Competition(props) {
 		for (let audio of audios) audio.muted = mute;
 	};
 
-
 	const validPseudo = () => {
 		setDisplayPseudo(false);
 		setDisplayQuizz(true);
-		setPseudo(localStorage.getItem("pseudo"));
-	}
+		setPseudo(localStorage.getItem('pseudo'));
+	};
 
 	/***RENDU JSX***/
 	return (
 		<div className='Competition'>
 			{loader && <Loader />}
 			<Speaker toggleMute={toggleMute} mute={mute} />
-			{displayPseudo && <Pseudo validPseudo={validPseudo}/>}
+			{displayPseudo && (
+				<Pseudo validPseudo={validPseudo} bonus={bonus} malus={malus} min={min} />
+			)}
 
-			{displayQuizz  && (
+			{minuteur === 0 && <h2>FINISH</h2>}
+
+			{displayQuizz && minuteur !== 0 && (
 				<>
-						<ProgressBar />
 					<div className='etat'>
-						<div>
-							<div className='score'>
-								{score}/{maxQuestions}
-							</div>
+						<div className='score-container'>
+							<div className='score'>{score}</div>
 							<div className='skew'>{skewText}</div>
 						</div>
+
+						{displayProgress && <ProgressBar />}
 					</div>
 
 					<div className='interfaceDiv slideIn'>
 						<fieldset>
-							<legend>
-								Question {countQuestion + 1}/{maxQuestions}
-							</legend>
+							<legend>Question {countQuestion + 1}</legend>
 							<p>{state[countQuestion].question}</p>
 						</fieldset>
 						<div className='container-choix'>{displayChoice}</div>
@@ -197,7 +223,6 @@ function Competition(props) {
 							Valider
 						</button>
 					)}
-					
 				</>
 			)}
 		</div>

@@ -50,21 +50,19 @@
 		width: 100%;
 		padding: 5px;
 		border-radius: 5px;
-		background-color: #5ab4ea;
+		background-color: #2b9cff;
 		color: white;
 		font-size: 1.2rem;
 		box-shadow: 0 0 5px 0 #3e3e3e;
 		font-family: Lobster;
 
-		&:disabled {
-			background-color: rgba(90, 180, 234, 0.4);
-			cursor: not-allowed;
-			box-shadow: 0 0 5px 0 #a7a7a7;
+		&:hover,
+		&:active {
+			background-color: #0088ff;
 		}
 	}
 
-	.alert,
-	.success {
+	.alert {
 		position: absolute;
 		font-style: italic;
 		font-weight: 400;
@@ -77,24 +75,11 @@
 		text-align: center;
 		box-shadow: 0 0 5px 0 #a7a7a7;
 		text-shadow: 1px 1px 1px #3e3e3e;
-	}
-
-	.alert {
 		color: red;
 		background-color: rgba(255, 173, 173, 0.5);
 	}
 
-	.success {
-		color: green;
-		background-color: rgba(134, 255, 144, 0.5);
-	}
-
-	.deja-container {
-		display: flex;
-		justify-content: space-between;
-	}
-
-	.deja {
+	.forget {
 		text-decoration: none;
 		color: #2b9cff;
 		font-style: italic;

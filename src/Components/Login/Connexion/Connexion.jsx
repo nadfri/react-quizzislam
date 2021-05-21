@@ -51,11 +51,11 @@ function Connexion(props) {
 				</label>
 
 				<button type='submit'>Se Connecter</button>
-				<div className='deja-container'>
-					<Link to='/settings/forget' className='deja'>
+				
+					<Link to='/settings/forget' className='forget'>
 						Mot de Passe oublié?
 					</Link>
-				</div>
+				
 			</form>
 		</div>
 	);
