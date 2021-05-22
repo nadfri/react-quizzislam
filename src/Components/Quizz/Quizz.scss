@@ -11,6 +11,7 @@
 		justify-content: space-between;
 
 		.skew {
+			border-radius: 5px;
 			color: white;
 			font-weight: bold;
 			text-transform: uppercase;
@@ -51,6 +52,7 @@
 			animation: slideToLeft 0.5s forwards;
 
 			div {
+				border-radius: 5px;
 				background-color: goldenrod;
 				color: white;
 				font-weight: bold;
@@ -147,35 +149,19 @@
 
 			&:nth-child(1) {
 				background-color: deepskyblue;
-				&:active,
-				:hover {
-					background-color: rgb(0, 126, 168);
-				}
 			}
 
 			&:nth-child(3) {
 				background-color: burlywood;
-				&:active,
-				:hover {
-					background-color: rgb(204, 144, 65);
-				}
 			}
 			&:nth-child(2) {
 				background-color: gold;
-				&:active,
-				:hover {
-					background-color: rgb(160, 136, 0);
-				}
 			}
 			&:nth-child(4) {
 				background-color: orchid;
-				&:active,
-				:hover {
-					background-color: rgb(211, 37, 205);
-				}
 			}
 
-			&.choice:focus {
+			&.choice:hover, &.choice:focus {
 				border: solid white 3px;
 				color: white;
 				text-shadow: 0px 0px 7px black;

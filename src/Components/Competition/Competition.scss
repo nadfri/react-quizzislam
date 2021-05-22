@@ -4,8 +4,8 @@
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
-	overflow: hidden;
 	position: relative;
+	overflow: hidden;
 
 	.etat {
 		display: flex;
@@ -22,7 +22,7 @@
 				color: gold;
 				margin: 5px 0;
 				padding: 0px 5px 0px 25px;
-				font-size: 1.5rem;
+				font-size: 1.8rem;
 				text-align: right;
 				width: 150px;
 			}
@@ -34,10 +34,11 @@
 				text-transform: uppercase;
 				margin: 5px 0;
 				transform: skewX(-17deg) translateX(-100vw);
-				background-color: gray;
-				padding: 5px 20px 5px 60px;
+				padding: 5px 10px 5px 0px;
 				box-shadow: 0px 0px 5px 1px #191919;
 				transition: all 0.5s;
+				font-size: 1.3rem;
+				text-align: right;
 
 				&.slideSkew {
 					transform: skewX(-17deg) translateX(-40px);
@@ -50,7 +51,15 @@
 				&.green {
 					background-color: green;
 				}
+
+				&.point{
+					
+					padding: 5px 10px 5px 0px;
+					width: 120px;
+				}
 			}
+
+
 		}
 	}
 
@@ -93,6 +102,15 @@
 			text-shadow: 0px 1px 2px #000000;
 			font-weight: bold;
 			color: #2b9cff;
+			position: relative;
+		}
+
+		.double {
+			position: absolute;
+			font-family: 'Rock Salt', cursive;
+			color: red;
+			top: -7px;
+			text-shadow: 1px 1px 1px #000000;
 		}
 
 		p {
@@ -125,35 +143,19 @@
 
 			&:nth-child(1) {
 				background-color: deepskyblue;
-				&:active,
-				:hover {
-					background-color: rgb(0, 126, 168);
-				}
 			}
 
 			&:nth-child(3) {
 				background-color: burlywood;
-				&:active,
-				:hover {
-					background-color: rgb(204, 144, 65);
-				}
 			}
 			&:nth-child(2) {
 				background-color: gold;
-				&:active,
-				:hover {
-					background-color: rgb(160, 136, 0);
-				}
 			}
 			&:nth-child(4) {
 				background-color: orchid;
-				&:active,
-				:hover {
-					background-color: rgb(211, 37, 205);
-				}
 			}
 
-			&.choice:focus {
+			&.choice:active {
 				border: solid white 3px;
 				color: white;
 				text-shadow: 0px 0px 7px black;

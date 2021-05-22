@@ -20,7 +20,6 @@ function Pseudo(props) {
 					placeholder='Choisis ton Pseudo...'
 					value={pseudo}
 					onChange={(e) => setPseudo(e.target.value)}
-					autoFocus
 					required
 				/>
 				<button>
@@ -33,18 +32,19 @@ function Pseudo(props) {
 
 				<p>
 					Une bonne réponse vaut entre <span className='green'>{props.min}</span> et{' '}
-					<span className='green'>{props.bonus}</span> points, selon la rapidité de la
-					réponse.
+					<span className='green'>{props.bonus}</span> points, selon votre rapidité.
 				</p>
 
 				<p>
-					Attention! Une mauvaise réponse fait perdre <span className='red'>{-1 * props.malus}</span> points.
+					Attention! Une mauvaise réponse fait perdre{' '}
+					<span className='red'>{props.malus}</span> points.
 				</p>
+
 				<p>
-					Certaines questions non présentes dans le mode <i>Entrainement</i>, rapporte
-					entre <span className='gold'>500</span> et{' '}
-					<span className='gold'>{props.bonus * 2}</span> points.
+					Certaines questions non présentes dans le mode <i>Entrainement</i>, rapporte le{' '}
+					<span className='gold'>double</span> de points.
 				</p>
+				
 				<p>
 					Essayez d'être classé dans le <strong>TOP 100</strong>.
 				</p>

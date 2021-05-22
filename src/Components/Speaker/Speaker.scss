@@ -1,6 +1,6 @@
 .Speaker{
     position: absolute;
-    bottom: 3%;
+    bottom: 1%;
     right: 0;
     margin: 5px;
     display: flex;
@@ -14,4 +14,5 @@
     color: #2b9cff;
     text-shadow: 2px 2px 4px #000000;
     cursor: pointer;
+    z-index: 3;
 }

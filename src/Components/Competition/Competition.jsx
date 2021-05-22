@@ -9,15 +9,15 @@ import { useRef } from 'react';
 import Pseudo from '../Pseudo/Pseudo';
 import ProgressBar from '../ProgressBar/ProgressBar';
 
-function Competition(props) {
+function Competition() {
 	/***VARIABLES GLOBALES***/
 	/*DOM*/
-	const btns = document.querySelectorAll('button');
+	let btns = document.querySelectorAll('button');
 	const interfaceDiv = document.querySelector('.interfaceDiv');
-	const skew = document.querySelector('.skew');
+	const skews = document.querySelectorAll('.skew');
 	const duree = 240;
 	const bonus = 1000;
-	const malus = -300;
+	const malus = 400;
 	const min = 100;
 
 	/*AUDIO*/
@@ -29,35 +29,19 @@ function Competition(props) {
 	/*DATAS*/
 	const baseID = 'hz2fK3KpYDlCG7af12t9';
 
-	const conversion = {
-		1: 'Débutant',
-		2: 'Intermédiaire',
-		3: 'Expert',
-		prophete: 'Muhammad ﷺ ',
-		coran: 'Coran',
-		histoire: 'Histoire',
-		lesProphetes: 'Prophètes',
-		jurisprudence: 'Jurisprudence',
-		textes: 'Textes',
-		compagnons: 'Compagnons',
-		culture: 'Culture',
-	};
-
 	/***STATE HOOKS***/
 	const [state, setState] = useState([{ choix: [] }]);
 	const [countQuestion, setcountQuestion] = useState(0);
 	const [score, setScore] = useState(0);
-	const [choice, setChoice] = useState(null);
 	const [loader, setLoader] = useState(false);
-	const [diplayBtnValider, setdiplayBtnValider] = useState(false);
 	const [displayQuizz, setDisplayQuizz] = useState(true);
 	const [displayPseudo, setDisplayPseudo] = useState(true);
 	const [pseudo, setPseudo] = useState('');
 	const [skewText, setSkewText] = useState('');
 	const [mute, setMute] = useState(muteStorage);
-	const [displayProgress, setDisplayProgress] = useState(true);
-	const [minuteur, setMinuteur] = useState(duree);
+	const [minuteur, setMinuteur] = useState(0);
 	const [startTime, setStartTime] = useState(null);
+	const [point, setPoint] = useState(null);
 
 	const reponses = useRef();
 
@@ -74,21 +58,20 @@ function Competition(props) {
 
 	/***USE EFFECT***/
 	useEffect(() => {
-		//setLoader(true);
+		setLoader(true);
 		db.collection('dataBase')
 			.doc(baseID)
 			.get()
 			.then((doc) => {
-				//setLoader(false);
+				setLoader(false);
 				//console.log(doc.data().questions.filter((question) => question.theme === theme));
 				const questions = randomize(doc.data().questions);
 
 				reponses.current = questions;
 				const questionsSansRep = questions.map(({ reponse, ...rest }) => rest);
 				setState(questionsSansRep); //questions sans les réponses
-				setStartTime(Date.now());
 			})
-			.catch((err) => console.log(err));
+			.catch((err) => console.log('Erreur FireBase: ', err));
 	}, []);
 
 	/***Gestion du Minuteur ****/
@@ -98,33 +81,7 @@ function Competition(props) {
 	}, [minuteur]);
 
 	/***GESTION DES CHOIX DES REPONSES***/
-	const handleChoice = (index) => {
-		setChoice(index);
-		//setdiplayBtnValider(true);
-		//valider();
-		const endTime = Date.now();
-		const reponse = Number(reponses.current[countQuestion].reponse);
-		skew.classList.add('slideSkew');
-		if (index + 1 === reponse) {
-			btns[index].classList.add('right');
-			setSkewText('EXACT!');
-			skew.classList.add('green');
-			correct.play();
-
-			let newScore = Math.floor(1100 - (endTime - startTime) / 10);
-			if (newScore < 0) newScore = 100;
-
-			setScore((prev) => prev + newScore);
-		} else {
-			btns[index].classList.add('wrong');
-			setSkewText('FAUX!');
-			skew.classList.add('red');
-			incorrect.play();
-		}
-
-		setTimeout(suivant, 500);
-	};
-
+	/*Affichage des choix*/
 	const displayChoice = state[countQuestion].choix
 		.filter((choice) => choice !== '')
 		.map((choice, index) => (
@@ -133,45 +90,60 @@ function Competition(props) {
 			</button>
 		));
 
-	/***VALIDATION DES REPONSES***/
-	const valider = () => {
+	/*Validation du choix*/
+	const handleChoice = (index) => {
+		btns = document.querySelectorAll('button');
+		btns.forEach((btn) => btn.classList.add('disabled'));
+
+		const doublePoint = state[countQuestion].private ? 2 : 1;
+		const minDoublePoint = state[countQuestion].private ? 5 : 1;
+
 		const endTime = Date.now();
 		const reponse = Number(reponses.current[countQuestion].reponse);
-		skew.classList.add('slideSkew');
-		if (choice + 1 === reponse) {
-			btns[choice].classList.add('right');
-			setSkewText('EXACT!');
-			skew.classList.add('green');
-			correct.play();
 
-			let newScore = Math.floor(bonus + 100 - (endTime - startTime) / 10);
-			if (newScore < 0) newScore = 100;
+		skews[0].classList.add('slideSkew');
+		skews[1].classList.add('slideSkew');
 
+		if (index + 1 === reponse) {
+			btns[index].classList.add('right');
+			skews[0].classList.add('green');
+			skews[1].classList.add('green');
+
+			let newScore = Math.floor(1100 - (endTime - startTime) / 10) * doublePoint;
+			newScore = newScore < 100 * minDoublePoint ? 100 * minDoublePoint : newScore;
+			console.log('Score', newScore);
+			setPoint('+' + newScore);
 			setScore((prev) => prev + newScore);
+			setSkewText('EXACT!');
+			correct.play();
 		} else {
-			btns[choice].classList.add('wrong');
-			setSkewText('FAUX!');
-			skew.classList.add('red');
-			incorrect.play();
+			btns[index].classList.add('wrong');
+			skews[0].classList.add('red');
+			skews[1].classList.add('red');
+
+			setPoint(-malus);
 			setScore((prev) => prev - malus);
+			setSkewText('FAUX!');
+			incorrect.play();
 		}
 
-		setdiplayBtnValider(false);
-		setTimeout(suivant, 700);
+		setTimeout(suivant, 800);
 	};
 
 	/***QUESTION SUIVANTE***/
 	const suivant = () => {
-		setStartTime(Date.now());
-		skew.className = 'skew';
+		//const btns = document.querySelectorAll('button');
+
 		setcountQuestion((count) => count + 1);
 
 		btns.forEach((btn) => (btn.className = 'choice'));
-		//btns.forEach((btn) => (btn.style.display = ''));
 
 		interfaceDiv.classList.replace('slideIn', 'slideOut');
 		setTimeout(() => {
 			interfaceDiv.classList.replace('slideOut', 'slideIn');
+			setStartTime(Date.now());
+			skews[0].className = 'skew';
+			skews[1].className = 'skew point';
 		}, 300);
 	};
 
@@ -184,15 +156,18 @@ function Competition(props) {
 	};
 
 	const validPseudo = () => {
+		setMinuteur(duree);
+		setStartTime(Date.now());
 		setDisplayPseudo(false);
 		setDisplayQuizz(true);
 		setPseudo(localStorage.getItem('pseudo'));
 	};
 
+	const Double = () => <span className='double'>X2</span>;
+
 	/***RENDU JSX***/
 	return (
 		<div className='Competition'>
-			{loader && <Loader />}
 			<Speaker toggleMute={toggleMute} mute={mute} />
 			{displayPseudo && (
 				<Pseudo validPseudo={validPseudo} bonus={bonus} malus={malus} min={min} />
@@ -202,27 +177,26 @@ function Competition(props) {
 
 			{displayQuizz && minuteur !== 0 && (
 				<>
+					{loader && <Loader />}
 					<div className='etat'>
 						<div className='score-container'>
 							<div className='score'>{score}</div>
 							<div className='skew'>{skewText}</div>
+							<div className='skew point'>{point}</div>
 						</div>
 
-						{displayProgress && <ProgressBar />}
+						<ProgressBar />
 					</div>
 
 					<div className='interfaceDiv slideIn'>
 						<fieldset>
-							<legend>Question {countQuestion + 1}</legend>
+							<legend>
+								Question {countQuestion + 1} {state[countQuestion].private && <Double />}
+							</legend>
 							<p>{state[countQuestion].question}</p>
 						</fieldset>
 						<div className='container-choix'>{displayChoice}</div>
 					</div>
-					{diplayBtnValider && (
-						<button className='tomato' onClick={valider}>
-							Valider
-						</button>
-					)}
 				</>
 			)}
 		</div>

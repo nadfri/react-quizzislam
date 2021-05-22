@@ -6,7 +6,7 @@ function NavBar() {
 	const [display, setDisplay] = useState(true);
 
 	useEffect(() => {
-		let posY = 0;
+		let posY = 10;
 		const handleScroll = () => {
 			window.scrollY > posY ? setDisplay(false) : setDisplay(true);
 			posY = window.scrollY;
