@@ -15,6 +15,7 @@ import Settings from '../Settings/Settings';
 import Forget from '../Login/Forget/Forget';
 import AjoutQuestions from '../AjoutQuestions/AjoutQuestions';
 import Niveau from '../Niveau/Niveau';
+import Apropos from '../Apropos/Apropos';
 
 function App() {
 	const [user, setUser] = useState('');
@@ -42,11 +43,17 @@ function App() {
 					<Route exact path='/connexion' component={Connexion} />
 					<Route exact path='/settings' component={Settings} />
 					<Route
-						exact path='/settings/config'render={() => (user ? <AjoutQuestions /> : <Connexion />)}
+						exact
+						path='/settings/config'
+						render={() => (user ? <AjoutQuestions /> : <Connexion />)}
 					/>
-					<Route exact path='/settings/list'render={() => (user ? <ListQuestions /> : <Connexion />)}
+					<Route
+						exact
+						path='/settings/list'
+						render={() => (user ? <ListQuestions /> : <Connexion />)}
 					/>
-					<Route exact path='/settings/forget'      component={Forget} />
+					<Route exact path='/settings/forget' component={Forget} />
+					<Route exact path='/settings/apropos' component={Apropos} />
 
 					<Route component={Home} />
 				</Switch>
