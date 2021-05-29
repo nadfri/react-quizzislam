@@ -13,9 +13,10 @@ function Competition() {
 	/***VARIABLES GLOBALES***/
 	/*DOM*/
 	let btns = document.querySelectorAll('button');
-	const interfaceDiv = document.querySelector('.interfaceDiv');
-	const skews = document.querySelectorAll('.skew');
-	const duree = 240;
+	let skews = document.querySelectorAll('.skew');
+	let interfaceDiv = document.querySelector('.interfaceDiv');
+
+	const duree = 100;
 	const bonus = 1000;
 	const malus = 400;
 	const min = 100;
@@ -116,6 +117,7 @@ function Competition() {
 		const endTime = Date.now();
 		const reponse = Number(state[countQuestion].reponse);
 
+		skews = document.querySelectorAll('.skew');
 		skews[0].classList.add('slideSkew');
 		skews[1].classList.add('slideSkew');
 
@@ -150,6 +152,8 @@ function Competition() {
 	const suivant = () => {
 		setcountQuestion((count) => count + 1);
 		btns.forEach((btn) => (btn.className = 'choice'));
+		
+		interfaceDiv = document.querySelector('.interfaceDiv');
 		interfaceDiv.classList.replace('slideIn', 'slideOut');
 
 		setTimeout(() => {

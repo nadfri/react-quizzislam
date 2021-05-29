@@ -9,13 +9,20 @@ function ScoreFinal(props) {
 	const { goodReponse, maxQuestions, score, pseudo, classement } = props;
 	const classementID = 'XXJ9yQ0slzmwKLLEr1fI';
 	let couleur, Texte, background;
-	const lastScore = classement[TOP - 1].score === '' ? 0 : classement[TOP - 1].score;
+	const lastScore = classement[TOP - 1].score;
 	const note = `${goodReponse}/${maxQuestions}`;
 
 	const [classementFinal, setClassementFinal] = useState(null);
 	const [rank, setRank] = useState(null);
 
 	useEffect(() => {
+		/*Delete Classement*/
+		// const deleteArray = [];
+		// for (let i =0; i<100;i++)
+		// deleteArray[i] = {pseudo:"",score:0,note:""};
+		// console.table('deleteArray :>> ', deleteArray);
+		// db.collection('classement').doc(classementID).update({ classement :deleteArray });
+
 		if (score >= lastScore && score > 0) {
 			classement[TOP - 1] = { pseudo, score, note };
 			classement.sort((a, b) => b.score - a.score);
@@ -28,8 +35,6 @@ function ScoreFinal(props) {
 			);
 		}
 	}, []);
-
-	console.log('rank', rank);
 
 	switch (true) {
 		case goodReponse / maxQuestions === 1:
@@ -102,14 +107,18 @@ function ScoreFinal(props) {
 			break;
 
 		default:
-			Texte = `Ne désespère pas ${pseudo}, continue de t'entrainer!`;
+			Texte = (
+				<div>
+					Ne désespère pas <span className='colorBlue'>{pseudo}!</span>, continue de
+					t'entrainer pour te classer dans le <b>TOP 100</b>!
+				</div>
+			);
 			background = 'backRed';
 			break;
 	}
 
 	return (
 		<div className='ScoreFinal'>
-			<ScrollTop />
 			<div className='header'>
 				<div className='skews'>
 					<div className='skew pseudo'>{pseudo}</div>
@@ -123,7 +132,7 @@ function ScoreFinal(props) {
 			<div className='links'>
 				<a href='/competition'>Rejouer</a>
 
-				<a href='#userID'>Voir Ton Classement</a>
+				{rank && <a href='#userID'>Voir Ton Classement</a>}
 
 				{classementFinal && (
 					<ListClassement
@@ -133,6 +142,7 @@ function ScoreFinal(props) {
 					/>
 				)}
 			</div>
+			{classementFinal && <ScrollTop />}
 		</div>
 	);
 }
