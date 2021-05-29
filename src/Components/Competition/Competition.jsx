@@ -16,7 +16,7 @@ function Competition() {
 	let skews = document.querySelectorAll('.skew');
 	let interfaceDiv = document.querySelector('.interfaceDiv');
 
-	const duree = 100;
+	const duree = 240;
 	const bonus = 1000;
 	const malus = 400;
 	const min = 100;
@@ -152,7 +152,7 @@ function Competition() {
 	const suivant = () => {
 		setcountQuestion((count) => count + 1);
 		btns.forEach((btn) => (btn.className = 'choice'));
-		
+
 		interfaceDiv = document.querySelector('.interfaceDiv');
 		interfaceDiv.classList.replace('slideIn', 'slideOut');
 
