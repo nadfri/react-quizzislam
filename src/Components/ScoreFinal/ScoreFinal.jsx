@@ -19,7 +19,7 @@ function ScoreFinal(props) {
 		if (score >= lastScore && score > 0) {
 			classement[TOP - 1] = { pseudo, score, note };
 			classement.sort((a, b) => b.score - a.score);
-			console.log('classement :>> ', classement);
+			//console.log('classement :>> ', classement);
 			setClassementFinal(classement);
 			db.collection('classement').doc(classementID).update({ classement });
 			setRank(

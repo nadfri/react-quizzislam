@@ -18,7 +18,7 @@ function FormError(props) {
 	};
 
 	const handleSubmit = (e) => {
-		const postUrl = '/?t=' + Math.floor(Date.now() / 1000);
+		const postUrl = '/?t=' + Math.floor(Date.now() / 1000);//permet d'avoir la reponse sur Netlify Form
 
 		fetch(postUrl, {
 			method: 'POST',
