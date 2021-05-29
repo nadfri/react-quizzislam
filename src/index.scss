@@ -13,6 +13,10 @@ $header-color: #000000;
 	box-sizing: border-box;
 }
 
+html {
+	scroll-behavior: smooth;
+}
+
 html,
 body,
 #root {
@@ -126,10 +130,9 @@ button {
 	}
 }
 
-@keyframes beat{
+@keyframes beat {
 	from {
 		transform: scale(1.5);
-
 	}
 
 	to {
@@ -137,8 +140,7 @@ button {
 	}
 }
 
-
-.zoom{
+.zoom {
 	animation: zoom 0.5s forwards;
 }
 
@@ -146,12 +148,10 @@ button {
 	animation: dezoom 0.5s forwards;
 }
 
-.slideIn{
+.slideIn {
 	animation: slideIn 0.25s forwards;
 }
 
-.slideOut{
+.slideOut {
 	animation: slideOut 0.25s forwards;
 }
-
-

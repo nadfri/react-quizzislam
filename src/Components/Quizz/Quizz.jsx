@@ -237,11 +237,11 @@ function Quizz(props) {
 							</button>
 						</>
 					)}
-				</>
-			)}
 			<div className='erreur' onClick={() => setDisplayFormError(true)}>
 				Signaler une erreur?
 			</div>
+				</>
+			)}
 			{displayFormError && (
 				<FormError
 					question={state[countQuestion]}

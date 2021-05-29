@@ -4,7 +4,6 @@
 	max-width: 800px;
 	margin: auto;
 	text-align: center;
-	overflow-x: hidden;
 }
 
 @media screen and (min-width: 800px) {
@@ -12,6 +11,8 @@
 		border: 2px solid #f3d07b;
 		border-radius: 5px;
 		box-shadow: 0 0 10px 3px black;
-		min-height: 100%;
+
 	}
+
 }
+ 

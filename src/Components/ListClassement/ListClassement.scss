@@ -1,0 +1,64 @@
+.ListClassement {
+	width: 100%;
+
+	.gold {
+		color: gold;
+		text-shadow: 1px 1px 2px #000;
+	}
+
+	.silver {
+		color: #848484;
+		text-shadow: 1px 1px 2px #000;
+	}
+
+	.bronze {
+		color: #7c5726;
+		text-shadow: 1px 1px 2px #000;
+	}
+
+
+
+	table {
+		border-radius: 5px;
+		width: 97%;
+		margin: auto;
+		border-collapse: collapse;
+		text-shadow: 1px 1px 2px #000;
+		color: white;
+		overflow: hidden;
+
+		thead tr {
+			background-color: rgba(43, 156, 255, 0.7);
+		}
+
+		tbody tr:nth-of-type(even) {
+			background-color: rgba(243, 243, 243, 0.8);
+		}
+		tbody tr:nth-of-type(odd) {
+			background-color: rgba(179, 179, 179, 0.8);
+		}
+
+	}
+
+	.rank {
+		width: 13%;
+	}
+
+	.pseudo {
+		width: 25%;
+	}
+
+	.score {
+		width: 15%;
+	}
+
+	.note {
+		width: 16%;
+	}
+
+	#userID {
+		color: deepskyblue;
+		font-weight: bold;
+		text-shadow: 2px 2px 2px black;
+	}
+}

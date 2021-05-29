@@ -7,12 +7,13 @@ function ProgressBar(props) {
 		<div className='ProgressBar'>
 			<CountdownCircleTimer
 				isPlaying
-				duration={240}
+				duration={props.duree}
 				colors={[['#1dfd94', 0.5], ['#FFFF00', 0.5], ['#FF0000']]}
 				size={130}
 				strokeWidth={12}
 				trailColor='#00000000'
-				onComplete={() => console.log('OVER')}>
+				// onComplete={() => console.log('OVER')}
+				>
 				{({ remainingTime }) => {
 					const minutes = Math.floor(remainingTime / 60);
 					const secondes = remainingTime % 60;

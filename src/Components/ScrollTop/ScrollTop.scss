@@ -1,15 +1,17 @@
 .ScrollTop {
 	position: fixed;
 	top: 50%;
+	right: 0;
 	transform: translateY(-50%);
-	align-self: flex-end;
 	display: flex;
 	flex-direction: column;
+	z-index: 1;
 
 	.fas {
 		font-size: 1.5rem;
-		color: rgba(43, 156, 255, 0.8);
+		color: #2b9cff;
 		cursor: pointer;
 		margin: 2px 0;
+		text-shadow: 0px 0px 5px #4e4e4e;
 	}
 }

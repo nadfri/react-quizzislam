@@ -59,7 +59,7 @@ function Notes(props) {
 		<div className='Notes'>
 			<div className='header'>
 				<div className='score'>
-					<span className={`note ${couleur}`}>{props.score}</span> /{maxQuestions}
+					<span className={`note ${couleur}`}>{score}</span> /{maxQuestions}
 				</div>
 
 				<div className='skews'>

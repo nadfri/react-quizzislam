@@ -5,9 +5,9 @@ import Loader from '../Loader/Loader';
 import correctURL from '../../Sounds/correct.mp3';
 import incorrectURL from '../../Sounds/incorrect.mp3';
 import Speaker from '../Speaker/Speaker';
-import { useRef } from 'react';
 import Pseudo from '../Pseudo/Pseudo';
 import ProgressBar from '../ProgressBar/ProgressBar';
+import ScoreFinal from '../ScoreFinal/ScoreFinal';
 
 function Competition() {
 	/***VARIABLES GLOBALES***/
@@ -15,7 +15,7 @@ function Competition() {
 	let btns = document.querySelectorAll('button');
 	const interfaceDiv = document.querySelector('.interfaceDiv');
 	const skews = document.querySelectorAll('.skew');
-	const duree = 240;
+	const duree = 30;
 	const bonus = 1000;
 	const malus = 400;
 	const min = 100;
@@ -27,10 +27,12 @@ function Competition() {
 	const audios = [correct, incorrect];
 
 	/*DATAS*/
+	const classementID = 'XXJ9yQ0slzmwKLLEr1fI';
 	const baseID = 'hz2fK3KpYDlCG7af12t9';
 
 	/***STATE HOOKS***/
 	const [state, setState] = useState([{ choix: [] }]);
+	const [classement, setClassement] = useState([]);
 	const [countQuestion, setcountQuestion] = useState(0);
 	const [score, setScore] = useState(0);
 	const [loader, setLoader] = useState(false);
@@ -39,11 +41,12 @@ function Competition() {
 	const [pseudo, setPseudo] = useState('');
 	const [skewText, setSkewText] = useState('');
 	const [mute, setMute] = useState(muteStorage);
-	const [minuteur, setMinuteur] = useState(0);
+	const [minuteur, setMinuteur] = useState(null);
 	const [startTime, setStartTime] = useState(null);
 	const [point, setPoint] = useState(null);
+	const [goodReponse, setGoodreponse] = useState(0);
 
-	const reponses = useRef();
+	//const reponses = useRef();
 
 	function randomize(tab) {
 		var i, j, tmp;
@@ -56,9 +59,21 @@ function Competition() {
 		return tab;
 	}
 
-	/***USE EFFECT***/
+	/***Chargement des bases de données***/
 	useEffect(() => {
 		setLoader(true);
+
+		//Chargement du Classement
+		db.collection('classement')
+			.doc(classementID)
+			.get()
+			.then((doc) => {
+				//console.log(doc.data().classement.sort((a, b) => b.score - a.score));
+				setClassement(doc.data().classement.sort((a, b) => b.score - a.score));
+			})
+			.catch((err) => console.log(err));
+
+		//Chargement des Questions
 		db.collection('dataBase')
 			.doc(baseID)
 			.get()
@@ -67,9 +82,9 @@ function Competition() {
 				//console.log(doc.data().questions.filter((question) => question.theme === theme));
 				const questions = randomize(doc.data().questions);
 
-				reponses.current = questions;
-				const questionsSansRep = questions.map(({ reponse, ...rest }) => rest);
-				setState(questionsSansRep); //questions sans les réponses
+				//reponses.current = questions;
+				//const questionsSansRep = questions.map(({ reponse, ...rest }) => rest);
+				setState(questions); //questions sans les réponses
 			})
 			.catch((err) => console.log('Erreur FireBase: ', err));
 	}, []);
@@ -99,19 +114,20 @@ function Competition() {
 		const minDoublePoint = state[countQuestion].private ? 5 : 1;
 
 		const endTime = Date.now();
-		const reponse = Number(reponses.current[countQuestion].reponse);
+		const reponse = Number(state[countQuestion].reponse);
 
 		skews[0].classList.add('slideSkew');
 		skews[1].classList.add('slideSkew');
 
 		if (index + 1 === reponse) {
+			setGoodreponse((prev) => ++prev);
 			btns[index].classList.add('right');
 			skews[0].classList.add('green');
 			skews[1].classList.add('green');
 
 			let newScore = Math.floor(1100 - (endTime - startTime) / 10) * doublePoint;
 			newScore = newScore < 100 * minDoublePoint ? 100 * minDoublePoint : newScore;
-			console.log('Score', newScore);
+			//console.log('Score', newScore);
 			setPoint('+' + newScore);
 			setScore((prev) => prev + newScore);
 			setSkewText('EXACT!');
@@ -132,13 +148,10 @@ function Competition() {
 
 	/***QUESTION SUIVANTE***/
 	const suivant = () => {
-		//const btns = document.querySelectorAll('button');
-
 		setcountQuestion((count) => count + 1);
-
 		btns.forEach((btn) => (btn.className = 'choice'));
-
 		interfaceDiv.classList.replace('slideIn', 'slideOut');
+
 		setTimeout(() => {
 			interfaceDiv.classList.replace('slideOut', 'slideIn');
 			setStartTime(Date.now());
@@ -168,16 +181,14 @@ function Competition() {
 	/***RENDU JSX***/
 	return (
 		<div className='Competition'>
-			<Speaker toggleMute={toggleMute} mute={mute} />
 			{displayPseudo && (
 				<Pseudo validPseudo={validPseudo} bonus={bonus} malus={malus} min={min} />
 			)}
 
-			{minuteur === 0 && <h2>FINISH</h2>}
-
-			{displayQuizz && minuteur !== 0 && (
+			{displayQuizz && minuteur > 0 && (
 				<>
 					{loader && <Loader />}
+					<Speaker toggleMute={toggleMute} mute={mute} />
 					<div className='etat'>
 						<div className='score-container'>
 							<div className='score'>{score}</div>
@@ -185,7 +196,7 @@ function Competition() {
 							<div className='skew point'>{point}</div>
 						</div>
 
-						<ProgressBar />
+						<ProgressBar duree={duree} />
 					</div>
 
 					<div className='interfaceDiv slideIn'>
@@ -198,6 +209,16 @@ function Competition() {
 						<div className='container-choix'>{displayChoice}</div>
 					</div>
 				</>
+			)}
+
+			{minuteur === 0 && (
+				<ScoreFinal
+					pseudo={pseudo}
+					score={score}
+					maxQuestions={countQuestion}
+					goodReponse={goodReponse}
+					classement={classement}
+				/>
 			)}
 		</div>
 	);
