@@ -16,6 +16,7 @@ import Forget from '../Login/Forget/Forget';
 import AjoutQuestions from '../AjoutQuestions/AjoutQuestions';
 import Niveau from '../Niveau/Niveau';
 import Apropos from '../Apropos/Apropos';
+import Admin from '../Admin/Admin';
 
 function App() {
 	const [user, setUser] = useState('');
@@ -51,6 +52,12 @@ function App() {
 						exact
 						path='/settings/list'
 						render={() => (user ? <ListQuestions /> : <Connexion />)}
+					/>
+
+					<Route
+						exact
+						path='/settings/admin'
+						render={() => (user ? <Admin /> : <Connexion />)}
 					/>
 					<Route exact path='/settings/forget' component={Forget} />
 					<Route exact path='/settings/apropos' component={Apropos} />

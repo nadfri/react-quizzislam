@@ -5,12 +5,11 @@ import './Settings.scss';
 function Settings() {
 	return (
 		<div className='Settings'>
-			<Link to='/settings/config'>Ajouter des Questions</Link>
-			<Link to='/settings/list'>Liste des Questions</Link>
 			<Link to='/settings/'>Une Suggestion</Link>
 			<Link to='/settings/'>Proposer une question</Link>
 			<Link to='/settings/'>Signaler une Erreur</Link>
 			<Link to='/settings/apropos'>À propos</Link>
+			<Link to='/settings/admin' className="admin">Administration</Link>
 		</div>
 	);
 }
