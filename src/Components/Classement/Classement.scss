@@ -1,20 +1,7 @@
 .Classement {
 	animation: zoom 0.7s forwards;
-	
-	h1 {
-		margin: 5px;
-		background-color: rgba(211, 224, 234, 0.7);
-		padding: 5px 20px;
-		border-radius: 5px;
-		color: #2b9cff;
-		font-size: 2rem;
-		font-family: 'Spirax', cursive;
-		box-shadow: 0 0 10px 0 black;
-		text-shadow: 1px 1px 2px black;
-		font-size: 2rem;
+
+	h1{
+		display: inline-block;
 	}
-
-
-
-
 }

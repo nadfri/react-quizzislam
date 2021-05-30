@@ -84,7 +84,7 @@ function AjoutQuestions() {
 
 	/********************Rendu JSX********************/
 	return (
-		<div className='Config'>
+		<div className='AjoutQuestions'>
 			{loader && <Loader />}
 			<h1>Ajout de Questions</h1>
 

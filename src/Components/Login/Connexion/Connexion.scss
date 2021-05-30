@@ -4,17 +4,7 @@
 	flex-direction: column;
 	align-items: center;
 
-	h1 {
-		margin: 0;
-		margin-top: 10px;
-		background-color: rgba(211, 224, 234, 0.7);
-		padding: 5px 20px;
-		border-radius: 5px;
-		color: #2b9cff;
-		font-size: 2rem;
-		font-family: 'Spirax', cursive;
-		box-shadow: 0 0 10px 0 black;
-	}
+
 
 	.form {
 		position: relative;
@@ -46,16 +36,10 @@
 
 	button {
 		margin: 10px 0px;
-		border: none;
 		width: 100%;
-		padding: 5px;
-		border-radius: 5px;
 		background-color: #2b9cff;
-		color: white;
 		font-size: 1.2rem;
-		box-shadow: 0 0 5px 0 #3e3e3e;
-		font-family: Lobster;
-
+		
 		&:hover,
 		&:active {
 			background-color: #0088ff;

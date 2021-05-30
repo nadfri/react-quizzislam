@@ -19,7 +19,7 @@ function Competition() {
 	const duree = 240;
 	const bonus = 1000;
 	const malus = 400;
-	const min = 100;
+	const min = 200;
 
 	/*AUDIO*/
 	const muteStorage = JSON.parse(localStorage.getItem('mute')) || false;
@@ -112,7 +112,7 @@ function Competition() {
 		btns.forEach((btn) => btn.classList.add('disabled'));
 
 		const doublePoint = state[countQuestion].private ? 2 : 1;
-		const minDoublePoint = state[countQuestion].private ? 5 : 1;
+		
 
 		const endTime = Date.now();
 		const reponse = Number(state[countQuestion].reponse);
@@ -127,8 +127,8 @@ function Competition() {
 			skews[0].classList.add('green');
 			skews[1].classList.add('green');
 
-			let newScore = Math.floor(1100 - (endTime - startTime) / 10) * doublePoint;
-			newScore = newScore < 100 * minDoublePoint ? 100 * minDoublePoint : newScore;
+			let newScore = Math.floor((bonus+100) - (endTime - startTime) / 10) * doublePoint;
+			newScore = newScore < min * doublePoint ? min * doublePoint : newScore;
 			//console.log('Score', newScore);
 			setPoint('+' + newScore);
 			setScore((prev) => prev + newScore);

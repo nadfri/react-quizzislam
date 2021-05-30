@@ -62,9 +62,6 @@
 	button {
 		margin: 10px 5px;
 		width: 95%;
-
-		color: white;
-		padding: 5px;
 		&:active,
 		&:hover {
 			background-color: red;
@@ -121,7 +118,6 @@
 
 		button {
 			margin: 5px;
-			border-radius: 5px;
 			width: 46%;
 			min-height: 50px;
 			font-size: 1.2rem;

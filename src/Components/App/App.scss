@@ -8,10 +8,13 @@
 
 @media screen and (min-width: 800px) {
 	.App {
-		border: 2px solid #f3d07b;
-		border-radius: 5px;
+		border-left: 2px solid #f3d07b;
+		border-right: 2px solid #f3d07b;
 		box-shadow: 0 0 10px 3px black;
+	}
 
+	.NavBar{
+		border-radius: 5px;
 	}
 
 }

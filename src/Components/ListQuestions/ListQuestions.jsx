@@ -60,9 +60,11 @@ function ListQuestions(props) {
 
 		if (filtrePrivate !== '')
 			finalFilter = finalFilter.filter((question) => question.private === privateCopy);
-		
+
 		if (filtreWord.length > 2)
-			finalFilter = finalFilter.filter((question) => question.question.toLowerCase().includes(filtreWord.toLowerCase()));
+			finalFilter = finalFilter.filter((question) =>
+				question.question.toLowerCase().includes(filtreWord.toLowerCase()),
+			);
 
 		setFiltered(finalFilter);
 	}, [filtreTheme, filtreNiveau, filtrePrivate, filtreWord, questions]);
@@ -183,12 +185,16 @@ function ListQuestions(props) {
 					<option value='non'>Non</option>
 				</select>
 
-				<input type="search" placeholder="Chercher un mot" value={filtreWord} onChange={e=>setFiltreWord(e.target.value)}/>
+				<input
+					type='search'
+					placeholder='Chercher un mot'
+					value={filtreWord}
+					onChange={(e) => setFiltreWord(e.target.value)}
+				/>
 
 				<span className='nb-question'>
 					{filtered.length}/{questions.length}
 				</span>
-
 			</fieldset>
 
 			{filtered.map((question) => (
@@ -212,8 +218,8 @@ function ListQuestions(props) {
 							{question.question}
 						</li>
 						<li>
+							<b>Choix</b>
 							<ul>
-								<b>Choix</b>
 								{question.choix.map((choice, index) => (
 									<li key={index}>{choice}</li>
 								))}

@@ -1,21 +1,9 @@
-.Config {
+.AjoutQuestions {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	height: 90vh;
-
-	h1 {
-		margin: 5px;
-		background-color: rgba(211, 224, 234, 0.7);
-		padding: 5px 20px;
-		border-radius: 5px;
-		color: #2b9cff;
-		font-size: 2rem;
-		font-family: 'Spirax', cursive;
-		box-shadow: 0 0 10px 0 black;
-		font-size: 1.3rem;
-		text-shadow: 1px 1px 2px black;
-	}
+	animation: zoom 0.7s forwards;
 
 	form {
 		width: 100%;
@@ -88,9 +76,8 @@
 
 	button,
 	a {
-		width: 60%;
+		width: 80%;
 		background-color: tomato;
-		color: white;
 		margin-bottom: 10px;
 
 		&:active,&:hover {
@@ -99,14 +86,8 @@
 	}
 
 	a {
-		font-family: 'Lobster', cursive;
-		cursor: pointer;
 		padding: 5px;
-		border: none;
-		font-size: 1.5rem;
 		box-shadow: 0px 0px 5px 1px #191919;
-		text-shadow: 1px 1px 2px black;
-		border-radius: 3px;
 		transition: all 0.5s;
 	}
 }
