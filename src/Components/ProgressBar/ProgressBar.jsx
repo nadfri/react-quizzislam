@@ -12,7 +12,7 @@ function ProgressBar(props) {
 				size={130}
 				strokeWidth={12}
 				trailColor='#00000000'
-				// onComplete={() => console.log('OVER')}
+				onComplete={()=>props.over()}
 				>
 				{({ remainingTime }) => {
 					const minutes = Math.floor(remainingTime / 60);

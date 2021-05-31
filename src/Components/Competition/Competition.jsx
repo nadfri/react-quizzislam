@@ -90,12 +90,6 @@ function Competition() {
 			.catch((err) => console.log('Erreur FireBase: ', err));
 	}, []);
 
-	/***Gestion du Minuteur ****/
-	useEffect(() => {
-		const timer = minuteur > 0 && window.setTimeout(() => setMinuteur(minuteur - 1), 1000);
-		return () => clearInterval(timer);
-	}, [minuteur]);
-
 	/***GESTION DES CHOIX DES REPONSES***/
 	/*Affichage des choix*/
 	const displayChoice = state[countQuestion].choix
@@ -112,7 +106,6 @@ function Competition() {
 		btns.forEach((btn) => btn.classList.add('disabled'));
 
 		const doublePoint = state[countQuestion].private ? 2 : 1;
-		
 
 		const endTime = Date.now();
 		const reponse = Number(state[countQuestion].reponse);
@@ -127,7 +120,7 @@ function Competition() {
 			skews[0].classList.add('green');
 			skews[1].classList.add('green');
 
-			let newScore = Math.floor((bonus+100) - (endTime - startTime) / 10) * doublePoint;
+			let newScore = Math.floor(bonus + 100 - (endTime - startTime) / 10) * doublePoint;
 			newScore = newScore < min * doublePoint ? min * doublePoint : newScore;
 			//console.log('Score', newScore);
 			setPoint('+' + newScore);
@@ -146,7 +139,7 @@ function Competition() {
 		}
 
 		interfaceDiv = document.querySelector('.interfaceDiv');
-		window.setTimeout(suivant, 800);
+		setTimeout(suivant, 800);
 	};
 
 	/***QUESTION SUIVANTE***/
@@ -156,7 +149,7 @@ function Competition() {
 
 		interfaceDiv.classList.replace('slideIn', 'slideOut');
 
-		window.setTimeout(() => {
+		setTimeout(() => {
 			interfaceDiv.classList.replace('slideOut', 'slideIn');
 			setStartTime(Date.now());
 			skews[0].className = 'skew';
@@ -173,7 +166,7 @@ function Competition() {
 	};
 
 	const validPseudo = () => {
-		setMinuteur(duree);
+		setMinuteur('start');
 		setStartTime(Date.now());
 		setDisplayPseudo(false);
 		setDisplayQuizz(true);
@@ -189,7 +182,7 @@ function Competition() {
 				<Pseudo validPseudo={validPseudo} bonus={bonus} malus={malus} min={min} />
 			)}
 
-			{displayQuizz && minuteur > 0 && (
+			{displayQuizz && minuteur === 'start' && (
 				<>
 					{loader && <Loader />}
 					<Speaker toggleMute={toggleMute} mute={mute} />
@@ -200,7 +193,7 @@ function Competition() {
 							<div className='skew point'>{point}</div>
 						</div>
 
-						<ProgressBar duree={duree} />
+						<ProgressBar duree={duree} over={() => setMinuteur('end')} />
 					</div>
 
 					<div className='interfaceDiv slideIn'>
@@ -215,7 +208,7 @@ function Competition() {
 				</>
 			)}
 
-			{minuteur === 0 && (
+			{minuteur === 'end' && (
 				<ScoreFinal
 					pseudo={pseudo}
 					score={score}
