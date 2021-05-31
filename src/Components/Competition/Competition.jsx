@@ -92,7 +92,7 @@ function Competition() {
 
 	/***Gestion du Minuteur ****/
 	useEffect(() => {
-		const timer = minuteur > 0 && setTimeout(() => setMinuteur(minuteur - 1), 1000);
+		const timer = minuteur > 0 && window.setTimeout(() => setMinuteur(minuteur - 1), 1000);
 		return () => clearInterval(timer);
 	}, [minuteur]);
 
@@ -145,7 +145,8 @@ function Competition() {
 			incorrect.play();
 		}
 
-		setTimeout(suivant, 800);
+		interfaceDiv = document.querySelector('.interfaceDiv');
+		window.setTimeout(suivant, 800);
 	};
 
 	/***QUESTION SUIVANTE***/
@@ -153,10 +154,9 @@ function Competition() {
 		setcountQuestion((count) => count + 1);
 		btns.forEach((btn) => (btn.className = 'choice'));
 
-		interfaceDiv = document.querySelector('.interfaceDiv');
 		interfaceDiv.classList.replace('slideIn', 'slideOut');
 
-		setTimeout(() => {
+		window.setTimeout(() => {
 			interfaceDiv.classList.replace('slideOut', 'slideIn');
 			setStartTime(Date.now());
 			skews[0].className = 'skew';

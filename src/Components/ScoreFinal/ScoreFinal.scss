@@ -75,6 +75,10 @@
 		animation: slideIn 0.7s forwards;
 		margin: auto;
 		text-shadow: 0 0 2px green;
+
+		.fa-trophy{
+			margin-left: 10px;
+		}
 	}
 
 	.colorBlue {
@@ -92,10 +96,6 @@
 
 	.green {
 		color: lime;
-	}
-
-	.fa-trophy {
-		margin-left: 10px;
 	}
 
 	.gold {
