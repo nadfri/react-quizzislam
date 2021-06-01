@@ -6,6 +6,10 @@
 	text-align: center;
 }
 
+.PwaButton{
+	display: flex;
+}
+
 @media screen and (min-width: 800px) {
 	.App {
 		border-left: 2px solid #f3d07b;
@@ -15,6 +19,10 @@
 
 	.NavBar{
 		border-radius: 5px;
+	}
+
+	.PwaButton{
+		display: none;
 	}
 
 }

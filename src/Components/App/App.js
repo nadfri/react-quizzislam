@@ -19,6 +19,7 @@ import Apropos from '../Apropos/Apropos';
 import Admin from '../Admin/Admin';
 import Signalement from '../Signalement/Signalement';
 import Suggestion from '../Suggestion/Suggestion';
+import PwaButton from '../PwaButton/PwaButton';
 
 function App() {
 	const [user, setUser] = useState('');
@@ -35,7 +36,7 @@ function App() {
 		<BrowserRouter>
 			<div className='App' id='App'>
 				<Header />
-
+				<PwaButton />
 				<Switch>
 					<Route exact path='/' component={Home} />
 					<Route exact path='/competition' component={Competition} />
