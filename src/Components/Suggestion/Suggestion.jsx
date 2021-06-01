@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import Modal from '../Modal/Modal';
-import './Signalement.scss';
+import '../Signalement/Signalement.scss';
 
-function Signalement() {
+function Suggestion() {
 	const [displaySuccess, setDisplaySuccess] = useState(false);
 	const [displayForm, setDisplayForm] = useState(true);
-	const [erreur, setErreur] = useState('');
 	const [complement, setComplement] = useState('');
 
 	const encode = (data) => {
@@ -20,7 +19,7 @@ function Signalement() {
 		fetch(postUrl, {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-			body: encode({ 'form-name': 'Signalement', erreur, complement, question:"Signalement Globale" }),
+			body: encode({ 'form-name': 'Signalement', complement, question:"Suggestion" }),
 		});
 
 		e.preventDefault();
@@ -35,27 +34,19 @@ function Signalement() {
 
 	return (
 		<div className='Signalement'>
-			<h1>Signaler une Erreur</h1>
+			<h1>Suggestion</h1>
 			{displayForm && (
 				<fieldset>
 					<form onSubmit={handleSubmit}>
 						<input type='hidden' name='form-name' value='Signalement' />
 
-						<select required name='erreur' onChange={(e) => setErreur(e.target.value)}>
-							<option value=''>Choisir une erreur</option>
-							<option value='Reponse'>Réponse fausse</option>
-							<option value='Orthographe'>Orthographe</option>
-							<option value='Forumation'>Question mal formulée</option>
-							<option value='Infomartion'>Information érronée</option>
-							<option value='Autre'>Autre Raison</option>
-						</select>
-
 						<textarea
 							name='complement'
-							placeholder="Décrivez l'erreur..."
+							placeholder="Une suggestion?..."
 							rows='5'
 							cols='33'
 							onChange={(e) => setComplement(e.target.value)}
+							required
 						/>
 
 						<button type='submit' className='blue'>
@@ -69,4 +60,4 @@ function Signalement() {
 	);
 }
 
-export default Signalement;
+export default Suggestion;

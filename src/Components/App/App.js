@@ -18,6 +18,7 @@ import Niveau from '../Niveau/Niveau';
 import Apropos from '../Apropos/Apropos';
 import Admin from '../Admin/Admin';
 import Signalement from '../Signalement/Signalement';
+import Suggestion from '../Suggestion/Suggestion';
 
 function App() {
 	const [user, setUser] = useState('');
@@ -47,6 +48,7 @@ function App() {
 					<Route exact path='/settings/signalement' component={Signalement} />
 					<Route exact path='/settings/forget' component={Forget} />
 					<Route exact path='/settings/apropos' component={Apropos} />
+					<Route exact path='/settings/suggestion' component={Suggestion} />
 
 					<Route
 						exact
