@@ -1,0 +1,39 @@
+.Signalement {
+	height: 86%;
+	background-image: url('../../Backgrounds/background4.jpg');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+
+	h1 {
+		display: inline-block;
+		background-color: rgba(211, 224, 234, 0.8);
+	}
+
+	fieldset {
+		background-color: rgba(211, 224, 234, 0.7);
+		border-radius: 5px;
+		border: solid 1px teal;
+		margin: 5px;
+		animation: slideIn 0.5s forwards;
+	}
+
+	select {
+		border: none;
+		width: 100%;
+		border-radius: 5px;
+		padding: 3px;
+	}
+
+	textarea {
+		border: 1px teal;
+		border-radius: 5px;
+		margin: 20px 0;
+		width: 100%;
+	}
+
+	button {
+		background-color: #2b9cff;
+		width: 60%;
+	}
+}

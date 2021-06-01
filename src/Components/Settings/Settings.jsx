@@ -7,7 +7,7 @@ function Settings() {
 		<div className='Settings'>
 			<Link to='/settings/'>Une Suggestion</Link>
 			<Link to='/settings/'>Proposer une question</Link>
-			<Link to='/settings/'>Signaler une Erreur</Link>
+			<Link to='/settings/signalement'>Signaler une Erreur</Link>
 			<Link to='/settings/apropos'>À propos</Link>
 			<Link to='/settings/admin' className="admin">Administration</Link>
 		</div>

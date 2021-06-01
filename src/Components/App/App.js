@@ -17,6 +17,7 @@ import AjoutQuestions from '../AjoutQuestions/AjoutQuestions';
 import Niveau from '../Niveau/Niveau';
 import Apropos from '../Apropos/Apropos';
 import Admin from '../Admin/Admin';
+import Signalement from '../Signalement/Signalement';
 
 function App() {
 	const [user, setUser] = useState('');
@@ -43,9 +44,13 @@ function App() {
 					<Route exact path='/classement' component={Classement} />
 					<Route exact path='/connexion' component={Connexion} />
 					<Route exact path='/settings' component={Settings} />
+					<Route exact path='/settings/signalement' component={Signalement} />
+					<Route exact path='/settings/forget' component={Forget} />
+					<Route exact path='/settings/apropos' component={Apropos} />
+
 					<Route
 						exact
-						path='/settings/config'
+						path='/settings/ajout'
 						render={() => (user ? <AjoutQuestions /> : <Connexion />)}
 					/>
 					<Route
@@ -53,14 +58,11 @@ function App() {
 						path='/settings/list'
 						render={() => (user ? <ListQuestions /> : <Connexion />)}
 					/>
-
 					<Route
 						exact
 						path='/settings/admin'
 						render={() => (user ? <Admin /> : <Connexion />)}
 					/>
-					<Route exact path='/settings/forget' component={Forget} />
-					<Route exact path='/settings/apropos' component={Apropos} />
 
 					<Route component={Home} />
 				</Switch>
