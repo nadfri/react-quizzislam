@@ -1,7 +1,9 @@
 import React from 'react';
 import { CountdownCircleTimer } from 'react-countdown-circle-timer';
 import './ProgressBar.scss';
+import chronoURL from '../../Sounds/chrono.mp3';
 
+const once = true;
 function ProgressBar(props) {
 	return (
 		<div className='ProgressBar'>
@@ -12,11 +14,12 @@ function ProgressBar(props) {
 				size={130}
 				strokeWidth={12}
 				trailColor='#00000000'
-				onComplete={()=>props.over()}
-				>
+				onComplete={() => props.over()}>
 				{({ remainingTime }) => {
 					const minutes = Math.floor(remainingTime / 60);
 					const secondes = remainingTime % 60;
+					const chrono = document.getElementById('chrono');
+					remainingTime === 10 && once && chrono.play();
 
 					return (
 						<div
@@ -25,6 +28,7 @@ function ProgressBar(props) {
 							}>
 							{minutes > 0 ? minutes + ':' : null}
 							{minutes > 0 && secondes < 10 ? '0' + secondes : secondes}s
+							<audio id='chrono' src={chronoURL} muted={props.mute} />
 						</div>
 					);
 				}}

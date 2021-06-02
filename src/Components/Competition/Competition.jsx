@@ -193,7 +193,7 @@ function Competition() {
 							<div className='skew point'>{point}</div>
 						</div>
 
-						<ProgressBar duree={duree} over={() => setMinuteur('end')} />
+						<ProgressBar duree={duree} over={() => setMinuteur('end')} mute={mute} />
 					</div>
 
 					<div className='interfaceDiv slideIn'>
@@ -215,6 +215,7 @@ function Competition() {
 					maxQuestions={countQuestion}
 					goodReponse={goodReponse}
 					classement={classement}
+					mute={mute}
 				/>
 			)}
 		</div>

@@ -3,6 +3,7 @@ import './ScoreFinal.scss';
 import { db } from '../../firebase';
 import ListClassement from '../ListClassement/ListClassement';
 import ScrollTop from '../ScrollTop/ScrollTop';
+import bellURL from '../../Sounds/bell.mp3';
 
 function ScoreFinal(props) {
 	const TOP = 100;
@@ -143,6 +144,7 @@ function ScoreFinal(props) {
 				)}
 			</div>
 			{classementFinal && <ScrollTop />}
+			<audio id='bell' src={bellURL} autoPlay muted={props.mute} />
 		</div>
 	);
 }
