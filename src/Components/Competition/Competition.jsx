@@ -47,8 +47,6 @@ function Competition() {
 	const [point, setPoint] = useState(null);
 	const [goodReponse, setGoodreponse] = useState(0);
 
-	//const reponses = useRef();
-
 	function randomize(tab) {
 		var i, j, tmp;
 		for (i = tab.length - 1; i > 0; i--) {
@@ -80,11 +78,8 @@ function Competition() {
 			.get()
 			.then((doc) => {
 				setLoader(false);
-				//console.log(doc.data().questions.filter((question) => question.theme === theme));
 				const questions = randomize(doc.data().questions);
-
-				//reponses.current = questions;
-				//const questionsSansRep = questions.map(({ reponse, ...rest }) => rest);
+				//console.table(questions);
 				setState(questions); //questions sans les réponses
 			})
 			.catch((err) => console.log('Erreur FireBase: ', err));
