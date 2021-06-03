@@ -119,15 +119,14 @@
 		button {
 			margin: 5px;
 			width: 46%;
-			min-height: 50px;
-			font-size: 1.2rem;
+			font-size: 1.1rem;
 			text-shadow: none;
 			display: flex;
 			align-items: center;
 			justify-content: center;
 			border: solid transparent 4px;
 			color: black;
-			padding: 0;
+			padding: 2px;
 
 			&.disabled {
 				pointer-events: none;

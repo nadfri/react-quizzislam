@@ -232,9 +232,11 @@ function Quizz(props) {
 							{state[countQuestion].info !== '' && (
 								<div className='info'>{state[countQuestion].info}</div>
 							)}
+							
 							<button onClick={suivant} className='blue'>
 								Suivant
 							</button>
+							
 						</>
 					)}
 			<div className='erreur' onClick={() => setDisplayFormError(true)}>
