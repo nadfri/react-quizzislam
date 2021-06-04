@@ -29,7 +29,8 @@ function ScoreFinal(props) {
 			classement.sort((a, b) => b.score - a.score);
 			//console.log('classement :>> ', classement);
 			setClassementFinal(classement);
-			db.collection('classement').doc(classementID).update({ classement });
+			//set pour ecraser la base de donnée existante aulieu d'update()
+			db.collection('classement').doc(classementID).set({ classement });
 			setRank(
 				classement.findIndex((user) => user.pseudo === pseudo && user.score === score) +
 					1,

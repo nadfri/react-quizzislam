@@ -22,7 +22,7 @@ function Classement() {
 					doc
 						.data()
 						.classement.filter((user) => user.pseudo !== '')
-						.sort((a, b) => b.score - a.score),
+						//.sort((a, b) => b.score - a.score)
 				);
 				setLoader(false);
 			})
