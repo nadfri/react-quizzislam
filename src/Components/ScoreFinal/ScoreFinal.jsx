@@ -25,14 +25,16 @@ function ScoreFinal(props) {
 		// db.collection('classement').doc(classementID).update({ classement :deleteArray });
 
 		if (score >= lastScore && score > 0) {
-			classement[TOP - 1] = { pseudo, score, note };
-			classement.sort((a, b) => b.score - a.score);
+			const newClassement = [...classement];
+			newClassement[TOP - 1] = { pseudo, score, note };
+			newClassement.sort((a, b) => b.score - a.score);
 			//console.log('classement :>> ', classement);
-			setClassementFinal(classement);
+			setClassementFinal(newClassement);
 			//set pour ecraser la base de donnée existante aulieu d'update()
-			db.collection('classement').doc(classementID).set({ classement });
+			db.collection('classement').doc(classementID).set({ classement: newClassement });
+
 			setRank(
-				classement.findIndex((user) => user.pseudo === pseudo && user.score === score) +
+				newClassement.findIndex((user) => user.pseudo === pseudo && user.score === score) +
 					1,
 			);
 		}

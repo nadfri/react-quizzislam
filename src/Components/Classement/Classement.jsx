@@ -21,7 +21,8 @@ function Classement() {
 				setClassement(
 					doc
 						.data()
-						.classement.filter((user) => user.pseudo !== '')
+						.classement
+						//.filter((user) => user.pseudo !== '')
 						//.sort((a, b) => b.score - a.score)
 				);
 				setLoader(false);
