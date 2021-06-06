@@ -50,7 +50,7 @@ function AjoutQuestions() {
 		e.preventDefault();
 
 		const newQuestion = {
-			id: questions.length,
+			id: questions[questions.length - 1].id + 1,
 			theme,
 			niveau,
 			private: competition,
