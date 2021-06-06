@@ -7,12 +7,10 @@ import bellURL from '../../Sounds/bell.mp3';
 
 function ScoreFinal(props) {
 	const TOP = 100;
-	const { goodReponse, maxQuestions, score, pseudo, classement } = props;
+	const { goodReponse, maxQuestions, score, pseudo } = props;
 	const classementID = 'XXJ9yQ0slzmwKLLEr1fI';
 	let couleur, Texte, background;
-	const lastScore = classement[TOP - 1].score;
 	const note = `${goodReponse}/${maxQuestions}`;
-
 	const [classementFinal, setClassementFinal] = useState(null);
 	const [rank, setRank] = useState(null);
 
@@ -24,20 +22,29 @@ function ScoreFinal(props) {
 		// console.table('deleteArray :>> ', deleteArray);
 		// db.collection('classement').doc(classementID).update({ classement :deleteArray });
 
-		if (score >= lastScore && score > 0) {
-			const newClassement = [...classement];
-			newClassement[TOP - 1] = { pseudo, score, note };
-			newClassement.sort((a, b) => b.score - a.score);
-			//console.log('classement :>> ', classement);
-			setClassementFinal(newClassement);
-			//set pour ecraser la base de donnée existante aulieu d'update()
-			db.collection('classement').doc(classementID).set({ classement: newClassement });
+		//Chargement du Classement
+		db.collection('classement')
+			.doc(classementID)
+			.get()
+			.then((doc) => {
+				const classement = doc.data().classement.sort((a, b) => b.score - a.score);
+				const lastScore = classement[TOP - 1].score;
 
-			setRank(
-				newClassement.findIndex((user) => user.pseudo === pseudo && user.score === score) +
-					1,
-			);
-		}
+				if (score >= lastScore && score > 0) {
+					
+					classement[TOP - 1] = { pseudo, score, note };
+					setClassementFinal(classement.sort((a, b) => b.score - a.score));
+					//set pour ecraser la base de donnée existante aulieu d'update()
+					db.collection('classement').doc(classementID).set({ classement });
+
+					setRank(
+						classement.findIndex(
+							(user) => user.pseudo === pseudo && user.score === score,
+						) + 1,
+					);
+				}
+			})
+			.catch((err) => console.log(err));
 	}, []);
 
 	switch (true) {

@@ -16,7 +16,7 @@ function Competition() {
 	let skews = document.querySelectorAll('.skew');
 	let interfaceDiv = document.querySelector('.interfaceDiv');
 
-	const duree = 240;
+	const duree = 11;
 	const bonus = 1000;
 	const malus = 400;
 	const min = 200;
@@ -28,12 +28,10 @@ function Competition() {
 	const audios = [correct, incorrect];
 
 	/*DATAS*/
-	const classementID = 'XXJ9yQ0slzmwKLLEr1fI';
 	const baseID = 'hz2fK3KpYDlCG7af12t9';
 
 	/***STATE HOOKS***/
 	const [state, setState] = useState([{ choix: [] }]);
-	const [classement, setClassement] = useState([]);
 	const [countQuestion, setcountQuestion] = useState(0);
 	const [score, setScore] = useState(0);
 	const [loader, setLoader] = useState(false);
@@ -61,17 +59,6 @@ function Competition() {
 	/***Chargement des bases de données***/
 	useEffect(() => {
 		setLoader(true);
-
-		//Chargement du Classement
-		db.collection('classement')
-			.doc(classementID)
-			.get()
-			.then((doc) => {
-				//console.log(doc.data().classement.sort((a, b) => b.score - a.score));
-				setClassement(doc.data().classement.sort((a, b) => b.score - a.score));
-			})
-			.catch((err) => console.log(err));
-
 		//Chargement des Questions
 		db.collection('dataBase')
 			.doc(baseID)
@@ -210,7 +197,6 @@ function Competition() {
 					score={score}
 					maxQuestions={countQuestion}
 					goodReponse={goodReponse}
-					classement={classement}
 					mute={mute}
 				/>
 			)}
