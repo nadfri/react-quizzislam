@@ -16,7 +16,7 @@
 			.score {
 				border-radius: 5px;
 				background-color: rgba(75, 119, 141, 0.7);
-				transform: skewX(-17deg) translateX(-10px);
+				transform: skewX(-17deg) translate3d(-10px,0,0);
 				box-shadow: 0px 0px 5px 1px #191919;
 				color: gold;
 				margin: 5px 0;
@@ -32,7 +32,7 @@
 				font-weight: bold;
 				text-transform: uppercase;
 				margin: 5px 0;
-				transform: skewX(-17deg) translateX(-100vw);
+				transform: skewX(-17deg) translate3d(-100vw,0,0);
 				padding: 5px 10px 5px 0px;
 				box-shadow: 0px 0px 5px 1px #191919;
 				transition: all 0.5s;
@@ -40,7 +40,7 @@
 				text-align: right;
 
 				&.slideSkew {
-					transform: skewX(-17deg) translateX(-40px);
+					transform: skewX(-17deg) translate3d(-40px,0,0);
 				}
 
 				&.red {

@@ -5,7 +5,7 @@ import Modal from '../Modal/Modal';
 import ScrollTop from '../ScrollTop/ScrollTop';
 import './ListQuestions.scss';
 
-function ListQuestions(props) {
+function ListQuestions() {
 	const baseID = 'hz2fK3KpYDlCG7af12t9';
 	const tabNiveau = ['', 'Débutant', 'Intermédiaire', 'Expert'];
 
@@ -39,10 +39,10 @@ function ListQuestions(props) {
 			.doc(baseID)
 			.get()
 			.then((doc) => {
-				setLoader(false);
 				//console.log(doc.data().questions);
 				setQuestions(doc.data().questions.sort((a, b) => a.id - b.id));
 				setFiltered(doc.data().questions.sort((a, b) => a.id - b.id));
+				setLoader(false);
 			})
 			.catch((err) => console.log(err));
 	}, []);

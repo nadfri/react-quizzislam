@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
-
 import { db, fireTab } from '../../firebase';
 import './AjoutQuestions.scss';
 import Modal from '../Modal/Modal';
 import { Link } from 'react-router-dom';
-import Loader from '../Loader/Loader';
 
 function AjoutQuestions() {
 	const baseID = 'hz2fK3KpYDlCG7af12t9';
@@ -18,17 +16,15 @@ function AjoutQuestions() {
 	const [choix, setChoix] = useState(['', '', '', '']);
 	const [reponse, setReponse] = useState('');
 	const [info, setInfo] = useState('');
-	const [loader, setLoader] = useState(false);
+
 	const [displayModal, setDisplayModal] = useState(false);
 
 	//Chargement de la base de donnée
 	useEffect(() => {
-		setLoader(true);
 		db.collection('dataBase')
 			.doc(baseID)
 			.get()
 			.then((doc) => {
-				setLoader(false);
 				//console.log(doc.data().questions);
 				setQuestions(doc.data().questions);
 				localStorage.setItem('questions', JSON.stringify(doc.data().questions));
@@ -85,7 +81,6 @@ function AjoutQuestions() {
 	/********************Rendu JSX********************/
 	return (
 		<div className='AjoutQuestions'>
-			{loader && <Loader />}
 			<h1>Ajout de Questions</h1>
 
 			<form onSubmit={handleSubmit} className='form'>
@@ -282,8 +277,6 @@ function AjoutQuestions() {
 			</form>
 
 			<Link to='/settings/list'>Voir la Liste des Questions</Link>
-
-			
 
 			{displayModal && (
 				<Modal h1='Ajouter avec Succès' close={() => setDisplayModal(false)} />

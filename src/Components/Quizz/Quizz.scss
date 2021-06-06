@@ -16,13 +16,13 @@
 			font-weight: bold;
 			text-transform: uppercase;
 			margin: 5px 0;
-			transform: skewX(-17deg) translateX(-100vw);
+			transform: skewX(-17deg) translate3d(-100vw,0,0);
 			padding: 5px 20px 5px 60px;
 			box-shadow: 0px 0px 5px 1px #191919;
 			transition: all 0.5s;
 
 			&.slideSkew {
-				transform: skewX(-17deg) translateX(-40px);
+				transform: skewX(-17deg) translate3d(-40px,0,0);
 			}
 
 			&.red {
@@ -58,7 +58,7 @@
 				font-weight: bold;
 				text-transform: uppercase;
 				margin: 5px 0;
-				transform: skewX(-17deg) translateX(40px);
+				transform: skewX(-17deg) translate3d(40px,0,0);
 				padding: 5px 50px 5px 10px;
 				box-shadow: 0px 0px 5px 1px #191919;
 			}

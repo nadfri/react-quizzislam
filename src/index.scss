@@ -103,46 +103,46 @@ select{
 /*Animations*/
 @keyframes zoom {
 	from {
-		transform: scale(0);
+		transform: scale3d(0,0,0);
 	}
 	to {
-		transform: scale(1);
+		transform: scale3d(1,1,1);
 	}
 }
 
 @keyframes dezoom {
 	from {
-		transform: scale(1);
+		transform: scale3d(1,1,1);
 	}
 	to {
-		transform: scale(0);
+		transform: scale3d(0,0,0);
 	}
 }
 
 @keyframes slideIn {
 	from {
-		transform: translateX(-100vw);
+		transform: translate3d(-100vw,0,0);
 	}
 	to {
-		transform: translateX(0);
+		transform: translate3d(0,0,0);
 	}
 }
 
 @keyframes slideOut {
 	from {
-		transform: translateX(0);
+		transform: translate3d(0,0,0);
 	}
 	to {
-		transform: translateX(100vw);
+		transform: translate3d(100vw,0,0);
 	}
 }
 
 @keyframes slideToLeft {
 	from {
-		transform: translateX(100vw);
+		transform: translate3d(100vw,0,0);
 	}
 	to {
-		transform: translateX(0);
+		transform: translate3d(0,0,0);
 	}
 }
 
@@ -157,11 +157,11 @@ select{
 
 @keyframes beat {
 	from {
-		transform: scale(1.5);
+		transform: scale3d(1.5,1.5,1.5);
 	}
 
 	to {
-		transform: scale(1);
+		transform: scale3d(1,1,1);
 	}
 }
 

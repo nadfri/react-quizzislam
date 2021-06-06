@@ -133,7 +133,7 @@ function Competition() {
 			incorrect.play();
 		}
 
-		interfaceDiv = document.querySelector('.interfaceDiv');
+		
 		setTimeout(suivant, 800);
 	};
 
@@ -142,6 +142,7 @@ function Competition() {
 		setcountQuestion((count) => count + 1);
 		btns.forEach((btn) => (btn.className = 'choice'));
 
+		interfaceDiv = document.querySelector('.interfaceDiv');
 		interfaceDiv.classList.replace('slideIn', 'slideOut');
 
 		setTimeout(() => {
