@@ -16,7 +16,7 @@ function Competition() {
 	let skews = document.querySelectorAll('.skew');
 	let interfaceDiv = document.querySelector('.interfaceDiv');
 
-	const duree = 11;
+	const duree = 240;
 	const bonus = 1000;
 	const malus = 400;
 	const min = 200;
