@@ -166,8 +166,7 @@ function AjoutQuestions() {
 
 				<fieldset>
 					<legend>Question*</legend>
-					<input
-						type='text'
+					<textarea rows="3"
 						value={question}
 						onChange={(e) => setQuestion(e.target.value.replace('sws', 'ﷺ'))}
 						placeholder='Ecrire ici la question'
@@ -265,8 +264,7 @@ function AjoutQuestions() {
 
 				<fieldset>
 					<legend>Explication</legend>
-					<input
-						type='text'
+					<textarea rows="3"
 						value={info}
 						onChange={(e) => setInfo(e.target.value.replace('sws', 'ﷺ'))}
 						placeholder="Complément d'information sur la réponse"
