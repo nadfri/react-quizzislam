@@ -349,10 +349,9 @@ function ListQuestions() {
 
 						<fieldset>
 							<legend>Question*</legend>
-							<input
-								type='text'
-								value={question}
-								onChange={(e) => setQuestion(e.target.value.replace('sws', 'ﷺ'))}
+							<textarea rows="3"
+								defaultValue={question}
+								onBlur={(e) => setQuestion(e.target.value.replace('sws', 'ﷺ'))}
 								placeholder='Ecrire ici la question'
 								required
 							/>
@@ -363,8 +362,8 @@ function ListQuestions() {
 							<input
 								type='text'
 								id='choix1'
-								value={choix[0]}
-								onChange={(e) => handleChoix(e.target.value, e.target.id)}
+								defaultValue={choix[0]}
+								onBlur={(e) => handleChoix(e.target.value, e.target.id)}
 								required
 								placeholder='Choix 1*'
 							/>
@@ -372,8 +371,8 @@ function ListQuestions() {
 							<input
 								type='text'
 								id='choix2'
-								value={choix[1]}
-								onChange={(e) => handleChoix(e.target.value, e.target.id)}
+								defaultValue={choix[1]}
+								onBlur={(e) => handleChoix(e.target.value, e.target.id)}
 								required
 								placeholder='Choix 2*'
 							/>
@@ -381,15 +380,15 @@ function ListQuestions() {
 							<input
 								type='text'
 								id='choix3'
-								value={choix[2]}
-								onChange={(e) => handleChoix(e.target.value, e.target.id)}
+								defaultValue={choix[2]}
+								onBlur={(e) => handleChoix(e.target.value, e.target.id)}
 								placeholder='Choix 3'
 							/>
 							<input
 								type='text'
 								id='choix4'
-								value={choix[3]}
-								onChange={(e) => handleChoix(e.target.value, e.target.id)}
+								defaultValue={choix[3]}
+								onBlur={(e) => handleChoix(e.target.value, e.target.id)}
 								placeholder='Choix 4'
 							/>
 						</fieldset>
@@ -448,10 +447,9 @@ function ListQuestions() {
 
 						<fieldset>
 							<legend>Explication</legend>
-							<input
-								type='text'
-								value={info}
-								onChange={(e) => setInfo(e.target.value.replace('sws', 'ﷺ'))}
+							<textarea rows="3"
+								defaultValue={info}
+								onBlur={(e) => setInfo(e.target.value.replace('sws', 'ﷺ'))}
 								placeholder="Complément d'information sur la réponse"
 							/>
 						</fieldset>

@@ -96,8 +96,21 @@ h1 {
 	max-width: 700px;
 }
 
+input{
+	font-family: 'Roboto Slab', serif;
+}
+
 select{
 	background-color: white;
+}
+
+textarea{
+	width: 100%;
+	border: none;
+	border-radius: 5px;
+	font-family: 'Roboto Slab', serif;
+	font-size: 0.9rem;
+
 }
 
 /*Animations*/
