@@ -126,13 +126,13 @@ function Competition() {
 
 	/***QUESTION SUIVANTE***/
 	const suivant = () => {
-		setcountQuestion((count) => count + 1);
 		btns.forEach((btn) => (btn.className = 'choice'));
 
 		interfaceDiv = document.querySelector('.interfaceDiv');
 		interfaceDiv.classList.replace('slideIn', 'slideOut');
-
+		
 		setTimeout(() => {
+			setcountQuestion((count) => count + 1);
 			interfaceDiv.classList.replace('slideOut', 'slideIn');
 			setStartTime(Date.now());
 			skews[0].className = 'skew';

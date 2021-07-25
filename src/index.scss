@@ -188,8 +188,10 @@ textarea{
 
 .slideIn {
 	animation: slideIn 0.3s forwards;
+	animation-delay: 0s;
 }
 
 .slideOut {
 	animation: slideOut 0.3s forwards;
+	animation-delay: 0s;
 }
