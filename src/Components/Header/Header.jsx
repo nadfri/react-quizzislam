@@ -2,7 +2,7 @@ import React from 'react';
 import './Header.scss';
 import ToggleBtn from './ToggleBtn/ToggleBtn';
 
-function Header(props) {
+function Header() {
 	return (
 		<div className='Header'>
 			<h1>QuizzIslam</h1>

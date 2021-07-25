@@ -3,6 +3,7 @@ import { db, fireTab } from '../../firebase';
 import './AjoutQuestions.scss';
 import Modal from '../Modal/Modal';
 import { Link } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 
 function AjoutQuestions() {
 	const baseID = 'hz2fK3KpYDlCG7af12t9';
@@ -10,7 +11,7 @@ function AjoutQuestions() {
 	//State
 	const [questions, setQuestions] = useState([]);
 	const [theme, setTheme] = useState('');
-	const [niveau, setNiveau] = useState('1');
+	const [niveau, setNiveau] = useState('');
 	const [competition, setCompetition] = useState(false);
 	const [question, setQuestion] = useState('');
 	const [choix, setChoix] = useState(['', '', '', '']);
@@ -50,7 +51,7 @@ function AjoutQuestions() {
 		e.preventDefault();
 
 		const newQuestion = {
-			id: questions[questions.length - 1].id + 1,
+			id: uuidv4(),
 			theme,
 			niveau,
 			private: competition,
