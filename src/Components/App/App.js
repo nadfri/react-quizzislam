@@ -35,7 +35,10 @@ function App() {
   return (
     <BrowserRouter>
       <div className='App' id='App'>
+        {/* Header */}
         <Header />
+
+        {/* Main Content */}
         <PwaButton />
         <Switch>
           <Route exact path='/' component={Home} />
@@ -72,8 +75,10 @@ function App() {
           />
 
           <Route component={Home} />
+
         </Switch>
 
+         {/* NavBar  */}
         <NavBar />
       </div>
     </BrowserRouter>
