@@ -1,24 +1,26 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import './NavBar.scss';
 import { NavLink } from 'react-router-dom';
 
 function NavBar() {
-	const [display, setDisplay] = useState(true);
+	const refNav = useRef(null);
 
 	useEffect(() => {
 		let posY = 10;
 		const handleScroll = () => {
-			window.scrollY > posY ? setDisplay(false) : setDisplay(true);
+			window.scrollY > posY
+				? refNav.current.classList.add('hidden')
+				: refNav.current.classList.remove('hidden');
 			posY = window.scrollY;
 		};
 
 		document.addEventListener('scroll', handleScroll);
 
-		return () => document.addEventListener('scroll', handleScroll);
+		return () => document.removeEventListener('scroll', handleScroll);
 	}, []);
 
 	return (
-		<div className={display ? 'NavBar' : 'NavBar hidden'}>
+		<div className='NavBar' ref={refNav}>
 			<NavLink exact to='/'>
 				<i className='fas fa-dice-d6'></i>
 			</NavLink>
