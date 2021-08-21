@@ -81,6 +81,11 @@ button {
 	transition: all 0.5s;
 }
 
+button:active{
+	transform: translateY(3px);
+	box-shadow: none;
+}
+
 /*Titre H1*/
 h1 {
 	margin: 5px;
