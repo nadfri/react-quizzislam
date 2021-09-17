@@ -1,5 +1,6 @@
 .Entrainement {
 	height: 86%;
+	//flex: 1;
 	display: flex;
 	flex-direction: column;
 	overflow: hidden;
@@ -25,42 +26,42 @@
 
 		&:nth-child(1) {
 			background-color: rgba(255, 215, 0, 0.9);
-			transform: rotate(-31deg) translate3d(-100%, -113%,0);
+			transform: rotate(-31deg) translate3d(-100%, -113%, 0);
 			animation: slide 0.5s forwards;
 		}
 		&:nth-child(2) {
 			background-color: rgba(192, 192, 192, 0.9);
-			transform: rotate(-31deg) translate3d(-100%, -113%,0);
-			animation: slide 0.5s  forwards;
+			transform: rotate(-31deg) translate3d(-100%, -113%, 0);
+			animation: slide 0.5s forwards;
 		}
 		&:nth-child(3) {
 			background-color: rgba(222, 184, 135, 0.9);
-			transform: rotate(-31deg) translate3d(-100%, -113%,0);
+			transform: rotate(-31deg) translate3d(-100%, -113%, 0);
 			animation: slide 0.5s 0.1s forwards;
 		}
 		&:nth-child(4) {
 			background-color: rgba(216, 101, 101, 0.9);
-			transform: rotate(-31deg) translate3d(-100%, -113%,0);
+			transform: rotate(-31deg) translate3d(-100%, -113%, 0);
 			animation: slide 0.5s 0.1s forwards;
 		}
 		&:nth-child(5) {
 			background-color: rgba(95, 158, 160, 0.9);
-			transform: rotate(-31deg) translate3d(-100%, -113%,0);
+			transform: rotate(-31deg) translate3d(-100%, -113%, 0);
 			animation: slide 0.5s 0.2s forwards;
 		}
 		&:nth-child(6) {
 			background-color: rgba(255, 127, 80, 0.9);
-			transform: rotate(-31deg) translate3d(-100%, -113%,0);
+			transform: rotate(-31deg) translate3d(-100%, -113%, 0);
 			animation: slide 0.5s 0.2s forwards;
 		}
 		&:nth-child(7) {
 			background-color: rgba(100, 149, 237, 0.9);
-			transform: rotate(-31deg) translate3d(-100%, -113%,0);
+			transform: rotate(-31deg) translate3d(-100%, -113%, 0);
 			animation: slide 0.5s 0.3s forwards;
 		}
 		&:nth-child(8) {
 			background-color: rgba(174, 255, 123, 0.9);
-			transform: rotate(-31deg) translate3d(-100%, -113%,0);
+			transform: rotate(-31deg) translate3d(-100%, -113%, 0);
 			animation: slide 0.5s 0.3s forwards;
 		}
 	}
@@ -68,6 +69,6 @@
 
 @keyframes slide {
 	to {
-		transform: rotate(-31deg) translate3d(-8%, -113%,0);
+		transform: rotate(-31deg) translate3d(-8%, -113%, 0);
 	}
 }
