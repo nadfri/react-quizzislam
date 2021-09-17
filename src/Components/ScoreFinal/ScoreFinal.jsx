@@ -5,6 +5,8 @@ import ListClassement from '../ListClassement/ListClassement';
 import ScrollTop from '../ScrollTop/ScrollTop';
 import bellURL from '../../Sounds/bell.mp3';
 import Loader from './../Loader/Loader';
+import Share from './../../Share/Share';
+
 
 function ScoreFinal(props) {
 	const TOP = 100;
@@ -32,14 +34,14 @@ function ScoreFinal(props) {
 
 				//Joueur deja dans le classement
 				if (indexPlayer > -1) {
-          //meilleur score
+					//meilleur score
 					if (score > classement[indexPlayer].score) {
 						classement[indexPlayer].score = score;
 						classement[indexPlayer].note = note;
 						updateClassement(classement);
-					} 
-          //score moins bon
-          else {
+					}
+					//score moins bon
+					else {
 						setNotBetter(true);
 						setOldScore(classement[indexPlayer].score);
 					}
@@ -50,9 +52,7 @@ function ScoreFinal(props) {
 					if (classement.length < TOP) {
 						classement.push({ pseudo, score, note });
 						updateClassement(classement);
-					} 
-
-          else {
+					} else {
 						const lastScore = classement[TOP - 1].score;
 
 						if (score > lastScore) {
@@ -61,7 +61,6 @@ function ScoreFinal(props) {
 						}
 					}
 				}
-
 			})
 			.catch((err) => console.log(err));
 	}, []);
@@ -188,6 +187,8 @@ function ScoreFinal(props) {
 						<a href='/competition'>Rejouer</a>
 
 						{rank && <a href='#userID'>Voir Ton Classement</a>}
+
+						<Share/>
 
 						{classementFinal && (
 							<ListClassement
