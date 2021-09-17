@@ -24,6 +24,8 @@
 		text-shadow: 1px 1px 2px #000;
 		color: white;
 		overflow: hidden;
+		text-transform: capitalize;
+	
 
 		thead tr {
 			background-color: rgba(43, 156, 255, 0.7);
@@ -43,7 +45,6 @@
 
 	.pseudo {
 		width: 25%;
-		text-transform: capitalize;
 	}
 
 	.score {

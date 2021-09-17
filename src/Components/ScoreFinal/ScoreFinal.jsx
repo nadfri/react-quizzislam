@@ -12,19 +12,14 @@ function ScoreFinal(props) {
 	const classementID = 'XXJ9yQ0slzmwKLLEr1fI';
 	let couleur, Texte, background;
 	const note = `${goodReponse}/${maxQuestions}`;
+
 	const [classementFinal, setClassementFinal] = useState(null);
 	const [rank, setRank] = useState(null);
 	const [loader, setLoader] = useState(true);
+	const [notBetter, setNotBetter] = useState(false);
+	const [oldScore, setOldScore] = useState(null);
 
 	useEffect(() => {
-		/*Delete Classement*/
-		// const deleteArray = [];
-		// for (let i =0; i<100;i++)
-		// deleteArray[i] = {pseudo:"",score:0,note:""};
-		// console.table('deleteArray :>> ', deleteArray);
-		// db.collection('classement').doc(classementID).update({ classement :deleteArray });
-
-
 		//Chargement du Classement
 		db.collection('classement')
 			.doc(classementID)
@@ -32,30 +27,53 @@ function ScoreFinal(props) {
 			.then((doc) => {
 				setLoader(false);
 				const classement = doc.data().classement.sort((a, b) => b.score - a.score);
-				const lastScore = classement[TOP - 1] === undefined ? 0 : classement[TOP - 1].score;
+				const indexPlayer = classement.findIndex((user) => user.pseudo === pseudo);
+				//console.log('indexPlayer :>> ', indexPlayer);
 
-				if (classement.length < TOP) {
-					classement.push({ pseudo, score, note });
-					updateClassement(classement);
-				} 
-
-        else if (score >= lastScore && score > 0) {
-					classement[TOP - 1] = { pseudo, score, note };
-					updateClassement(classement);
+				//Joueur deja dans le classement
+				if (indexPlayer > -1) {
+          //meilleur score
+					if (score > classement[indexPlayer].score) {
+						classement[indexPlayer].score = score;
+						classement[indexPlayer].note = note;
+						updateClassement(classement);
+					} 
+          //score moins bon
+          else {
+						setNotBetter(true);
+						setOldScore(classement[indexPlayer].score);
+					}
 				}
+
+				//Joueur pas encore dans le classement
+				else {
+					if (classement.length < TOP) {
+						classement.push({ pseudo, score, note });
+						updateClassement(classement);
+					} 
+
+          else {
+						const lastScore = classement[TOP - 1].score;
+
+						if (score > lastScore) {
+							classement[TOP - 1] = { pseudo, score, note };
+							updateClassement(classement);
+						}
+					}
+				}
+
 			})
 			.catch((err) => console.log(err));
 	}, []);
 
-  function updateClassement(classement) {
-    setClassementFinal(classement.sort((a, b) => b.score - a.score));
-    //set pour ecraser la base de donnée existante aulieu d'update()
-    db.collection('classement').doc(classementID).set({ classement });
-    setRank(
-      classement.findIndex((user) => user.pseudo === pseudo && user.score === score) +
-        1,
-    );
-  }
+	function updateClassement(classement) {
+		setClassementFinal(classement.sort((a, b) => b.score - a.score));
+		//set pour ecraser la base de donnée existante aulieu d'update()
+		db.collection('classement').doc(classementID).set({ classement });
+		setRank(
+			classement.findIndex((user) => user.pseudo === pseudo && user.score === score) + 1,
+		);
+	}
 
 	switch (true) {
 		case goodReponse / maxQuestions === 1:
@@ -81,6 +99,18 @@ function ScoreFinal(props) {
 	}
 
 	switch (true) {
+		case notBetter === true:
+			Texte = (
+				<div>
+					<span className='colorBlue'>{pseudo} !</span> Tu n'as pas fait mieux que la
+					dernière fois (<span className='colorBlue'>{oldScore}</span>).
+					<br />
+					Continue de t'entrainer pour battre ton record !
+				</div>
+			);
+			background = 'backRed';
+			break;
+
 		case rank !== null && rank > 3:
 			Texte = (
 				<div>
