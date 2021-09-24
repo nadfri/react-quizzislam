@@ -45,14 +45,15 @@ function Signalement() {
 							<option value=''>Choisir une erreur</option>
 							<option value='Reponse'>Réponse fausse</option>
 							<option value='Orthographe'>Orthographe</option>
-							<option value='Forumation'>Question mal formulée</option>
+							<option value='Formulation'>Question mal formulée</option>
 							<option value='Infomartion'>Information érronée</option>
 							<option value='Autre'>Autre Raison</option>
 						</select>
 
 						<textarea
 							name='complement'
-							placeholder="Décrivez l'erreur..."
+							placeholder=" Décrivez l'erreur...
+							Ajoutez votre adresse email si vous souhaitez une réponse en retour."
 							rows='5'
 							cols='33'
 							onChange={(e) => setComplement(e.target.value)}

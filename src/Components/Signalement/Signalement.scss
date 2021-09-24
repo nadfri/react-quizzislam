@@ -4,10 +4,11 @@
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
+	text-align: center;
+	padding-top: 5px;
 
 	h1 {
-		display: inline-block;
-		background-color: rgba(211, 224, 234, 0.8);
+		margin: auto;
 	}
 
 	fieldset {
