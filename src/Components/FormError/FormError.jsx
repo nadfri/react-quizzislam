@@ -18,7 +18,7 @@ function FormError(props) {
 	};
 
 	const handleSubmit = (e) => {
-		const postUrl = '/?t=' + Math.floor(Date.now() / 1000);//permet d'avoir la reponse sur Netlify Form
+		const postUrl = '/?t=' + Math.floor(Date.now() / 1000); //permet d'avoir la reponse sur Netlify Form
 
 		fetch(postUrl, {
 			method: 'POST',
@@ -39,7 +39,6 @@ function FormError(props) {
 
 					<form onSubmit={handleSubmit}>
 						<input type='hidden' name='form-name' value='Signalement' />
-
 						<input type='hidden' name='numero' value={`Question #${numero}`} />
 						<input type='hidden' name='question' value={question} />
 
@@ -54,7 +53,8 @@ function FormError(props) {
 
 						<textarea
 							name='complement'
-							placeholder="Complément d'information..."
+							placeholder=" Complément d'information...
+							Ajoutez votre email si vous souhaitez une réponse en retour."
 							rows='5'
 							cols='33'
 							onChange={(e) => setComplement(e.target.value)}
