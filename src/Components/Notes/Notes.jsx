@@ -27,13 +27,13 @@ function Notes(props) {
 			background = 'backGreen';
 			break;
 
-		case score / maxQuestions > 0.75 && niveau < 3:
+		case score / maxQuestions >= 0.75 && niveau < "3":
 			couleur = 'green';
 			texte = 'Machallah, Essaie le Niveau suivant!';
 			background = 'backGreen';
 			break;
 
-		case score / maxQuestions > 0.75 && niveau === 3:
+		case score / maxQuestions >= 0.75:
 			couleur = 'green';
 			texte = 'Machallah, Encore un peu et ça sera parfait!';
 			background = 'backGreen';
