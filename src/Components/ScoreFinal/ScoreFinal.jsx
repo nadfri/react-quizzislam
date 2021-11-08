@@ -5,7 +5,7 @@ import ListClassement from '../ListClassement/ListClassement';
 import ScrollTop from '../ScrollTop/ScrollTop';
 import bellURL from '../../Sounds/bell.mp3';
 import Loader from './../Loader/Loader';
-import Share from './../../Share/Share';
+import Share from '../Share/Share';
 
 
 function ScoreFinal(props) {

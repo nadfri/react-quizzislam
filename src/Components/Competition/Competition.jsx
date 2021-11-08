@@ -10,7 +10,7 @@ import ProgressBar from '../ProgressBar/ProgressBar';
 import ScoreFinal from '../ScoreFinal/ScoreFinal';
 
 function Competition() {
-	/***VARIABLES GLOBALES***/
+	/***GLOBAL VARIABLES***/
 	/*DOM*/
 	let btns = document.querySelectorAll('button');
 	let skews = document.querySelectorAll('.skew');
