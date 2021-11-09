@@ -46,7 +46,7 @@ function Pseudo(props) {
 				</p>
 				
 				<p>
-					Essayez d'être classé dans le <strong>TOP 100</strong>.
+					Essayez d'être classé dans le <strong>TOP 200</strong>.
 				</p>
 			</fieldset>
 		</div>

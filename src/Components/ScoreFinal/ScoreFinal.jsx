@@ -9,7 +9,7 @@ import Share from '../Share/Share';
 
 
 function ScoreFinal(props) {
-	const TOP = 100;
+	const TOP = 200;
 	const { goodReponse, maxQuestions, score, pseudo } = props;
 	const classementID = 'XXJ9yQ0slzmwKLLEr1fI';
 	let couleur, Texte, background;
@@ -160,7 +160,7 @@ function ScoreFinal(props) {
 			Texte = (
 				<div>
 					Ne désespère pas <span className='colorBlue'>{pseudo} !</span> continue de
-					t'entrainer pour te classer dans le <b>TOP 100</b>!
+					t'entrainer pour te classer dans le <b>TOP {TOP}</b>!
 				</div>
 			);
 			background = 'backRed';
@@ -188,7 +188,7 @@ function ScoreFinal(props) {
 
 						{rank && <a href='#userID'>Voir Ton Classement</a>}
 
-						<Share/>
+						<Share TOP={TOP}/>
 
 						{classementFinal && (
 							<ListClassement

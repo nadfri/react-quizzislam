@@ -9,6 +9,7 @@ function Classement() {
 	const classementID = 'XXJ9yQ0slzmwKLLEr1fI';
 	const [classement, setClassement] = useState(null);
 	const [loader, setLoader] = useState(false);
+	const TOP = 200;
 
 	useEffect(() => {
 		setLoader(true);
@@ -18,13 +19,7 @@ function Classement() {
 			.get()
 			.then((doc) => {
 				//console.log(doc.data().classement);
-				setClassement(
-					doc
-						.data()
-						.classement
-						//.filter((user) => user.pseudo !== '')
-						//.sort((a, b) => b.score - a.score)
-				);
+				setClassement(doc.data().classement);
 				setLoader(false);
 			})
 			.catch((err) => console.log(err));
@@ -37,8 +32,7 @@ function Classement() {
 				<Loader />
 			) : (
 				<div className='Classement'>
-					<h1>TOP 100</h1>
-
+					<h1>TOP {TOP}</h1>
 					{classement && <ListClassement classementFinal={classement} />}
 				</div>
 			)}

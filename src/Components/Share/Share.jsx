@@ -15,9 +15,9 @@ import {
 	WhatsappIcon,
 } from 'react-share';
 
-function Share() {
+function Share({TOP}) {
 	const quote =
-		"Pourras-tu faire mieux que moi à ce Quizz sur l'Islam et te classer dans le TOP 100 ?";
+		`Pourras-tu faire mieux que moi à ce Quizz sur l'Islam et te classer dans le TOP ${TOP} ?`;
 	const url = 'https://quizzislam.netlify.app/';
 
 	return (
