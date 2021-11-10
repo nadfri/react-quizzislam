@@ -16,7 +16,6 @@ import Notes from '../Notes/Notes';
 import Speaker from '../Speaker/Speaker';
 import FormError from '../FormError/FormError';
 
-
 function Quizz(props) {
 	/***VARIABLES GLOBALES***/
 	/*DOM*/
@@ -232,16 +231,21 @@ function Quizz(props) {
 							{state[countQuestion].info !== '' && (
 								<div className='info'>{state[countQuestion].info}</div>
 							)}
-							
+
 							<button onClick={suivant} className='blue'>
 								Suivant
 							</button>
-							
 						</>
 					)}
-			<div className='erreur' onClick={() => setDisplayFormError(true)}>
-				Signaler une erreur?
-			</div>
+					{/* <div className='erreur' onClick={() => setDisplayFormError(true)}>
+						Signaler une erreur?
+					</div> */}
+					<div className='erreur'>
+						<a
+							href={`mailto: nadfri@gmail.com?subject=QuizzIslam/Erreur/${state[countQuestion].question}`}>
+							Signaler une erreur?
+						</a>
+					</div>
 				</>
 			)}
 			{displayFormError && (
