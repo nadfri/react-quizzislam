@@ -7,7 +7,6 @@ import bellURL from '../../Sounds/bell.mp3';
 import Loader from './../Loader/Loader';
 import Share from '../Share/Share';
 
-
 function ScoreFinal(props) {
 	const TOP = 200;
 	const { goodReponse, maxQuestions, score, pseudo } = props;
@@ -20,6 +19,9 @@ function ScoreFinal(props) {
 	const [loader, setLoader] = useState(true);
 	const [notBetter, setNotBetter] = useState(false);
 	const [oldScore, setOldScore] = useState(null);
+	const [offline, setOffline] = useState(false);
+
+	const offlineText = <div className="colorRed">Tu es hors ligne, le classement ne sera pas mis à jour.</div>;
 
 	useEffect(() => {
 		//Chargement du Classement
@@ -68,7 +70,13 @@ function ScoreFinal(props) {
 	function updateClassement(classement) {
 		setClassementFinal(classement.sort((a, b) => b.score - a.score));
 		//set pour ecraser la base de donnée existante aulieu d'update()
-		db.collection('classement').doc(classementID).set({ classement });
+		if (navigator.onLine) {
+			db.collection('classement').doc(classementID).set({ classement });
+			console.log('online');
+		} else {
+			setOffline(true);
+			console.log('offline');
+		}
 		setRank(
 			classement.findIndex((user) => user.pseudo === pseudo && user.score === score) + 1,
 		);
@@ -114,6 +122,7 @@ function ScoreFinal(props) {
 			Texte = (
 				<div>
 					Machallah <span className='colorBlue'>{pseudo}</span>!<div>Tu es {rank}ème</div>
+					{offline && offlineText}
 				</div>
 			);
 			background = 'backGreen';
@@ -125,6 +134,7 @@ function ScoreFinal(props) {
 					<div>
 						Tu es 1er
 						<i className='fas fa-trophy'></i>
+						{offline && offlineText}
 					</div>
 				</div>
 			);
@@ -138,6 +148,7 @@ function ScoreFinal(props) {
 						Tu es 2ème
 						<i className='fas fa-trophy'></i>
 					</div>
+					{offline && offlineText}
 				</div>
 			);
 			background = 'backGreen';
@@ -151,6 +162,7 @@ function ScoreFinal(props) {
 						Tu es 3ème
 						<i className='fas fa-trophy'></i>
 					</div>
+					{offline && offlineText}
 				</div>
 			);
 			background = 'backGreen';
@@ -188,7 +200,7 @@ function ScoreFinal(props) {
 
 						{rank && <a href='#userID'>Voir Ton Classement</a>}
 
-						<Share TOP={TOP}/>
+						<Share TOP={TOP} />
 
 						{classementFinal && (
 							<ListClassement
