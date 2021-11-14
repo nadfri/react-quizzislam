@@ -12,6 +12,10 @@
 	display: flex;
 }
 
+.Toastify__close-button{
+	box-shadow: none;
+}
+
 @media screen and (min-width: 800px) {
 	.App {
 		border-left: 2px solid #f3d07b;

@@ -19,22 +19,25 @@
 		animation: slideIn 0.5s forwards;
 	}
 
-	select {
+	select,input {
 		border: none;
 		width: 100%;
 		border-radius: 5px;
 		padding: 3px;
+		margin: 10px 0;
 	}
 
 	textarea {
 		border: 1px teal;
 		border-radius: 5px;
-		margin: 20px 0;
 		width: 100%;
+		margin: 10px 0;
 	}
 
 	button {
 		background-color: #2b9cff;
 		width: 60%;
 	}
+
+
 }

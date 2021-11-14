@@ -7,6 +7,7 @@ function Signalement() {
 	const [displayForm, setDisplayForm] = useState(true);
 	const [erreur, setErreur] = useState('');
 	const [complement, setComplement] = useState('');
+	const [email, setEmail] = useState('');
 
 	const encode = (data) => {
 		return Object.keys(data)
@@ -20,7 +21,13 @@ function Signalement() {
 		fetch(postUrl, {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-			body: encode({ 'form-name': 'Signalement', erreur, complement, question:"Signalement Globale" }),
+			body: encode({
+				'form-name': 'Signalement',
+				email,
+				erreur,
+				complement,
+				question: 'Signalement Globale',
+			}),
 		});
 
 		e.preventDefault();
@@ -50,10 +57,17 @@ function Signalement() {
 							<option value='Autre'>Autre Raison</option>
 						</select>
 
+						<input
+							type='email'
+							name='email'
+							placeholder='Email'
+							required
+							onChange={(e) => setEmail(e.target.value)}
+						/>
+
 						<textarea
 							name='complement'
-							placeholder=" Décrivez l'erreur...
-							Ajoutez votre adresse email si vous souhaitez une réponse en retour."
+							placeholder=" Décrivez l'erreur..."
 							rows='5'
 							cols='33'
 							onChange={(e) => setComplement(e.target.value)}

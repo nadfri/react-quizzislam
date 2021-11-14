@@ -7,6 +7,7 @@ function FormError(props) {
 	const [displayForm, setDisplayForm] = useState(true);
 	const [erreur, setErreur] = useState('');
 	const [complement, setComplement] = useState('');
+	const [email, setEmail] = useState('');
 
 	const numero = props.question.id;
 	const question = props.question.question;
@@ -23,7 +24,7 @@ function FormError(props) {
 		fetch(postUrl, {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-			body: encode({ 'form-name': 'Signalement', numero, question, erreur, complement }),
+			body: encode({ 'form-name': 'Signalement', numero, question, erreur, complement,email }),
 		});
 
 		e.preventDefault();
@@ -50,6 +51,14 @@ function FormError(props) {
 							<option value='Infomartion'>Information érronée</option>
 							<option value='Autre'>Autre Raison</option>
 						</select>
+
+						<input
+							type='email'
+							name='email'
+							placeholder='Email'
+							required
+							onChange={(e) => setEmail(e.target.value)}
+						/>
 
 						<textarea
 							name='complement'

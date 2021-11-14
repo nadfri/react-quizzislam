@@ -1,3 +1,5 @@
+import { toast } from 'react-toastify';
+
 const isLocalhost = Boolean(
 	window.location.hostname === 'localhost' ||
 		// [::1] is the IPv6 localhost address.
@@ -67,6 +69,18 @@ function registerValidSW(swUrl, config) {
 							// but the previous service worker will still serve the older
 							// content until all client tabs are closed.
 							console.log("Mise à jour disponible, redemarrer l'app ou le navigateur");
+							toast.success(`Mise à jour disponible, Redémarrez l'app!`, {
+								icon: '🚀',
+								position: 'top-center',
+								autoClose: false,
+								hideProgressBar: false,
+								closeOnClick: false,
+								pauseOnHover: false,
+								draggable: true,
+								theme: 'colored',
+								toastId: 'no_duplicate',
+								//onClose: () => window.location.reload(),
+							});
 
 							// Execute callback
 							if (config && config.onUpdate) {
