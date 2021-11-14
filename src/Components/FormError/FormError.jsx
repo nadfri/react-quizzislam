@@ -9,7 +9,6 @@ function FormError(props) {
 	const [complement, setComplement] = useState('');
 	const [email, setEmail] = useState('');
 
-	const numero = props.question.id;
 	const question = props.question.question;
 
 	const encode = (data) => {
@@ -24,7 +23,7 @@ function FormError(props) {
 		fetch(postUrl, {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-			body: encode({ 'form-name': 'Signalement', numero, question, erreur, complement,email }),
+			body: encode({ 'form-name': 'Signalement', question, erreur, complement, email }),
 		});
 
 		e.preventDefault();
@@ -40,7 +39,6 @@ function FormError(props) {
 
 					<form onSubmit={handleSubmit}>
 						<input type='hidden' name='form-name' value='Signalement' />
-						<input type='hidden' name='numero' value={`Question #${numero}`} />
 						<input type='hidden' name='question' value={question} />
 
 						<select required name='erreur' onChange={(e) => setErreur(e.target.value)}>

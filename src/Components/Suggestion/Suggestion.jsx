@@ -6,6 +6,7 @@ function Suggestion() {
 	const [displaySuccess, setDisplaySuccess] = useState(false);
 	const [displayForm, setDisplayForm] = useState(true);
 	const [complement, setComplement] = useState('');
+	const [email, setEmail] = useState('');
 
 	const encode = (data) => {
 		return Object.keys(data)
@@ -19,7 +20,12 @@ function Suggestion() {
 		fetch(postUrl, {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-			body: encode({ 'form-name': 'Signalement', complement, question:"Suggestion" }),
+			body: encode({
+				'form-name': 'Signalement',
+				complement,
+				question: 'Suggestion',
+				email,
+			}),
 		});
 
 		e.preventDefault();
@@ -40,9 +46,16 @@ function Suggestion() {
 					<form onSubmit={handleSubmit}>
 						<input type='hidden' name='form-name' value='Signalement' />
 
+						<input
+							type='email'
+							name='email'
+							placeholder='Email'
+							required
+							onChange={(e) => setEmail(e.target.value)}
+						/>
 						<textarea
 							name='complement'
-							placeholder="Une suggestion?..."
+							placeholder='Une suggestion?...'
 							rows='5'
 							cols='33'
 							onChange={(e) => setComplement(e.target.value)}
