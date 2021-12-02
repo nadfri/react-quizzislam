@@ -60,11 +60,11 @@ function FormError(props) {
 
 						<textarea
 							name='complement'
-							placeholder=" Complément d'information...
-							Ajoutez votre email si vous souhaitez une réponse en retour."
+							placeholder=" Complément d'information..."
 							rows='5'
 							cols='33'
 							onChange={(e) => setComplement(e.target.value)}
+							required
 						/>
 
 						<button type='submit' className='blue'>

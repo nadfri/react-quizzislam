@@ -237,15 +237,15 @@ function Quizz(props) {
 							</button>
 						</>
 					)}
-					{/* <div className='erreur' onClick={() => setDisplayFormError(true)}>
+					<div className='erreur' onClick={() => setDisplayFormError(true)}>
 						Signaler une erreur?
-					</div> */}
-					<div className='erreur'>
+					</div>
+					{/* <div className='erreur'>
 						<a
 							href={`mailto: nadfri@gmail.com?subject=QuizzIslam/Erreur/${state[countQuestion].question}`}>
 							Signaler une erreur?
 						</a>
-					</div>
+					</div> */}
 				</>
 			)}
 			{displayFormError && (
