@@ -1,50 +1,58 @@
 <!DOCTYPE html>
 <html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="Quizz Sur L'Islam" />
+    <meta name="author" content="NadfriJS" />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/images/icons/icon192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
 
-<head>
-	<meta charset="utf-8" />
-	<link rel="icon" href="%PUBLIC_URL%/favicon.png" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<meta name="theme-color" content="#000000" />
-	<meta name="description" content="Quizz Sur L'Islam" />
-	<meta name="author" content="NadfriJS" />
-	<link rel="apple-touch-icon" href="%PUBLIC_URL%/images/icons/icon192.png" />
-	<link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <meta property="og:title" content="Quizz Islam" />
+    <meta property="og:site_name" content="QuizzIslam" />
+    <meta property="og:url" content="https://quizzislam.netlify.app/" />
+    <meta
+      property="og:description"
+      content="Le meilleur Quizz pour apprendre l'Islam en s'amusant"
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:image"
+      content="https://quizzislam.netlify.app/card.webp"
+    />
 
-	<meta property="og:title" content="Quizz Islam" />
-	<meta property="og:site_name" content="QuizzIslam" />
-	<meta property="og:url" content="https://quizzislam.netlify.app/" />
-	<meta property="og:description" content="Le meilleur Quizz pour apprendre l'Islam en s'amusant" />
-	<meta property="og:type" content="website" />
-	<meta property="og:image" content="https://quizzislam.netlify.app/card.webp" />
-	
-	<!-- Google Fonts -->
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link
-	href="https://fonts.googleapis.com/css2?family=Lobster&family=Roboto+Slab&family=Rock+Salt&family=Spirax&display=swap"
-	rel="stylesheet">
-	
-	<script src="https://kit.fontawesome.com/8591e18e6d.js" crossorigin="anonymous"></script>
-	<title>Quizz Islam</title>
-</head>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lobster&family=Roboto+Slab&family=Rock+Salt&family=Spirax&display=swap"
+      rel="stylesheet"
+    />
 
-<body>
-	<!-- A little help for the Netlify post-processing bots -->
-	<form name="Signalement" netlify hidden netlify-honeypot="bot-fiel">
-		<input name="question" />
-		<input name="email" />
-		<select name="erreur"></select>
-		<textarea name="complement"></textarea>
-	</form>
+    <script
+      src="https://kit.fontawesome.com/8591e18e6d.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Quizz Islam</title>
+  </head>
 
-	<noscript>You need to enable JavaScript to run this app.</noscript>
+  <body>
+    <!-- A little help for the Netlify post-processing bots -->
+    <form name="Signalement" netlify hidden netlify-honeypot="bot-fiel">
+      <input name="question" />
+      <input name="email" />
+      <select name="erreur"></select>
+      <textarea name="complement"></textarea>
+    </form>
 
-	<!-- <script>
-		if (typeof window.__REACT_DEVTOOLS_GLOBAL_HOOK__ === 'object')
-			__REACT_DEVTOOLS_GLOBAL_HOOK__.inject = function () { };
-	</script> -->
-	<div id="root"></div>
-</body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
 
+    <script>
+      if (typeof window.__REACT_DEVTOOLS_GLOBAL_HOOK__ === "object")
+        __REACT_DEVTOOLS_GLOBAL_HOOK__.inject = function () {};
+    </script>
+    <div id="root"></div>
+  </body>
 </html>
