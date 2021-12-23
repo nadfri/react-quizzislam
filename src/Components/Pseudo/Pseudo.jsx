@@ -20,6 +20,7 @@ function Pseudo(props) {
 					placeholder='Choisis ton Pseudo...'
 					value={pseudo}
 					onChange={(e) => setPseudo(e.target.value)}
+					minLength={3}
 					required
 				/>
 				<button>
