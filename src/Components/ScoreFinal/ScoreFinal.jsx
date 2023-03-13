@@ -8,7 +8,7 @@ import Loader from './../Loader/Loader';
 import Share from '../Share/Share';
 
 function ScoreFinal(props) {
-	const TOP = 200;
+	const TOP = 300;
 	const { goodReponse, maxQuestions, score, pseudo } = props;
 	const classementID = 'XXJ9yQ0slzmwKLLEr1fI';
 	let couleur, Texte, background;

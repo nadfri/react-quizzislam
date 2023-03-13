@@ -9,7 +9,7 @@ function Classement() {
 	const classementID = 'XXJ9yQ0slzmwKLLEr1fI';
 	const [classement, setClassement] = useState(null);
 	const [loader, setLoader] = useState(false);
-	const TOP = 200;
+	const TOP = 300;
 
 	useEffect(() => {
 		setLoader(true);
