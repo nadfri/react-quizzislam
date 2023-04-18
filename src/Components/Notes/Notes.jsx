@@ -70,10 +70,10 @@ function Notes(props) {
 			<div className={`texte ${background}`}>{texte}</div>
 			<div className='links'>
 				{niveau < 3 ? (
-					<a href={`/entrainement/quizz/${theme}/${parseInt(niveau) + 1}`} >
+					<Link to={`/entrainement/quizz/${theme}/${parseInt(niveau) + 1}`} >
 						<span>Niveau Suivant</span>
 						<i className='fas fa-gamepad'></i>
-					</a>
+					</Link>
 				) : (
 					<Link to='/entrainement'>
 						<span>Menu</span>

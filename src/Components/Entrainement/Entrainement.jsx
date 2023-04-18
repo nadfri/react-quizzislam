@@ -2,7 +2,7 @@ import React from 'react';
 import './Entrainement.scss';
 import { Link } from 'react-router-dom';
 
-function Entrainement(props) {
+function Entrainement() {
 	return (
 		<div className='Entrainement'>
 			<Link to='/entrainement/quizz/coran'>Coran</Link>
