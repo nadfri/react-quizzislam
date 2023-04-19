@@ -47,11 +47,11 @@ function Pseudo(props) {
 
         <p>
           Certaines questions non présentes dans le mode <i>Entrainement</i>,
-          rapporte le <span className="gold">double</span> de points.
+          rapporte le <span className="green">double</span> de points.
         </p>
 
         <p>
-          Essayez d'être classé dans le <strong>TOP 200</strong>.
+          Essayez d'être classé dans le <strong>TOP 300</strong>.
         </p>
       </fieldset>
     </div>

@@ -1,209 +1,210 @@
 .Quizz {
-	height: 86%;
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: cover;
-	overflow-x: hidden;
-	position: relative;
+  height: 86%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  overflow-x: hidden;
+  position: relative;
 
-	.etat {
-		display: flex;
-		justify-content: space-between;
+  .etat {
+    display: flex;
+    justify-content: space-between;
 
-		.skew {
-			border-radius: 5px;
-			color: white;
-			font-weight: bold;
-			text-transform: uppercase;
-			//margin: 5px 0;
-			transform: skewX(-17deg) translate3d(-100vw,0,0);
-			padding: 5px 20px 5px 60px;
-			box-shadow: 0px 0px 5px 1px #191919;
-			transition: all 0.5s;
+    .skew {
+      border-radius: 5px;
+      color: white;
+      font-weight: bold;
+      text-transform: uppercase;
+      //margin: 5px 0;
+      transform: skewX(-17deg) translate3d(-100vw, 0, 0);
+      padding: 5px 20px 5px 60px;
+      box-shadow: 0px 0px 5px 1px #191919;
+      transition: all 0.5s;
 
-			&.slideSkew {
-				transform: skewX(-17deg) translate3d(-40px,0,0);
-			}
+      &.slideSkew {
+        transform: skewX(-17deg) translate3d(-40px, 0, 0);
+      }
 
-			&.red {
-				background-color: red;
-			}
+      &.red {
+        background-color: red;
+      }
 
-			&.green {
-				background-color: green;
-			}
-		}
+      &.green {
+        background-color: green;
+      }
+    }
 
-		.score {
-			width: 50px;
-			height: 50px;
-			border-radius: 50%;
-			background-color: rgba(75, 119, 141, 0.7);
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			box-shadow: 0px 0px 5px 1px #191919;
-			animation: slideIn 0.5s forwards;
-			color: gold;
-			margin: 5px;
-		}
+    .score {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: rgba(75, 119, 141, 0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0px 0px 5px 1px #191919;
+      animation: slideIn 0.5s forwards;
+      color: gold;
+      margin: 5px;
+    }
 
-		.skews {
-			animation: slideToLeft 0.5s forwards;
+    .skews {
+      animation: slideToLeft 0.5s forwards;
 
-			div {
-				border-radius: 5px;
-				background-color: goldenrod;
-				color: white;
-				font-weight: bold;
-				text-transform: uppercase;
-				margin: 5px 0;
-				transform: skewX(-17deg) translate3d(40px,0,0);
-				padding: 5px 50px 5px 10px;
-				box-shadow: 0px 0px 5px 1px #191919;
-			}
-		}
-	}
+      div {
+        border-radius: 5px;
+        background-color: goldenrod;
+        color: white;
+        font-weight: bold;
+        text-transform: uppercase;
+        margin: 5px 0;
+        transform: skewX(-17deg) translate3d(40px, 0, 0);
+        padding: 5px 50px 5px 10px;
+        box-shadow: 0px 0px 5px 1px #191919;
+      }
+    }
+  }
 
-	.theme {
-		text-transform: capitalize;
-	}
+  .theme {
+    text-transform: capitalize;
+  }
 
-	.info {
-		background-color: rgba(14, 244, 118, 0.9);
-		border-radius: 5px;
-		margin: 5px;
-		padding: 5px;
-		font-style: oblique;
-		animation: slideToLeft 0.3s forwards;
-	}
+  .info {
+    background-color: rgba(14, 244, 118, 0.8);
+    border-radius: 5px;
+    margin: 5px;
+    padding: 5px;
+    font-style: oblique;
+    animation: slideToLeft 0.3s forwards;
+  }
 
-	button {
-		margin-top: 5px;
-		//width: 94%;
-		&:active,
-		&:hover {
-			background-color: red;
-		}
-	}
+  button {
+    margin-top: 5px;
+    //width: 94%;
+    &:active,
+    &:hover {
+      background-color: red;
+    }
+  }
 
-	.tomato {
-		background-color: tomato;
-		animation: zoom 0.3s forwards;
-	}
+  .tomato {
+    background-color: tomato;
+    animation: zoom 0.3s forwards;
+  }
 
-	.blue {
-		background-color: #2b9cff;
-		animation: zoom 0.3s forwards;
-	}
+  .blue {
+    background-color: #2b9cff;
+    animation: zoom 0.3s forwards;
+  }
 
-	fieldset {
-		border: none;
-		background-color: rgba(211, 224, 234, 0.8);
-		border-radius: 5px;
-		font-size: 1.1rem;
-		margin: 0px 5px 5px;
-		padding: 5px;
-		// text-shadow: 1px 2px 3px #36694c;
+  fieldset {
+    border: none;
+    background-color: rgba(211, 224, 234, 0.8);
+    border-radius: 5px;
+    font-size: 1.1rem;
+    margin: 0px 5px 5px;
+    padding: 5px;
+    // text-shadow: 1px 2px 3px #36694c;
 
-		legend {
-			font-size: 1rem;
-			background-color: rgba(211, 224, 234, 0.9);
-			border-radius: 5px;
-			padding: 2px 5px;
-			text-shadow: 0px 1px 2px #000000;
-			font-weight: bold;
-			color: #2b9cff;
-		}
+    legend {
+      font-size: 1rem;
+      background-color: rgba(211, 224, 234, 0.9);
+      border-radius: 5px;
+      padding: 2px 5px;
+      text-shadow: 0px 1px 2px #000000;
+      font-weight: bold;
+      color: #2b9cff;
+    }
 
-		p {
-			margin: 0;
-		}
-	}
+    p {
+      margin: 0;
+    }
+  }
 
-	.container-choix {
-		display: flex;
-		justify-content: center;
-		flex-wrap: wrap;
+  .container-choix {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
 
-		button {
-			margin: 5px;
-			width: 46%;
-			font-size: 1.1rem;
-			text-shadow: none;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			border: solid transparent 4px;
-			color: black;
-			padding: 2px;
+    button {
+      margin: 5px;
+      width: 46%;
+      font-size: 1.1rem;
+      text-shadow: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: solid transparent 4px;
+      color: black;
+      padding: 2px;
 
-			&.disabled {
-				pointer-events: none;
-			}
+      &.disabled {
+        pointer-events: none;
+      }
 
-			&:nth-child(1) {
-				background-color: deepskyblue;
-			}
+      &:nth-child(1) {
+        background-color: deepskyblue;
+      }
 
-			&:nth-child(3) {
-				background-color: burlywood;
-			}
-			&:nth-child(2) {
-				background-color: gold;
-			}
-			&:nth-child(4) {
-				background-color: orchid;
-			}
+      &:nth-child(3) {
+        background-color: burlywood;
+      }
+      &:nth-child(2) {
+        background-color: gold;
+      }
+      &:nth-child(4) {
+        background-color: orchid;
+      }
 
-			&.choice:hover, &.choice:focus {
-				border: solid white 3px;
-				color: white;
-				text-shadow: 0px 0px 7px black;
-			}
+      &.choice:hover,
+      &.choice:focus {
+        border: solid white 3px;
+        color: white;
+        text-shadow: 0px 0px 7px black;
+      }
 
-			&.right {
-				border: solid yellowgreen;
-				background-color: green;
-				color: white;
-			}
+      &.right {
+        border: solid yellowgreen;
+        background-color: green;
+        color: white;
+      }
 
-			&.wrong {
-				position: relative;
-				border: solid maroon;
-				background-color: red;
-				color: white;
-				//text-decoration: line-through black 2px;
-				&:before {
-					content: '';
-					height: 3px;
-					width: 70%;
-					background-color: maroon;
-					position: absolute;
-					top: 20px;
-					border-radius: 30px;
-					transform: rotate(-16deg);
-				}
-			}
-		}
-	}
+      &.wrong {
+        position: relative;
+        border: solid maroon;
+        background-color: red;
+        color: white;
+        //text-decoration: line-through black 2px;
+        &:before {
+          content: '';
+          height: 3px;
+          width: 70%;
+          background-color: maroon;
+          position: absolute;
+          top: 20px;
+          border-radius: 30px;
+          transform: rotate(-16deg);
+        }
+      }
+    }
+  }
 
-	.erreur {
-		position: absolute;
-		left: 2px;
-		bottom: 1%;
-		text-decoration: underline;
-		text-shadow: 0px 0px 5px white;
-		font-size: 14px;
-		cursor: pointer;
+  .erreur {
+    position: absolute;
+    left: 2px;
+    bottom: 1%;
+    text-decoration: underline;
+    text-shadow: 0px 0px 5px white;
+    font-size: 14px;
+    cursor: pointer;
 
-		/*Lien vers Email Provisoire*/
-		a{
-			box-shadow: inherit;
-			color: inherit;
-			font-size: inherit;
-			font-family: inherit;
-			text-shadow: inherit
-		}
-	}
+    /*Lien vers Email Provisoire*/
+    a {
+      box-shadow: inherit;
+      color: inherit;
+      font-size: inherit;
+      font-family: inherit;
+      text-shadow: inherit;
+    }
+  }
 }
