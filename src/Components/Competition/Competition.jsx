@@ -148,12 +148,12 @@ function Competition() {
 		for (let audio of audios) audio.muted = mute;
 	};
 
-	const validPseudo = () => {
+	const startGame = (pseudo) => {
 		setMinuteur('start');
 		setStartTime(Date.now());
 		setDisplayPseudo(false);
 		setDisplayQuizz(true);
-		setPseudo(localStorage.getItem('pseudo'));
+		setPseudo(pseudo);
 	};
 
 	const Double = () => <span className='double'>X2</span>;
@@ -162,7 +162,7 @@ function Competition() {
 	return (
 		<div className='Competition'>
 			{displayPseudo && (
-				<Pseudo validPseudo={validPseudo} bonus={bonus} malus={malus} min={min} />
+				<Pseudo startGame={startGame} bonus={bonus} malus={malus} min={min} />
 			)}
 
 			{displayQuizz && minuteur === 'start' && (
