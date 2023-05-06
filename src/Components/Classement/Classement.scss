@@ -1,7 +1,12 @@
 .Classement {
-	animation: zoom 0.7s forwards;
+  animation: zoom 0.7s;
 
-	h1 {
-		display: inline-block;
-	}
+  h1 {
+    display: inline-block;
+  }
+
+  //Only for Safari
+  @supports (-webkit-hyphens: none) {
+    padding-bottom: 8vh;
+  }
 }
