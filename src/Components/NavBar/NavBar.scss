@@ -1,35 +1,32 @@
 .NavBar {
-	position: fixed;
-	bottom: 0;
-	width: 100%;
-	max-width: 796px;
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
-	height: 8%;
-	min-height: 8vh;
-	transition: all 0.5s;
+  position: fixed;
+  bottom: 0;
+	
+  width: 100%;
+  max-width: 796px;
+  height: 65px;
 
-	a{
-		box-shadow: none;
-	}
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  transition: all 0.5s;
 
-	.fas {
-		font-size: 2rem;
-		color: white;
-		text-shadow: 2px 2px 4px #000000;
-	}
+  a {
+    box-shadow: none;
+  }
 
-	.active {
-		.fas {
-			color: salmon;
-		}
-	}
+  .icon {
+    font-size: 2rem;
+    color: white;
+    filter: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.8));
+		transition: all 0.3s ease-in-out;
+  }
 
-	&.hidden {
-		transform: translateY(100%);
-	}
+  .active .icon {
+    color: salmon;
+  }
+
+  &.hidden {
+    transform: translateY(100%);
+  }
 }
-
-
-
