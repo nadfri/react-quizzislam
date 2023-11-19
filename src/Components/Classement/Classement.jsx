@@ -3,13 +3,13 @@ import { db } from '../../firebase';
 import ListClassement from '../ListClassement/ListClassement';
 import Loader from '../Loader/Loader';
 import ScrollTop from '../ScrollTop/ScrollTop';
+import { TOP } from '../../utils/top';
 import './Classement.scss';
 
 function Classement() {
   const classementID = 'XXJ9yQ0slzmwKLLEr1fI';
   const [classement, setClassement] = useState(null);
   const [loader, setLoader] = useState(false);
-const TOP = 300;
 
   useEffect(() => {
     setLoader(true);

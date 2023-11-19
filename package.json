@@ -1,6 +1,6 @@
 {
   "name": "react-quizz-islam",
-  "version": "1.0.19",
+  "version": "1.0.21",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",

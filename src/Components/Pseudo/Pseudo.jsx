@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FaSignInAlt } from 'react-icons/fa';
+import { TOP } from '../../utils/top';
 import './Pseudo.scss';
 
 export default function Pseudo(props) {
@@ -49,7 +50,7 @@ export default function Pseudo(props) {
         </p>
 
         <p>
-          Essayez d'être classé dans le <strong>TOP 300</strong>.
+          Essayez d'être classé dans le <strong>TOP {TOP}</strong>.
         </p>
       </fieldset>
     </div>

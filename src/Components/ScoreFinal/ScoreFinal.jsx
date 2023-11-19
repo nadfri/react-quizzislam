@@ -7,9 +7,9 @@ import Loader from './../Loader/Loader';
 import Share from '../Share/Share';
 import { FaTrophy } from 'react-icons/fa';
 import './ScoreFinal.scss';
+import { TOP } from '../../utils/top';
 
 function ScoreFinal(props) {
-	const TOP = 300;
 	const { goodReponse, maxQuestions, score, pseudo } = props;
 	const classementID = 'XXJ9yQ0slzmwKLLEr1fI';
 	let couleur, Texte, background;
