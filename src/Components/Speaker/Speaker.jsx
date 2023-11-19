@@ -1,16 +1,13 @@
 import React from 'react';
-import "./Speaker.scss"
+import { FaVolumeMute, FaVolumeUp } from 'react-icons/fa';
+import './Speaker.scss';
 
 function Speaker(props) {
-
-    const iconeSpeaker = props.mute? "fas fa-volume-mute" : "fas fa-volume-up";
-
-
-	return (
-		<div className='Speaker' onClick={props.toggleMute}>
-			<i className={iconeSpeaker}></i>
-		</div>
-	);
+  return (
+    <div className='Speaker' onClick={props.toggleMute}>
+      {props.mute ? <FaVolumeMute /> : <FaVolumeUp />}
+    </div>
+  );
 }
 
 export default Speaker;

@@ -1,119 +1,120 @@
 .Notes {
-	height: 100%;
-	overflow: hidden;
+  height: 100%;
+  overflow: hidden;
 
-	.header {
-		display: flex;
-		justify-content: space-between;
+  .header {
+    display: flex;
+    justify-content: space-between;
 
-		.score {
-			width: 150px;
-			height: 150px;
-			border-radius: 50%;
-			background-color: rgba(75, 119, 141, 0.7);
-			font-size: 2rem;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			margin: 5px 10px 30px;
-			box-shadow: 0px 0px 5px 1px #191919;
-			animation: slideIn 0.5s forwards;
-			color: white;
-		}
+    .score {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background-color: rgba(75, 119, 141, 0.7);
+      font-size: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 5px 10px 30px;
+      box-shadow: 0px 0px 5px 1px #191919;
+      animation: slideIn 0.5s forwards;
+      color: white;
+    }
 
-		.skews {
-			animation: slideToLeft 0.7s forwards;
+    .skews {
+      animation: slideToLeft 0.7s forwards;
 
-			div {
-				border-radius: 5px;
-				background-color: goldenrod;
-				color: white;
-				font-weight: bold;
-				text-transform: uppercase;
-				margin: 10px 0;
-				transform: skewX(-17deg) translate3d(40px,0,0);
-				padding: 5px 50px 5px 10px;
-				box-shadow: 0px 0px 5px 1px #191919;
-			}
-		}
-	}
+      div {
+        border-radius: 5px;
+        background-color: goldenrod;
+        color: white;
+        font-weight: bold;
+        text-transform: uppercase;
+        margin: 10px 0;
+        transform: skewX(-17deg) translate3d(40px, 0, 0);
+        padding: 5px 50px 5px 10px;
+        box-shadow: 0px 0px 5px 1px #191919;
+      }
+    }
+  }
 
-	.texte {
-		width: 90%;
-		margin: 10px;
-		padding: 10px;
-		border-radius: 10px;
-		box-shadow: 0px 0px 5px 1px #191919;
-		font-size: 1.3rem;
-		font-style: oblique;
-		animation: slideIn 0.5s forwards;
-		margin: auto;
-		text-shadow: 0 0 4px #414141;
-	}
+  .texte {
+    width: 90%;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px 1px #191919;
+    font-size: 1.3rem;
+    font-style: oblique;
+    animation: slideIn 0.5s forwards;
+    margin: auto;
+    text-shadow: 0 0 4px #414141;
+  }
 
-	.note {
-		font-size: 3.5rem;
-		font-weight: bold;
-		position: relative;
-		bottom: 0.5rem;
-	}
+  .note {
+    font-size: 3.5rem;
+    font-weight: bold;
+    position: relative;
+    bottom: 0.5rem;
+  }
 
-	.red {
-		color: red;
-	}
+  .red {
+    color: red;
+  }
 
-	.orange {
-		color: orange;
-	}
+  .orange {
+    color: orange;
+  }
 
-	.green {
-		color: lime;
-	}
+  .green {
+    color: lime;
+  }
 
-	.backRed {
-		background-color: rgba(245, 191, 191, 0.6);
-	}
-	.backOrange {
-		background-color: rgba(255, 165, 0, 0.7);
-	}
-	.backGreen {
-		background-color: rgba(137, 245, 186, 0.7);
-	}
+  .backRed {
+    background-color: rgba(245, 191, 191, 0.6);
+  }
+  .backOrange {
+    background-color: rgba(255, 165, 0, 0.7);
+  }
+  .backGreen {
+    background-color: rgba(137, 245, 186, 0.7);
+  }
 
-	.links {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		animation: slideToLeft 0.7s forwards;
-		margin-top: 10px;
+  .links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: slideToLeft 0.7s forwards;
+    margin-top: 10px;
 
-		a {
-			width: 75%;
-			max-width: 300px;
-			margin: 10px;
-			background-color: #4b778d;
-			padding: 5px;
-			transition: all 0.5s;
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
+    a {
+      width: 75%;
+      max-width: 300px;
+      margin: 10px;
+      background-color: #4b778d;
+      padding: 5px;
+      transition: all 0.5s;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
 
-			& > * {
-				margin: 0 10px;
-			}
-			&:active,
-			&:hover {
-				background-color: #0b5b84;
-			}
-		}
-	}
-	.fas {
-		font-size: 2rem;
-		color: white;
-		text-shadow: 2px 2px 4px #000;
-	}
+      & > * {
+        margin: 0 10px;
+      }
+      &:active,
+      &:hover {
+        background-color: #0b5b84;
+      }
+    }
+  }
+	
+  .icon {
+    font-size: 2rem;
+    color: white;
+    filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.8));
+  }
 
-	.fa-trophy {
-		color: gold;
-	}
+  .trophy {
+    color: gold;
+  }
 }

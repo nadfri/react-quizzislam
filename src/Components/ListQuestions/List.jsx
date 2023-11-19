@@ -1,4 +1,6 @@
 import React from "react";
+import { FaTrashAlt } from "react-icons/fa";
+import { MdEdit } from "react-icons/md";
 
 function List(props) {
   const tabNiveau = ["", "Débutant", "Intermédiaire", "Expert"];
@@ -43,10 +45,10 @@ function List(props) {
 
       <div className='container-icons'>
         <div className='icons' onClick={() => props.handleEdit(question)}>
-          <i className='fas fa-edit'></i>
+          <MdEdit className="icon" />
         </div>
         <div className='icons' onClick={() => props.handleDelete(question)}>
-          <i className='fas fa-trash-alt'></i>
+          <FaTrashAlt className="icon" />
         </div>
       </div>
     </fieldset>

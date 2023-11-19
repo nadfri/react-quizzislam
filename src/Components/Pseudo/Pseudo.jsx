@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import { FaSignInAlt } from 'react-icons/fa';
 import './Pseudo.scss';
 
 export default function Pseudo(props) {
@@ -23,9 +23,11 @@ export default function Pseudo(props) {
           minLength={3}
           required
         />
+
         <button>
-          <i className='fas fa-sign-in-alt'></i>
+          <FaSignInAlt className='icon'/>
         </button>
+
       </form>
       <fieldset>
         <legend>REGLES</legend>

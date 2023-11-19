@@ -3,17 +3,18 @@
 
   .gold {
     color: gold;
-    text-shadow: 1px 1px 2px #000;
   }
 
   .silver {
     color: #a8a8a8;
-    text-shadow: 1px 1px 2px #000;
   }
 
   .bronze {
     color: #e68e19;
-    text-shadow: 1px 1px 2px #000;
+  }
+
+  .icon{
+    filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.8));
   }
 
   table {
@@ -31,7 +32,7 @@
     }
 
     tbody tr:nth-of-type(even) {
-      background-color: rgba(106, 104, 104, 0.8);
+      background-color: rgb(75 119 141 / 90%);
     }
 
     tbody tr:nth-of-type(odd) {

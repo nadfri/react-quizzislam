@@ -1,19 +1,20 @@
 .NavBar {
   position: fixed;
   bottom: 0;
-	
+
   width: 100%;
   max-width: 796px;
-  height: 65px;
+  height: 8%;
+	min-height: 8vh;
 
   display: flex;
   justify-content: space-around;
   align-items: center;
   transition: all 0.5s;
 
-  a {
-    box-shadow: none;
-  }
+a{
+	box-shadow: none;
+}
 
   .icon {
     font-size: 2rem;

@@ -1,214 +1,209 @@
 .ListQuestion {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-	ul {
-		margin: 0;
-		text-align: left;
-		ul {
-			padding: 0;
-			li {
-				margin-left: 20px;
-			}
-		}
-	}
+  ul {
+    margin: 0;
+    text-align: left;
+    ul {
+      padding: 0;
+      li {
+        margin-left: 20px;
+      }
+    }
+  }
 
-	.form-container {
-		background-color: rgba(0, 0, 0, 0.7);
-		backdrop-filter: blur(5px);
-		position: fixed;
-		top: 0;
-		bottom: 0;
-		left: 0;
-		right: 0;
-		overflow: auto;
-		z-index: 3;
-		padding-top: 10px;
+  .form-container {
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: auto;
+    z-index: 3;
+    padding-top: 10px;
 
-		form {
-			margin: auto;
-			width: 100%;
-			max-width: 800px;
-			padding: 5px;
-			background-color: rgba(211, 224, 234, 0.7);
-			border-radius: 5px;
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			animation: zoom 0.7s forwards;
+    form {
+      margin: auto;
+      width: 100%;
+      max-width: 800px;
+      padding: 5px;
+      background-color: rgba(211, 224, 234, 0.7);
+      border-radius: 5px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      animation: zoom 0.7s forwards;
 
+      h1 {
+        box-shadow: none;
+      }
 
-			h1 {
-				box-shadow: none;
-			}
+      fieldset {
+        display: flex;
+        justify-content: space-around;
+      }
 
-			fieldset {
-				display: flex;
-				justify-content: space-around;
-			}
+      .container-button {
+        width: 100%;
+        button {
+          width: 45%;
+        }
 
-			.container-button {
-				width: 100%;
-				button {
-					width: 45%;
-				}
+        .gray {
+          background-color: gray;
 
-				.gray {
-					background-color: gray;
+          &:active {
+            background-color: rgb(66, 66, 66);
+          }
+        }
+      }
+    }
+  }
 
-					&:active {
-						background-color: rgb(66, 66, 66);
-					}
-				}
-			}
-		}
-	}
+  fieldset {
+    position: relative;
+    width: 95%;
+    background-color: rgba(211, 224, 234, 0.7);
+    border-radius: 5px;
+    border: solid 1px teal;
+    margin: 5px;
 
-	fieldset {
-		position: relative;
-		width: 95%;
-		background-color: rgba(211, 224, 234, 0.7);
-		border-radius: 5px;
-		border: solid 1px teal;
-		margin: 5px;
+    b {
+      font-style: italic;
+      color: #2467a1;
+    }
 
-		b {
-			font-style: italic;
-			color: #2467a1;
-		}
+    &.column {
+      flex-direction: column;
+    }
 
-		&.column {
-			flex-direction: column;
-		}
+    legend {
+      text-align: left;
+      border-radius: 5px;
+      background-color: rgba(211, 224, 234, 1);
+      padding: 2px 5px;
+      border: solid 1px teal;
+      color: #0086fb;
+    }
 
-		legend {
-			text-align: left;
-			border-radius: 5px;
-			background-color: rgba(211, 224, 234, 1);
-			padding: 2px 5px;
-			border: solid 1px teal;
-			color: #0086fb;
-		}
+    &.fieldset-filtre {
+      display: flex;
+      justify-content: space-around;
 
-		&.fieldset-filtre {
-			display: flex;
-			justify-content: space-around;
+      select {
+        width: 20%;
+      }
 
-			select {
-				width: 20%;
-			}
+      .nb-question {
+        color: #0086fb;
+        text-shadow: 1px 1px 2px black;
+      }
 
-			.nb-question {
-				color: #0086fb;
-				text-shadow: 1px 1px 2px black;
-			}
+      input {
+        border: none;
+        border-radius: 5px;
+        width: 20%;
+      }
+    }
+  }
 
-			input {
-				border: none;
-				border-radius: 5px;
-				width: 20%;
-			}
-		}
-	}
+  select {
+    border: none;
+    width: 80%;
+    border-radius: 5px;
+    padding: 3px;
+  }
 
-	select {
-		border: none;
-		width: 80%;
-		border-radius: 5px;
-		padding: 3px;
-	}
+  .radio {
+    border: teal 1px solid;
+    border-radius: 5px;
+    padding: 2px 5px 2px 0px;
+    background-color: rgba(110, 183, 185, 0.5);
 
-	.radio {
-		border: teal 1px solid;
-		border-radius: 5px;
-		padding: 2px 5px 2px 0px;
-		background-color: rgba(110, 183, 185, 0.5);
+    &.large {
+      width: 45%;
+      label {
+        display: inline-block;
+        width: 80%;
+      }
+    }
 
-		&.large {
-			width: 45%;
-			label {
-				display: inline-block;
-				width: 80%;
-			}
-		}
+    &.medium {
+      width: 20%;
+      label {
+        display: inline-block;
+        width: 60%;
+      }
+    }
+  }
 
-		&.medium {
-			width: 20%;
-			label {
-				display: inline-block;
-				width: 60%;
-			}
-		}
-	}
+  input[type='text'] {
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    padding: 3px;
+    margin: 2px;
+  }
 
-	input[type='text'] {
-		width: 100%;
-		border: none;
-		border-radius: 5px;
-		padding: 3px;
-		margin: 2px;
-	}
+  button {
+    border: none;
+    background-color: tomato;
+    margin: 5px;
+    width: 80%;
 
-	button {
-		border: none;
-		background-color: tomato;
-		margin: 5px;
-		width: 80%;
+    &:active {
+      background-color: red;
+    }
 
-		&:active {
-			background-color: red;
-		}
+    &.black {
+      color: black;
+    }
+  }
 
-		&.black {
-			color: black;
-		}
-	}
+  .Modal {
+    button {
+      margin: 10px;
+      width: 40%;
+    }
 
-	.Modal {
-		button {
-			margin: 10px;
-			width: 40%;
-		}
+    .red {
+      background-color: orangered;
+    }
 
-		.red {
-			background-color: orangered;
-		}
+    .red:active,
+    .red:hover {
+      background-color: red;
+    }
+  }
 
-		.red:active,
-		.red:hover {
-			background-color: red;
-		}
-	}
+  .container-icons {
+    display: flex;
+    flex-direction: column;
 
-	.container-icons {
-		display: flex;
-		flex-direction: column;
+    position: absolute;
+    top: -5px;
+    right: 5px;
 
-		position: absolute;
-		top: -5px;
-		right: 5px;
+    .icons {
+      margin-bottom: 10px;
+      border-radius: 50%;
+      background-color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 2rem;
+      height: 2rem;
+      box-shadow: 1px 1px 4px 1px black;
+      cursor: pointer;
+      transition: all 0.5s;
 
-		.icons {
-			margin-bottom: 10px;
-			border-radius: 50%;
-			background-color: white;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			width: 2rem;
-			height: 2rem;
-			box-shadow: 1px 1px 4px 1px black;
-			cursor: pointer;
-			transition: all 0.5s;
-
-			.fa-edit {
-				padding-left: 3px;
-			}
-
-			&:hover {
-				background-color: tomato;
-			}
-		}
-	}
+      &:hover {
+        background-color: tomato;
+      }
+    }
+  }
 }

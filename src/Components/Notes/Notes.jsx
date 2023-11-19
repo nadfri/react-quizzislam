@@ -1,6 +1,8 @@
 import React from 'react';
 import './Notes.scss';
 import { Link } from 'react-router-dom';
+import { FaGamepad } from 'react-icons/fa';
+import { FaTrophy } from 'react-icons/fa';
 
 function Notes(props) {
 	const { score, maxQuestions } = props;
@@ -72,17 +74,17 @@ function Notes(props) {
 				{niveau < 3 ? (
 					<Link to={`/entrainement/quizz/${theme}/${parseInt(niveau) + 1}`} >
 						<span>Niveau Suivant</span>
-						<i className='fas fa-gamepad'></i>
+						<FaGamepad className='icon' />
 					</Link>
 				) : (
 					<Link to='/entrainement'>
 						<span>Menu</span>
-						<i className='fas fa-gamepad'></i>
+						<FaGamepad className='icon' />
 					</Link>
 				)}
 				<Link to='/competition'>
 					<span>Compétition</span>
-					<i className='fas fa-trophy'></i>
+					<FaTrophy className='icon trophy' />
 				</Link>
 			</div>
 		</div>

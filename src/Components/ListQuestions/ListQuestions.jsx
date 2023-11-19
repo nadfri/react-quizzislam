@@ -4,9 +4,10 @@ import Loader from "../Loader/Loader";
 import Modal from "../Modal/Modal";
 import ScrollTop from "../ScrollTop/ScrollTop";
 import FormEdit from "./FormEdit";
-import "./ListQuestions.scss";
 import List from "./List";
 import ConfirmSupp from "./ConfirmSupp";
+import { FaSearch } from "react-icons/fa";
+import "./ListQuestions.scss";
 
 function ListQuestions() {
   const baseID = "hz2fK3KpYDlCG7af12t9";
@@ -152,7 +153,7 @@ function ListQuestions() {
           {/* SearchBar */}
           <fieldset className='fieldset-filtre'>
             <legend>
-              <i className='fas fa-search'></i> Filtrer
+            <FaSearch className="icon"/> Filtrer
             </legend>
             <select
               value={filtreTheme}

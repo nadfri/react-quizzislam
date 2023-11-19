@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import './ScoreFinal.scss';
 import { db } from '../../firebase';
 import ListClassement from '../ListClassement/ListClassement';
 import ScrollTop from '../ScrollTop/ScrollTop';
 import bellURL from '../../Sounds/bell.mp3';
 import Loader from './../Loader/Loader';
 import Share from '../Share/Share';
+import { FaTrophy } from 'react-icons/fa';
+import './ScoreFinal.scss';
 
 function ScoreFinal(props) {
 	const TOP = 300;
@@ -133,7 +134,7 @@ function ScoreFinal(props) {
 					Machallah <span className='colorBlue'>{pseudo}!</span>
 					<div>
 						Tu es 1er
-						<i className='fas fa-trophy'></i>
+						<FaTrophy className='icon' />
 						{offline && offlineText}
 					</div>
 				</div>
@@ -146,7 +147,7 @@ function ScoreFinal(props) {
 					Machallah <span className='colorBlue'>{pseudo}!</span>
 					<div>
 						Tu es 2ème
-						<i className='fas fa-trophy'></i>
+						<FaTrophy className='icon' />
 					</div>
 					{offline && offlineText}
 				</div>
@@ -160,7 +161,7 @@ function ScoreFinal(props) {
 					Machallah <span className='colorBlue'>{pseudo}!</span>
 					<div>
 						Tu es 3ème
-						<i className='fas fa-trophy'></i>
+						<FaTrophy className='icon' />
 					</div>
 					{offline && offlineText}
 				</div>
