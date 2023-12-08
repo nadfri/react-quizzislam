@@ -24,12 +24,13 @@ export default function Pseudo(props) {
           minLength={3}
           maxLength={20}
           required
+          pattern='.{0,20}'
+          title='Le pseudo ne doit pas dépasser 20 caractères.'
         />
 
         <button>
-          <FaSignInAlt className='icon'/>
+          <FaSignInAlt className='icon' />
         </button>
-
       </form>
       <fieldset>
         <legend>REGLES</legend>
