@@ -22,6 +22,7 @@ export default function Pseudo(props) {
           value={pseudo}
           onChange={(e) => setPseudo(e.target.value)}
           minLength={3}
+          maxLength={20}
           required
         />
 
