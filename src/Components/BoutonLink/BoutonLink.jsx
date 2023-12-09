@@ -1,4 +1,3 @@
-import React from 'react';
 import './BoutonLink.scss';
 import { Link } from 'react-router-dom';
 import image from './buttonBlack.png';

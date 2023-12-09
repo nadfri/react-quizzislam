@@ -23,71 +23,73 @@ import Admin from '../Admin/Admin';
 import Signalement from '../Signalement/Signalement';
 import Suggestion from '../Suggestion/Suggestion';
 import PwaButton from '../PwaButton/PwaButton';
+import Proposition from '../Proposition/Proposition';
 
 //CSS
 import './App.scss';
 import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
-	const [user, setUser] = useState('');
+  const [user, setUser] = useState('');
 
-	useEffect(() => authListener(), []);
+  useEffect(() => authListener(), []);
 
-	const authListener = () => {
-		fire.auth().onAuthStateChanged((user) => {
-			if (user) setUser(user);
-			else setUser('');
-		});
-	};
+  const authListener = () => {
+    fire.auth().onAuthStateChanged((user) => {
+      if (user) setUser(user);
+      else setUser('');
+    });
+  };
 
-	return (
-		<BrowserRouter>
-			<div className='App' id='App'>
-				{/* Header */}
-				<Header />
+  return (
+    <BrowserRouter>
+      <div className='App' id='App'>
+        {/* Header */}
+        <Header />
 
-				{/* Main Content */}
-				<PwaButton />
-				<Switch>
-					<Route exact path='/' component={Home} />
-					<Route exact path='/competition' component={Competition} />
-					<Route exact path='/entrainement' component={Entrainement} />
-					<Route exact path='/entrainement/quizz/:theme' component={Niveau} />
-					<Route exact path='/entrainement/quizz/:theme/:niveau' component={Quizz} />
-					<Route exact path='/classement' component={Classement} />
-					<Route exact path='/connexion' component={Connexion} />
-					<Route exact path='/settings' component={Settings} />
-					<Route exact path='/settings/signalement' component={Signalement} />
-					<Route exact path='/settings/forget' component={Forget} />
-					<Route exact path='/settings/apropos' component={Apropos} />
-					<Route exact path='/settings/suggestion' component={Suggestion} />
+        {/* Main Content */}
+        <PwaButton />
+        <Switch>
+          <Route exact path='/' component={Home} />
+          <Route exact path='/competition' component={Competition} />
+          <Route exact path='/entrainement' component={Entrainement} />
+          <Route exact path='/entrainement/quizz/:theme' component={Niveau} />
+          <Route exact path='/entrainement/quizz/:theme/:niveau' component={Quizz} />
+          <Route exact path='/classement' component={Classement} />
+          <Route exact path='/connexion' component={Connexion} />
+          <Route exact path='/settings' component={Settings} />
+          <Route exact path='/settings/signalement' component={Signalement} />
+          <Route exact path='/settings/forget' component={Forget} />
+          <Route exact path='/settings/apropos' component={Apropos} />
+          <Route exact path='/settings/suggestion' component={Suggestion} />
+          <Route exact path='/settings/proposition' component={Proposition} />
 
-					<Route
-						exact
-						path='/settings/ajout'
-						render={() => (user ? <AjoutQuestions /> : <Connexion />)}
-					/>
-					<Route
-						exact
-						path='/settings/list'
-						render={() => (user ? <ListQuestions /> : <Connexion />)}
-					/>
-					<Route
-						exact
-						path='/settings/admin'
-						render={() => (user ? <Admin /> : <Connexion />)}
-					/>
+          <Route
+            exact
+            path='/settings/ajout'
+            render={() => (user ? <AjoutQuestions /> : <Connexion />)}
+          />
+          <Route
+            exact
+            path='/settings/list'
+            render={() => (user ? <ListQuestions /> : <Connexion />)}
+          />
+          <Route
+            exact
+            path='/settings/admin'
+            render={() => (user ? <Admin /> : <Connexion />)}
+          />
 
-					<Route component={Home} />
-				</Switch>
+          <Route component={Home} />
+        </Switch>
 
-				{/* NavBar  */}
-				<NavBar />
-				{/* Toast */}
-				<ToastContainer />
-			</div>
-		</BrowserRouter>
-	);
+        {/* NavBar  */}
+        <NavBar />
+        {/* Toast */}
+        <ToastContainer />
+      </div>
+    </BrowserRouter>
+  );
 }
 
 export default App;
