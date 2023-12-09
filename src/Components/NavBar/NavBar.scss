@@ -5,23 +5,23 @@
   width: 100%;
   max-width: 796px;
   height: 8%;
-	min-height: 8vh;
+
 
   display: flex;
   justify-content: space-around;
   align-items: center;
   transition: all 0.5s;
 
-a{
-	box-shadow: none;
-  display: flex;
-}
+  a {
+    box-shadow: none;
+    display: flex;
+  }
 
   .icon {
-    font-size: 2rem;
+    font-size: 36px;
     color: white;
     filter: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.8));
-		transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
   }
 
   .active .icon {
