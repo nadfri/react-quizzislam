@@ -16,7 +16,7 @@ function Classement() {
     //Chargement du Classement
     db.collection('classement')
       .doc(classementID)
-      .get({ source: 'server' }) // Forcer la récupération des données depuis le serveur
+      .get()
       .then((doc) => {
         //console.log(doc.data().classement);
         setClassement(doc.data().classement);
