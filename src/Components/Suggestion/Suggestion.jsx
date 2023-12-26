@@ -60,6 +60,7 @@ function Suggestion() {
 							cols='33'
 							onChange={(e) => setComplement(e.target.value)}
 							required
+							spellCheck="true"
 						/>
 
 						<button type='submit' className='blue'>

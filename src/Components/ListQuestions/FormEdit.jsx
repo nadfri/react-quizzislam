@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 export default function FormEdit(props) {
-  const { theme, niveau, question, choix, reponse, info,id } =
-    props.question;
+  const { theme, niveau, question, choix, reponse, info, id } = props.question;
 
   const [state, setState] = useState({
     theme,
@@ -12,7 +11,7 @@ export default function FormEdit(props) {
     choix,
     reponse,
     info,
-    id
+    id,
   });
 
   //Modifier l'enregistrement de choix dans le state
@@ -20,21 +19,20 @@ export default function FormEdit(props) {
     const conversion = { choix1: 0, choix2: 1, choix3: 2, choix4: 3 };
     const copyChoix = [...state.choix];
     const index = conversion[id];
-    copyChoix[index] = value.replace("sws", "ﷺ");
+    copyChoix[index] = value.replace('sws', 'ﷺ');
     setState({ ...state, choix: copyChoix });
   };
 
   return (
     <div className='form-container'>
-      <form className='form' onSubmit={(e)=>props.handleSubmit(e,state)}>
+      <form className='form' onSubmit={(e) => props.handleSubmit(e, state)}>
         <h1>Editer la Question ?</h1>
         <fieldset>
           <legend>Thème*</legend>
           <select
             value={state.theme}
             onChange={(e) => setState({ ...state, theme: e.target.value })}
-            required
-          >
+            required>
             <option value=''>Choisir un Thème</option>
             <option value='compagnons'>Les Compagnons</option>
             <option value='coran'>Coran</option>
@@ -56,7 +54,7 @@ export default function FormEdit(props) {
               id='debutant'
               name='niveau'
               value='1'
-              checked={state.niveau === "1"}
+              checked={state.niveau === '1'}
               onChange={(e) => setState({ ...state, niveau: e.target.value })}
               required
             />
@@ -68,7 +66,7 @@ export default function FormEdit(props) {
               id='intermediaire'
               name='niveau'
               value='2'
-              checked={state.niveau === "2"}
+              checked={state.niveau === '2'}
               onChange={(e) => setState({ ...state, niveau: e.target.value })}
             />
             <label htmlFor='intermediaire'>Intermédiaire</label>
@@ -79,7 +77,7 @@ export default function FormEdit(props) {
               id='expert'
               name='niveau'
               value='3'
-              checked={state.niveau === "3"}
+              checked={state.niveau === '3'}
               onChange={(e) => setState({ ...state, niveau: e.target.value })}
             />
             <label htmlFor='expert'>Expert</label>
@@ -98,7 +96,7 @@ export default function FormEdit(props) {
               onChange={(e) =>
                 setState({
                   ...state,
-                  private: e.target.value === "true" ? true : false,
+                  private: e.target.value === 'true' ? true : false,
                 })
               }
               required
@@ -115,7 +113,7 @@ export default function FormEdit(props) {
               onChange={(e) =>
                 setState({
                   ...state,
-                  private: e.target.value === "true" ? true : false,
+                  private: e.target.value === 'true' ? true : false,
                 })
               }
             />
@@ -131,11 +129,12 @@ export default function FormEdit(props) {
             onChange={(e) =>
               setState({
                 ...state,
-                question: e.target.value.replace("sws", "ﷺ"),
+                question: e.target.value.replace('sws', 'ﷺ'),
               })
             }
             placeholder='Ecrire ici la question'
             required
+            spellCheck='true'
           />
         </fieldset>
 
@@ -184,7 +183,7 @@ export default function FormEdit(props) {
               id='rep1'
               name='reponse'
               value='1'
-              checked={state.reponse === "1"}
+              checked={state.reponse === '1'}
               //   onChange={(e) => setReponse(e.target.value)}
               onChange={(e) => setState({ ...state, reponse: e.target.value })}
               required
@@ -198,7 +197,7 @@ export default function FormEdit(props) {
               id='rep2'
               name='reponse'
               value='2'
-              checked={state.reponse === "2"}
+              checked={state.reponse === '2'}
               onChange={(e) => setState({ ...state, reponse: e.target.value })}
             />
             <label htmlFor='rep2'>#2</label>
@@ -210,7 +209,7 @@ export default function FormEdit(props) {
               id='rep3'
               name='reponse'
               value='3'
-              checked={state.reponse === "3"}
+              checked={state.reponse === '3'}
               onChange={(e) => setState({ ...state, reponse: e.target.value })}
             />
             <label htmlFor='rep3'>#3</label>
@@ -222,7 +221,7 @@ export default function FormEdit(props) {
               id='rep4'
               name='reponse'
               value='4'
-              checked={state.reponse === "4"}
+              checked={state.reponse === '4'}
               onChange={(e) => setState({ ...state, reponse: e.target.value })}
             />
             <label htmlFor='rep4'>#4</label>
@@ -235,19 +234,16 @@ export default function FormEdit(props) {
             rows='3'
             value={state.info}
             onChange={(e) =>
-              setState({ ...state, info: e.target.value.replace("sws", "ﷺ") })
+              setState({ ...state, info: e.target.value.replace('sws', 'ﷺ') })
             }
             placeholder="Complément d'information sur la réponse"
+            spellCheck='true'
           />
         </fieldset>
 
         <div className='container-button'>
           <button type='submit'>Modifier</button>
-          <button
-            className='gray'
-            type='button'
-            onClick={props.setDisplayModalForm}
-          >
+          <button className='gray' type='button' onClick={props.setDisplayModalForm}>
             Annuler
           </button>
         </div>

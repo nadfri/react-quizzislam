@@ -93,6 +93,7 @@ export default function Proposition() {
             placeholder='Votre question, attention aux fautes d’orthographe...'
             maxLength={300}
             required
+            spellCheck='true'
           />
         </fieldset>
 
@@ -103,6 +104,7 @@ export default function Proposition() {
           <input type='text' id='choix2' name='choix2' required placeholder='Choix 2*' />
 
           <input type='text' id='choix3' name='choix3' placeholder='Choix 3' />
+
           <input type='text' id='choix4' name='choix4' placeholder='Choix 4' />
         </fieldset>
         <fieldset>
@@ -137,10 +139,13 @@ export default function Proposition() {
             placeholder='Explication succinte avec uniquement des sources authentiques et vérifiables...'
             maxLength={300}
             required
+            spellCheck='true'
           />
         </fieldset>
 
-        <button type='submit' disabled={isLoading}>Proposer</button>
+        <button type='submit' disabled={isLoading}>
+          Proposer
+        </button>
       </form>
 
       {isLoading && <Loader />}
