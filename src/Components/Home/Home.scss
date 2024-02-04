@@ -12,9 +12,16 @@
     color: salmon;
     transition: all 0.3s ease-in-out;
     text-decoration: underline;
+  }
 
-    &:hover {
-      color: rgb(38, 147, 230);
-    }
+  .white {
+    color: white;
+    font-size: 22px;
+  }
+
+  .icon {
+    vertical-align: bottom;
+    color: salmon;
+    margin-left: 2px;
   }
 }

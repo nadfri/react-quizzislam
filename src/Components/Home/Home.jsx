@@ -2,6 +2,7 @@ import React from 'react';
 import BoutonLink from '../BoutonLink/BoutonLink';
 import { NavLink } from 'react-router-dom';
 import './Home.scss';
+import { BiSolidBookHeart } from 'react-icons/bi';
 
 function Home() {
   return (
@@ -12,6 +13,15 @@ function Home() {
       <NavLink to='/settings/proposition' className='link-proposition fadeIn'>
         Proposer une Question
       </NavLink>
+
+      <a
+        href='https://masjidbox.com/donations/mosquee-de-savigny-le-temple/travaux-de-finition-dagrandissement-de-lecolecollege-de-la-mosquee-de-savigny-le-temple'
+        target='_blank'
+        rel='noreferrer'
+        className='fadeIn link-proposition white'>
+        Participer à la construction d'une école musulmane{' '}
+        <BiSolidBookHeart className='icon' />
+      </a>
     </div>
   );
 }
