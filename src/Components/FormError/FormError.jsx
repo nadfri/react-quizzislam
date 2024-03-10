@@ -45,7 +45,7 @@ function FormError(props) {
               <option value=''>Choisir une erreur</option>
               <option value='Reponse'>Réponse fausse</option>
               <option value='Orthographe'>Orthographe</option>
-              <option value='Forumation'>Question mal formulée</option>
+              <option value='Formulation'>Question mal formulée</option>
               <option value='Infomartion'>Information érronée</option>
               <option value='Autre'>Autre Raison</option>
             </select>

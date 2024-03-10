@@ -72,7 +72,7 @@ function Apropos() {
 
         <p>Version 1.1.0</p>
 
-        <p>2021-2023</p>
+        <p>2021-2024</p>
       </fieldset>
     </div>
   );
