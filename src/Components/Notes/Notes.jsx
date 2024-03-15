@@ -65,8 +65,8 @@ function Notes(props) {
 				</div>
 
 				<div className='skews'>
-					<div className='skew'>{conversion[niveau]}</div>
 					<div className='skew'>{conversion[theme]}</div>
+					<div className='skew'>{conversion[niveau] || 'TOUT'}</div>
 				</div>
 			</div>
 			<div className={`texte ${background}`}>{texte}</div>

@@ -32,7 +32,7 @@ function Quizz(props) {
   /*DATAS*/
   const baseID = 'hz2fK3KpYDlCG7af12t9';
   const theme = props.match.params.theme;
-  const niveau = props.match.params.niveau > 3 ? '3' : props.match.params.niveau;
+  const niveau = props.match.params.niveau > 4 ? '4' : props.match.params.niveau;
   const background = {
     coran: backCoran,
     prophete: backMoh,
@@ -113,14 +113,19 @@ function Quizz(props) {
             .questions.filter(
               (question) =>
                 question.theme === theme &&
-                question.niveau === niveau &&
+                (niveau === '4' || question.niveau === niveau) &&
                 !question.private
             )
         );
+
         reponses.current = questions;
         const questionsSansRep = questions.map(({ reponse, ...rest }) => rest);
+
         setState(questionsSansRep); //questions sans les réponses
-				setMaxQuestions(questions.length >= 20 ? 20 : questions.length);
+
+        setMaxQuestions(
+          niveau === '4' ? questions.length : Math.min(questions.length, 20)
+        );
       })
       .catch((err) => console.log(err));
   }, [theme, niveau]);
@@ -187,6 +192,7 @@ function Quizz(props) {
       btns.forEach((btn) => (btn.style.display = ''));
 
       interfaceDiv.classList.replace('slideIn', 'slideOut');
+
       setTimeout(() => {
         interfaceDiv.classList.replace('slideOut', 'slideIn');
       }, 300);
@@ -222,7 +228,7 @@ function Quizz(props) {
 
             <div className='skews'>
               <div>{conversion[theme]}</div>
-              <div>{conversion[niveau]}</div>
+              <div>{conversion[niveau] || 'TOUT'}</div>
             </div>
           </div>
 

@@ -1,29 +1,37 @@
 .Niveau {
-	animation: slideIn 0.5s forwards;
-	position: relative;
+  animation: slideIn 0.5s forwards;
+  position: relative;
 
-	h1 {
-		display: inline-block;
-		margin: 5px 0 20% 0;
-	}
+  h1 {
+    display: inline-block;
+    margin: 5px 0 20% 0;
+  }
 
-	.links {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		a {
-			transform: skewX(-17deg);
-			width: 85%;
-			margin-bottom: 30px;
-			background-color: #2b9cff;
-			padding: 10px;
-			transition: all 0.5s;
-			display: block;
+  .links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-			&:active,
+    a {
+      transform: skewX(-17deg);
+      width: 85%;
+      margin-bottom: 30px;
+      background-color: #2b9cff;
+      padding: 10px;
+      transition: all 0.5s;
+      display: block;
+
+      &:active,
+      &:hover {
+        background-color: #0086fb;
+      }
+    }
+
+    .link-all {
+      background-color: #e68e19;
 			&:hover {
-				background-color: #0086fb;
-			}
-		}
-	}
+        background-color: #af762b;
+      }
+    }
+  }
 }
