@@ -1,190 +1,190 @@
 .Competition {
-	height: 86%;
-	background-image: url('../../Backgrounds/background6.jpg');
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: cover;
-	position: relative;
+  height: 86%;
+  background-image: url('../../Backgrounds/background6.webp');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  position: relative;
 
-	.etat {
-		display: flex;
-		justify-content: space-between;
+  .etat {
+    display: flex;
+    justify-content: space-between;
 
-		.score-container {
-			animation: slideIn 0.5s forwards;
+    .score-container {
+      animation: slideIn 0.5s forwards;
 
-			.score {
-				border-radius: 5px;
-				background-color: rgba(75, 119, 141, 0.7);
-				transform: skewX(-17deg) translate3d(-10px,0,0);
-				box-shadow: 0px 0px 5px 1px #191919;
-				color: gold;
-				margin: 5px 0;
-				padding: 0px 5px 0px 25px;
-				font-size: 1.8rem;
-				text-align: right;
-				width: 150px;
-			}
+      .score {
+        border-radius: 5px;
+        background-color: rgba(75, 119, 141, 0.7);
+        transform: skewX(-17deg) translate3d(-10px, 0, 0);
+        box-shadow: 0px 0px 5px 1px #191919;
+        color: gold;
+        margin: 5px 0;
+        padding: 0px 5px 0px 25px;
+        font-size: 1.8rem;
+        text-align: right;
+        width: 150px;
+      }
 
-			.skew {
-				border-radius: 5px;
-				color: white;
-				font-weight: bold;
-				text-transform: uppercase;
-				margin: 5px 0;
-				transform: skewX(-17deg) translate3d(-100vw,0,0);
-				padding: 5px 10px 5px 0px;
-				box-shadow: 0px 0px 5px 1px #191919;
-				transition: all 0.5s;
-				font-size: 1.3rem;
-				text-align: right;
+      .skew {
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        text-transform: uppercase;
+        margin: 5px 0;
+        transform: skewX(-17deg) translate3d(-100vw, 0, 0);
+        padding: 5px 10px 5px 0px;
+        box-shadow: 0px 0px 5px 1px #191919;
+        transition: all 0.5s;
+        font-size: 1.3rem;
+        text-align: right;
 
-				&.slideSkew {
-					transform: skewX(-17deg) translate3d(-40px,0,0);
-				}
+        &.slideSkew {
+          transform: skewX(-17deg) translate3d(-40px, 0, 0);
+        }
 
-				&.red {
-					background-color: red;
-				}
+        &.red {
+          background-color: red;
+        }
 
-				&.green {
-					background-color: green;
-				}
+        &.green {
+          background-color: green;
+        }
 
-				&.point {
-					padding: 5px 10px 5px 0px;
-					width: 120px;
-				}
-			}
-		}
-	}
+        &.point {
+          padding: 5px 10px 5px 0px;
+          width: 120px;
+        }
+      }
+    }
+  }
 
-	button {
-		margin: 10px 5px;
-		width: 95%;
-		&:active,
-		&:hover {
-			background-color: red;
-		}
-	}
+  button {
+    margin: 10px 5px;
+    width: 95%;
+    &:active,
+    &:hover {
+      background-color: red;
+    }
+  }
 
-	.tomato {
-		background-color: tomato;
-		animation: zoom 0.3s forwards;
-	}
+  .tomato {
+    background-color: tomato;
+    animation: zoom 0.3s forwards;
+  }
 
-	.blue {
-		background-color: #2b9cff;
-		animation: zoom 0.3s forwards;
-	}
+  .blue {
+    background-color: var(--blue-color);
+    animation: zoom 0.3s forwards;
+  }
 
-	fieldset {
-		border: none;
-		background-color: rgba(211, 224, 234, 0.7);
-		border-radius: 5px;
-		font-size: 1.3rem;
-		margin: -10px 10px 10px;
-		padding: 5px 5px 10px 5px;
+  fieldset {
+    border: none;
+    background-color: rgba(211, 224, 234, 0.7);
+    border-radius: 5px;
+    font-size: 1.3rem;
+    margin: -10px 10px 10px;
+    padding: 5px 5px 10px 5px;
 
+    legend {
+      font-size: 1rem;
+      background-color: rgba(211, 224, 234, 0.9);
+      border-radius: 5px;
+      padding: 2px 5px;
+      text-shadow: 0px 1px 2px #000000;
+      font-weight: bold;
+      color: var(--blue-color);
+      position: relative;
+    }
 
-		legend {
-			font-size: 1rem;
-			background-color: rgba(211, 224, 234, 0.9);
-			border-radius: 5px;
-			padding: 2px 5px;
-			text-shadow: 0px 1px 2px #000000;
-			font-weight: bold;
-			color: #2b9cff;
-			position: relative;
-		}
+    .double {
+      animation: beat 0.8s;
+      position: absolute;
+      font-family: 'Rock Salt', cursive;
+      color: red;
+      top: -7px;
+    }
 
-		.double {
-			animation: beat 0.8s;
-			position: absolute;
-			font-family: 'Rock Salt', cursive;
-			color: red;
-			top: -7px;
-		}
+    p {
+      margin: 0;
+    }
+  }
 
-		p {
-			margin: 0;
-		}
-	}
+  .container-choix {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
 
-	.container-choix {
-		display: flex;
-		justify-content: center;
-		flex-wrap: wrap;
+    button {
+      margin: 5px;
+      width: 46%;
+      font-size: 1.1rem;
+      font-family: "Roboto slab", Arial;
+      text-shadow: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: solid transparent 4px;
+      color: black;
+      padding: 2px;
 
-		button {
-			margin: 5px;
-			width: 46%;
-			font-size: 1.1rem;
-			text-shadow: none;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			border: solid transparent 4px;
-			color: black;
-			padding: 2px;
+      &.disabled {
+        pointer-events: none;
+      }
 
-			&.disabled {
-				pointer-events: none;
-			}
+      &:nth-child(1) {
+        background-color: deepskyblue;
+      }
 
-			&:nth-child(1) {
-				background-color: deepskyblue;
-			}
+      &:nth-child(3) {
+        background-color: burlywood;
+      }
+      &:nth-child(2) {
+        background-color: gold;
+      }
+      &:nth-child(4) {
+        background-color: orchid;
+      }
 
-			&:nth-child(3) {
-				background-color: burlywood;
-			}
-			&:nth-child(2) {
-				background-color: gold;
-			}
-			&:nth-child(4) {
-				background-color: orchid;
-			}
+      &.choice:active {
+        border: solid white 3px;
+        color: white;
+        text-shadow: 0px 0px 7px black;
+      }
 
-			&.choice:active {
-				border: solid white 3px;
-				color: white;
-				text-shadow: 0px 0px 7px black;
-			}
+      &.right {
+        border: solid yellowgreen;
+        background-color: green;
+        color: white;
+      }
 
-			&.right {
-				border: solid yellowgreen;
-				background-color: green;
-				color: white;
-			}
+      &.wrong {
+        position: relative;
+        border: solid maroon;
+        background-color: red;
+        color: white;
+        //text-decoration: line-through black 2px;
+        &:before {
+          content: '';
+          height: 3px;
+          width: 70%;
+          background-color: maroon;
+          position: absolute;
+          top: 20px;
+          border-radius: 30px;
+          transform: rotate(-16deg);
+        }
+      }
+    }
+  }
 
-			&.wrong {
-				position: relative;
-				border: solid maroon;
-				background-color: red;
-				color: white;
-				//text-decoration: line-through black 2px;
-				&:before {
-					content: '';
-					height: 3px;
-					width: 70%;
-					background-color: maroon;
-					position: absolute;
-					top: 20px;
-					border-radius: 30px;
-					transform: rotate(-16deg);
-				}
-			}
-		}
-	}
-
-	.erreur {
-		position: absolute;
-		left: 2px;
-		bottom: 1%;
-		text-decoration: underline;
-		text-shadow: 0px 0px 5px white;
-		font-size: 14px;
-		cursor: pointer;
-	}
+  .erreur {
+    position: absolute;
+    left: 2px;
+    bottom: 1%;
+    text-decoration: underline;
+    text-shadow: 0px 0px 5px white;
+    font-size: 14px;
+    cursor: pointer;
+  }
 }

@@ -1,23 +1,25 @@
-import React, { useState, useEffect, useRef } from 'react';
 import './Quizz.scss';
+import React, { useState, useEffect, useRef } from 'react';
 import { db } from '../../firebase';
+
 import Loader from '../Loader/Loader';
-import backCoran from '../../Backgrounds/background10.jpg';
-import backMoh from '../../Backgrounds/background3.webp';
-import backComp from '../../Backgrounds/background5.jpg';
-import backHist from '../../Backgrounds/background2.webp';
-import backCult from '../../Backgrounds/background13.webp';
-import backJuri from '../../Backgrounds/background9.jpg';
-import backProph from '../../Backgrounds/background12.jpg';
-import backText from '../../Backgrounds/background15.webp';
-import correctURL from '../../Sounds/correct.mp3';
-import incorrectURL from '../../Sounds/incorrect.mp3';
 import Notes from '../Notes/Notes';
 import Speaker from '../Speaker/Speaker';
 import FormError from '../FormError/FormError';
 
+import backHist from '../../Backgrounds/background2.webp';
+import backMoh from '../../Backgrounds/background3.webp';
+import backComp from '../../Backgrounds/background5.webp';
+import backCult from '../../Backgrounds/background7.webp';
+import backJuri from '../../Backgrounds/background8.webp';
+import backProph from '../../Backgrounds/background9.webp';
+import backCoran from '../../Backgrounds/background10.webp';
+import backText from '../../Backgrounds/background11.webp';
+
+import correctURL from '../../Sounds/correct.mp3';
+import incorrectURL from '../../Sounds/incorrect.mp3';
+
 function Quizz(props) {
-  /***VARIABLES GLOBALES***/
   /*DOM*/
   const btns = document.querySelectorAll('button');
   const interfaceDiv = document.querySelector('.interfaceDiv');

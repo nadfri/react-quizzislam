@@ -1,17 +1,17 @@
-.Speaker{
-    position: absolute;
-    bottom: 1%;
-    right: 0;
-    margin: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    box-shadow: 0px 0px 5px 1px #191919;
-    width: 40px;
-    height: 40px;
-    background-color: rgba(255, 255, 255, 0.5);
-    color: #2b9cff;
-    cursor: pointer;
-    z-index: 3;
+.Speaker {
+  position: absolute;
+  bottom: 1%;
+  right: 0;
+  margin: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  box-shadow: 0px 0px 5px 1px #191919;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.5);
+  color: #0086fb;
+  cursor: pointer;
+  z-index: 3;
 }

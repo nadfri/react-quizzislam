@@ -1,17 +1,17 @@
 .ScrollTop {
-	position: fixed;
-	top: 50%;
-	right: 0;
-	transform: translateY(-50%);
-	display: flex;
-	flex-direction: column;
-	z-index: 1;
+  position: fixed;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
 
-	.icon {
-		font-size: 1.6rem;
-		color: #2b9cff;
-		cursor: pointer;
-		margin: 7px 1px;
-		filter: drop-shadow(2px 2px 1px #4e4e4ee3);
-	}
+  .icon {
+    font-size: 1.6rem;
+    color: var(--blue-color);
+    cursor: pointer;
+    margin: 7px 1px;
+    filter: drop-shadow(2px 2px 1px #4e4e4ee3);
+  }
 }

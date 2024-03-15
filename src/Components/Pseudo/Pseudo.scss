@@ -10,7 +10,7 @@
 
   form {
     display: flex;
-    border: solid 1px #2b9cff;
+    border: solid 1px var(--blue-color);
     height: 50px;
     border-radius: 5px;
     width: 95%;
@@ -47,7 +47,7 @@
     width: 21%;
     margin: 0;
     padding: 0;
-    background-color: #2b9cff;
+    background-color: var(--blue-color);
 
     & :active {
       background-color: #007ce9;

@@ -1,199 +1,194 @@
-//Color Variables
-$navbar-color: #4b778d;
-$blue-color: #2b9cff;
+:root {
+  --blue-color: #2b9cff;
+}
 
 * {
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 html {
-	scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 html,
 body,
 #root {
-	height: 100%;
+  height: 100%;
 }
 
 body {
-	margin: 0;
-	background-color: #0f0f11;
-	overflow-x: hidden;
-	font-family: 'Roboto Slab', serif;
-	background-image: url('./Backgrounds/background.webp');
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: cover;
-	background-attachment: fixed;
-	-webkit-tap-highlight-color: rgba(107, 107, 107, 0);
-	-webkit-tap-highlight-color: transparent;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  background-color: #0f0f11;
+  overflow-x: hidden;
+  font-family: 'Roboto Slab', serif;
+  background-image: url('./Backgrounds/background.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  -webkit-tap-highlight-color: rgba(107, 107, 107, 0);
+  -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 
-	&::-webkit-scrollbar {
-		width: 15px;
-	}
+  &::-webkit-scrollbar {
+    width: 15px;
+  }
 
-	&::-webkit-scrollbar-track {
-		background-color: rgba(211, 224, 234, 0.5); /* color of the tracking area */
-	}
+  &::-webkit-scrollbar-track {
+    background-color: rgba(211, 224, 234, 0.5); /* color of the tracking area */
+  }
 
-	&::-webkit-scrollbar-thumb {
-		background-color: teal; /* color of the scroll thumb */
-		border-radius: 20px;
-	}
+  &::-webkit-scrollbar-thumb {
+    background-color: teal; /* color of the scroll thumb */
+    border-radius: 20px;
+  }
 }
 
 a {
-	text-decoration: none;
-	color: white;
-	font-size: 1.5rem;
-	font-family: 'Lobster', cursive;
-	cursor: pointer;
-	border-radius: 5px;
-	text-shadow: 1px 1px 2px black;
-	box-shadow: 0px 0px 5px 1px #191919;
-}
-
-.Header {
-	background-color: black;
+  text-decoration: none;
+  color: white;
+  font-size: 1.5rem;
+  font-family: 'Lobster', cursive;
+  cursor: pointer;
+  border-radius: 5px;
+  text-shadow: 1px 1px 2px black;
+  box-shadow: 0px 0px 5px 1px #191919;
 }
 
 .NavBar {
-	background-color: $navbar-color;
+  background-color: var(--blue-color);
 }
 
 /*Boutons Génériques*/
 button {
-	font-family: 'Lobster', cursive;
-	padding: 5px 50px;
-	border-radius: 5px;
-	border: none;
-	color: white;
-	font-size: 1.2rem;
-	text-shadow: 1px 2px 2px black;
-	box-shadow: 0px 0px 5px 1px #191919;
-	cursor: pointer;
-	transition: all 0.5s;
+  font-family: 'Lobster', cursive;
+  padding: 5px 50px;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  text-shadow: 1px 2px 2px black;
+  box-shadow: 0px 0px 5px 1px #191919;
+  cursor: pointer;
+  transition: all 0.5s;
 }
 
-button:active{
-	transform: translateY(3px);
-	box-shadow: none;
+button:active {
+  transform: translateY(3px);
+  box-shadow: none;
 }
 
 /*Titre H1*/
 h1 {
-	margin: 5px;
-	padding: 5px 20px;
-	border-radius: 5px;
-	font-family: 'Spirax', cursive;
-	color: $blue-color;
-	font-size: 2rem;
-	text-shadow: 1px 1px 2px black;
-	box-shadow: 0 0 10px 0 black;
-	background-color: rgba(211, 224, 234, 0.7);
+  margin: 5px;
+  padding: 5px 20px;
+  border-radius: 5px;
+  font-family: 'Spirax', cursive;
+  color: var(--blue-color);
+  font-size: 2rem;
+  text-shadow: 1px 1px 2px black;
+  box-shadow: 0 0 10px 0 black;
+  background-color: rgba(211, 224, 234, 0.7);
 
-	max-width: 700px;
+  max-width: 700px;
 }
 
-input{
-	font-family: 'Roboto Slab', serif;
+input {
+  font-family: 'Roboto Slab', serif;
 }
 
-select{
-	background-color: white;
+select {
+  background-color: white;
 }
 
-textarea{
-	width: 100%;
-	border: none;
-	border-radius: 5px;
-	font-family: 'Roboto Slab', serif;
-	font-size: 0.9rem;
-
+textarea {
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  font-family: 'Roboto Slab', serif;
+  font-size: 0.9rem;
 }
 
 /*Animations*/
 @keyframes zoom {
-	from {
-		transform: scale3d(0,0,0);
-	}
-	to {
-		transform: scale3d(1,1,1);
-	}
+  from {
+    transform: scale3d(0, 0, 0);
+  }
+  to {
+    transform: scale3d(1, 1, 1);
+  }
 }
 
 @keyframes dezoom {
-	from {
-		transform: scale3d(1,1,1);
-	}
-	to {
-		transform: scale3d(0,0,0);
-	}
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+  to {
+    transform: scale3d(0, 0, 0);
+  }
 }
 
 @keyframes slideIn {
-	from {
-		transform: translate3d(-100vw,0,0);
-	}
-	to {
-		transform: translate3d(0,0,0);
-	}
+  from {
+    transform: translate3d(-100vw, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
 }
 
 @keyframes slideOut {
-	from {
-		transform: translate3d(0,0,0);
-	}
-	to {
-		transform: translate3d(100vw,0,0);
-	}
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(100vw, 0, 0);
+  }
 }
 
 @keyframes slideToLeft {
-	from {
-		transform: translate3d(100vw,0,0);
-	}
-	to {
-		transform: translate3d(0,0,0);
-	}
+  from {
+    transform: translate3d(100vw, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
 }
 
 @keyframes construction {
-	from {
-		transform: rotate(0);
-	}
-	to {
-		transform: rotate(50deg);
-	}
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(50deg);
+  }
 }
 
 @keyframes beat {
-	from {
-		transform: scale3d(1.5,1.5,1.5);
-	}
+  from {
+    transform: scale3d(1.5, 1.5, 1.5);
+  }
 
-	to {
-		transform: scale3d(1,1,1);
-	}
+  to {
+    transform: scale3d(1, 1, 1);
+  }
 }
 
 .zoom {
-	animation: zoom 0.5s forwards;
+  animation: zoom 0.5s forwards;
 }
 
 .dezoom {
-	animation: dezoom 0.5s forwards;
+  animation: dezoom 0.5s forwards;
 }
 
 .slideIn {
-	animation: slideIn 0.3s forwards;
-	animation-delay: 0s;
+  animation: slideIn 0.3s forwards;
+  animation-delay: 0s;
 }
 
 .slideOut {
-	animation: slideOut 0.3s forwards;
-	animation-delay: 0s;
+  animation: slideOut 0.3s forwards;
+  animation-delay: 0s;
 }

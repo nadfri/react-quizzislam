@@ -1,43 +1,43 @@
 .Modal {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(0, 0, 0, 0.7);
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 
-	.box {
-		width: 90%;
-		max-width: 600px;
-		padding: 20px 10px;
-		background-color: rgba(211, 224, 234, 0.7);
-		border-radius: 5px;
-		color: #2b9cff;
-		font-size: 2rem;
-		font-family: 'Spirax', cursive;
-		box-shadow: 0 0 10px 0 black;
-		animation: zoom 0.7s forwards;
+  .box {
+    width: 90%;
+    max-width: 600px;
+    padding: 20px 10px;
+    background-color: rgba(211, 224, 234, 0.7);
+    border-radius: 5px;
+    color: var(--blue-color);
+    font-size: 2rem;
+    font-family: 'Spirax', cursive;
+    box-shadow: 0 0 10px 0 black;
+    animation: zoom 0.7s forwards;
 
-		h1 {
-			box-shadow: none;
-			background-color: rgba(211, 224, 234, 0.7);
-			font-size: 1.6rem;
-		}
+    h1 {
+      box-shadow: none;
+      background-color: rgba(211, 224, 234, 0.7);
+      font-size: 1.6rem;
+    }
 
-		button {
-			background-color: #2b9cff;
-			margin: 0;
-			width: 40%;
-			font-size: 1.3rem;
+    button {
+      background-color: var(--blue-color);
+      margin: 0;
+      width: 40%;
+      font-size: 1.3rem;
 
-			&:active,
-			&:hover {
-				background-color: #0086fb;
-			}
-		}
-	}
+      &:active,
+      &:hover {
+        background-color: #0086fb;
+      }
+    }
+  }
 }

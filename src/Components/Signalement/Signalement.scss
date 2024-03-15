@@ -1,43 +1,42 @@
 .Signalement {
-	height: 86%;
-	background-image: url('../../Backgrounds/background4.webp');
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: cover;
-	text-align: center;
-	padding-top: 5px;
+  height: 86%;
+  background-image: url('../../Backgrounds/background4.webp');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  text-align: center;
+  padding-top: 5px;
 
-	h1 {
-		margin: auto;
-	}
+  h1 {
+    margin: auto;
+  }
 
-	fieldset {
-		background-color: rgba(211, 224, 234, 0.7);
-		border-radius: 5px;
-		border: solid 1px teal;
-		margin: 5px;
-		animation: slideIn 0.5s forwards;
-	}
+  fieldset {
+    background-color: rgba(211, 224, 234, 0.7);
+    border-radius: 5px;
+    border: solid 1px teal;
+    margin: 5px;
+    animation: slideIn 0.5s forwards;
+  }
 
-	select,input {
-		border: none;
-		width: 100%;
-		border-radius: 5px;
-		padding: 3px;
-		margin: 10px 0;
-	}
+  select,
+  input {
+    border: none;
+    width: 100%;
+    border-radius: 5px;
+    padding: 3px;
+    margin: 10px 0;
+  }
 
-	textarea {
-		border: 1px teal;
-		border-radius: 5px;
-		width: 100%;
-		margin: 10px 0;
-	}
+  textarea {
+    border: 1px teal;
+    border-radius: 5px;
+    width: 100%;
+    margin: 10px 0;
+  }
 
-	button {
-		background-color: #2b9cff;
-		width: 60%;
-	}
-
-
+  button {
+    background-color: var(--blue-color);
+    width: 60%;
+  }
 }

@@ -16,7 +16,7 @@
       transform: skewX(-17deg);
       width: 85%;
       margin-bottom: 30px;
-      background-color: #2b9cff;
+      background-color: var(--blue-color);
       padding: 10px;
       transition: all 0.5s;
       display: block;
@@ -29,7 +29,7 @@
 
     .link-all {
       background-color: #e68e19;
-			&:hover {
+      &:hover {
         background-color: #af762b;
       }
     }

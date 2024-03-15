@@ -93,7 +93,7 @@
   }
 
   .blue {
-    background-color: #2b9cff;
+    background-color: var(--blue-color);
     animation: zoom 0.3s forwards;
   }
 
@@ -112,7 +112,7 @@
       padding: 2px 5px;
       text-shadow: 0px 1px 2px #000000;
       font-weight: bold;
-      color: #2b9cff;
+      color: var(--blue-color);
     }
 
     p {
@@ -129,6 +129,7 @@
       margin: 5px;
       width: 46%;
       font-size: 1.1rem;
+      font-family: "Roboto slab", Arial;
       text-shadow: none;
       display: flex;
       align-items: center;
