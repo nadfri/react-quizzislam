@@ -15,13 +15,13 @@ function Home() {
         Proposer une Question
       </NavLink>
 
-      <a
+      {/* <a
         href='https://suivi-ramadan.netlify.app/'
         target='_blank'
         rel='noreferrer'
         className='fadeIn link-proposition white'>
         Suivre votre Ramadan 2024 <FaHeartbeat className='icon' />
-      </a>
+      </a> */}
 
       <a
         href='https://masjidbox.com/donations/mosquee-de-savigny-le-temple/travaux-de-finition-dagrandissement-de-lecolecollege-de-la-mosquee-de-savigny-le-temple'
