@@ -22,9 +22,9 @@ export default function Pseudo(props) {
           value={pseudo}
           onChange={(e) => setPseudo(e.target.value)}
           minLength={3}
-          maxLength={20}
+          maxLength={15}
           required
-          pattern='.{0,20}'
+          pattern='.{0,15}'
           title='Le pseudo ne doit pas dépasser 20 caractères.'
         />
 
