@@ -7,6 +7,7 @@
   ul {
     margin: 0;
     text-align: left;
+
     ul {
       padding: 0;
       li {
@@ -63,6 +64,10 @@
         }
       }
     }
+  }
+
+  .capitalize {
+    text-transform: capitalize;
   }
 
   fieldset {

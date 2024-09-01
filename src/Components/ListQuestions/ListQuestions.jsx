@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { db, fireTab } from '../../firebase';
 import Loader from '../Loader/Loader';
 import Modal from '../Modal/Modal';
@@ -10,121 +10,114 @@ import { FaSearch } from 'react-icons/fa';
 import './ListQuestions.scss';
 import { BASE_ID, DATABASE } from '../../utils/constants';
 
-function ListQuestions() {
-  //State Liste//
+export default function ListQuestions() {
   const [questions, setQuestions] = useState([]);
-  const [loader, setLoader] = useState(false);
-  const [textSucces, setTextSucces] = useState('');
-  const [displayModalSucces, setDisplayModalSucces] = useState(false);
-  const [displayModalSupression, setDisplayModalSupression] = useState(false);
-  const [displayModalForm, setDisplayModalForm] = useState(false);
-  //State pour le filtre
-  const [filtered, setFiltered] = useState([]);
-  const [filtreTheme, setFiltreTheme] = useState('');
-  const [filtreNiveau, setFiltreNiveau] = useState('');
-  const [filtrePrivate, setFiltrePrivate] = useState('');
-  const [filtreWord, setFiltreWord] = useState('');
-  //State pour l'édition/suppression
-  const [selection, setSelection] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [successMessage, setSuccessMessage] = useState('');
+  const [isSuccessModalVisible, setIsSuccessModalVisible] = useState(false);
+  const [isDeletionModalVisible, setIsDeletionModalVisible] = useState(false);
+  const [isFormModalVisible, setIsFormModalVisible] = useState(false);
+  
+  const [filters, setFilters] = useState({
+    theme: '',
+    level: '',
+    isPrivate: '',
+    keyword: '',
+  });
+  
+  const [selectedQuestion, setSelectedQuestion] = useState(null);
 
-  //Chargement de la base de donnée
   useEffect(() => {
-    console.log('DATABASE', DATABASE);
-    setLoader(true);
+    setIsLoading(true);
     
     db.collection(DATABASE)
       .doc(BASE_ID)
       .get()
       .then((doc) => {
-        //console.table(doc.data().questions);
-        const questions = doc.data().questions;
-
-        questions.sort((a, b) => a.theme.localeCompare(b.theme));
-        setQuestions(questions);
-        setLoader(false);
+        const sortedQuestions = doc.data().questions.sort((a, b) => a.theme.localeCompare(b.theme));
+        setQuestions(sortedQuestions);
+        setIsLoading(false);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.error(err));
   }, []);
 
-  //Gestion de la suppression et l'édition par selection de la question en cours
-  //CallBack pour eviter le render dans <List/>
   const handleDelete = useCallback((question) => {
-    setSelection(question);
-    setDisplayModalSupression(true);
+    setSelectedQuestion(question);
+    setIsDeletionModalVisible(true);
   }, []);
 
   const handleEdit = useCallback((question) => {
-    setSelection(question);
-    setDisplayModalForm(true);
+    setSelectedQuestion(question);
+    setIsFormModalVisible(true);
   }, []);
 
   const deleteQuestion = () => {
-    setQuestions(questions.filter((question) => question.id !== selection.id));
+    setQuestions(questions.filter((question) => question.id !== selectedQuestion.id));
     db.collection(DATABASE)
       .doc(BASE_ID)
-      .update({ questions: fireTab.arrayRemove(selection) });
+      .update({ questions: fireTab.arrayRemove(selectedQuestion) });
 
-    setDisplayModalSupression(false);
-    setTextSucces('Supprimé avec Succès');
-    setDisplayModalSucces(true);
+    setIsDeletionModalVisible(false);
+    setSuccessMessage('Supprimé avec Succès');
   };
 
-  const handleSubmit = (e, editedQuest) => {
+  const handleSubmit = (e, editedQuestion) => {
     e.preventDefault();
 
     const updatedQuestions = questions.map((question) =>
-      question.id === selection.id ? editedQuest : question
+      question.id === selectedQuestion.id ? editedQuestion : question
     );
     setQuestions(updatedQuestions);
 
-    // Suppression de la base de donnée
     db.collection(DATABASE)
       .doc(BASE_ID)
       .update({
-        questions: fireTab.arrayRemove(selection),
+        questions: fireTab.arrayRemove(selectedQuestion),
       })
       .then(() =>
         db
           .collection(DATABASE)
           .doc(BASE_ID)
-          .update({ questions: fireTab.arrayUnion(editedQuest) })
+          .update({ questions: fireTab.arrayUnion(editedQuestion) })
       );
 
-    setDisplayModalForm(false);
-    setTextSucces('Modifié avec Succès');
-    setDisplayModalSucces(true);
+    setIsFormModalVisible(false);
+    setSuccessMessage('Modifié avec Succès');
+    setIsSuccessModalVisible(true);
   };
 
-  useEffect(() => {
-    const normalizeString = (str) => str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 
-    const filterQuestions = () => {
-      return questions.filter((question) => {
-        const privateCopy = filtrePrivate === 'oui';
 
-        const matchesTheme = filtreTheme === '' || question.theme === filtreTheme;
-        const matchesNiveau = filtreNiveau === '' || question.niveau === filtreNiveau;
-        const matchesPrivate = filtrePrivate === '' || question.private === privateCopy;
-        const matchesWord =
-          filtreWord.length <= 2 ||
-          [question.question, question.info, ...question.choix]
-            .map(normalizeString)
-            .some((text) =>
-              text.toLowerCase().includes(normalizeString(filtreWord).toLowerCase())
-            );
+  const normalizeString = (str) => str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 
-        return matchesTheme && matchesNiveau && matchesPrivate && matchesWord;
-      });
-    };
+  const filteredQuestions = useMemo(() => {
+    return questions.filter((question) => {
+      const { theme, level, isPrivate, keyword } = filters;
+      const privateCopy = isPrivate === 'oui';
 
-    const filteredQuestions = filterQuestions();
-    setFiltered(filteredQuestions);
-  }, [questions, filtreTheme, filtreNiveau, filtrePrivate, filtreWord]);
+      const matchesTheme = theme === '' || question.theme === theme;
+      const matchesLevel = level === '' || question.niveau === level;
+      const matchesPrivate = isPrivate === '' || question.private === privateCopy;
+      const matchesKeyword =
+        keyword.length <= 2 ||
+        [question.question, question.info, ...question.choix]
+          .map(normalizeString)
+          .some((text) =>
+            text.toLowerCase().includes(normalizeString(keyword).toLowerCase())
+          );
+
+      return matchesTheme && matchesLevel && matchesPrivate && matchesKeyword;
+    });
+  }, [questions, filters]);
+
+  const handleFilterChange = (filterName, value) => {
+    setFilters(prevFilters => ({ ...prevFilters, [filterName]: value }));
+  };
 
   /*********************Rendu JSX*********************/
   return (
     <>
-      {loader ? (
+      {isLoading ? (
         <Loader />
       ) : (
         <div className='ListQuestion'>
@@ -136,7 +129,10 @@ function ListQuestions() {
             <legend>
               <FaSearch className='icon' /> Filtrer
             </legend>
-            <select value={filtreTheme} onChange={(e) => setFiltreTheme(e.target.value)}>
+            <select 
+              value={filters.theme} 
+              onChange={(e) => handleFilterChange('theme', e.target.value)}
+            >
               <option value=''>Choisir un Thème</option>
               <option value='compagnons'>Les Compagnons</option>
               <option value='coran'>Coran</option>
@@ -149,8 +145,9 @@ function ListQuestions() {
             </select>
 
             <select
-              value={filtreNiveau}
-              onChange={(e) => setFiltreNiveau(e.target.value)}>
+              value={filters.level}
+              onChange={(e) => handleFilterChange('level', e.target.value)}
+            >
               <option value=''>Choisir un Niveau</option>
               <option value='1'>Débutant</option>
               <option value='2'>Intermédiaire</option>
@@ -158,8 +155,9 @@ function ListQuestions() {
             </select>
 
             <select
-              value={filtrePrivate}
-              onChange={(e) => setFiltrePrivate(e.target.value)}>
+              value={filters.isPrivate}
+              onChange={(e) => handleFilterChange('isPrivate', e.target.value)}
+            >
               <option value=''>Caché?</option>
               <option value='oui'>Oui</option>
               <option value='non'>Non</option>
@@ -168,37 +166,40 @@ function ListQuestions() {
             <input
               type='search'
               placeholder='Chercher un mot'
-              value={filtreWord}
-              onChange={(e) => setFiltreWord(e.target.value)}
+              value={filters.keyword}
+              onChange={(e) => handleFilterChange('keyword', e.target.value)}
             />
 
             <span className='nb-question'>
-              {filtered.length}/{questions.length}
+              {filteredQuestions.length}/{questions.length}
             </span>
           </fieldset>
 
-          {/* Liste des Questions */}
-          <List filtered={filtered} handleDelete={handleDelete} handleEdit={handleEdit} />
+          <List 
+            filtered={filteredQuestions} 
+            handleDelete={handleDelete} 
+            handleEdit={handleEdit} 
+          />
 
-          {/* Formulaire */}
-          {displayModalForm && (
+          {isFormModalVisible && (
             <FormEdit
-              question={selection}
-              setDisplayModalForm={() => setDisplayModalForm(false)}
+              question={selectedQuestion}
+              setDisplayModalForm={() => setIsFormModalVisible(false)}
               handleSubmit={handleSubmit}
             />
           )}
 
-          {/* Affichage du modal confirmation d'edition */}
-          {displayModalSucces && (
-            <Modal h1={textSucces} close={() => setDisplayModalSucces(false)} />
+          {isSuccessModalVisible && (
+            <Modal 
+              h1={successMessage} 
+              close={() => setIsSuccessModalVisible(false)} 
+            />
           )}
 
-          {/* Affichage du modal confirmation de suppression */}
-          {displayModalSupression && (
+          {isDeletionModalVisible && (
             <ConfirmSupp
               deleteQuestion={deleteQuestion}
-              close={() => setDisplayModalSupression(false)}
+              close={() => setIsDeletionModalVisible(false)}
             />
           )}
         </div>
@@ -206,5 +207,3 @@ function ListQuestions() {
     </>
   );
 }
-
-export default ListQuestions;

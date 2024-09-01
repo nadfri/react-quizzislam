@@ -11,7 +11,7 @@ function List(props) {
       <ul>
         <li>
           <b>Thème: </b>
-          {question.theme}
+          <span className="capitalize">{question.theme}</span>
         </li>
         <li>
           <b>Caché: </b>
