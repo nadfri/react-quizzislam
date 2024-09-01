@@ -7,7 +7,7 @@ import Loader from './../Loader/Loader';
 import Share from '../Share/Share';
 import { FaTrophy } from 'react-icons/fa';
 import './ScoreFinal.scss';
-import { TOP } from '../../utils/top';
+import { TOP } from '../../utils/constants';
 
 function ScoreFinal(props) {
   const { goodReponse, maxQuestions, score, pseudo } = props;

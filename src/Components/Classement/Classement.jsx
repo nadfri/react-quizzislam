@@ -3,7 +3,7 @@ import { db } from '../../firebase';
 import ListClassement from '../ListClassement/ListClassement';
 import Loader from '../Loader/Loader';
 import ScrollTop from '../ScrollTop/ScrollTop';
-import { TOP } from '../../utils/top';
+import { TOP } from '../../utils/constants';
 import './Classement.scss';
 
 function Classement() {

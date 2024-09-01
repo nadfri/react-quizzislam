@@ -8,6 +8,7 @@ import Speaker from '../Speaker/Speaker';
 import Pseudo from '../Pseudo/Pseudo';
 import ProgressBar from '../ProgressBar/ProgressBar';
 import ScoreFinal from '../ScoreFinal/ScoreFinal';
+import { BASE_ID, DATABASE } from '../../utils/constants';
 
 function Competition() {
   /***GLOBAL VARIABLES***/
@@ -26,9 +27,6 @@ function Competition() {
   const correct = new Audio(correctURL);
   const incorrect = new Audio(incorrectURL);
   const audios = [correct, incorrect];
-
-  /*DATAS*/
-  const baseID = 'hz2fK3KpYDlCG7af12t9';
 
   /***STATE HOOKS***/
   const [state, setState] = useState([{ choix: [] }]);
@@ -60,8 +58,8 @@ function Competition() {
   useEffect(() => {
     setLoader(true);
     //Chargement des Questions
-    db.collection('dataBase')
-      .doc(baseID)
+    db.collection(DATABASE)
+      .doc(BASE_ID)
       .get()
       .then((doc) => {
         setLoader(false);

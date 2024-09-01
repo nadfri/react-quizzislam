@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FaSignInAlt } from 'react-icons/fa';
-import { TOP } from '../../utils/top';
+import { TOP } from '../../utils/constants';
 import './Pseudo.scss';
 
 export default function Pseudo(props) {

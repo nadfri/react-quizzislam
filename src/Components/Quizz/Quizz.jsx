@@ -18,6 +18,7 @@ import backText from '../../Backgrounds/background11.webp';
 
 import correctURL from '../../Sounds/correct.mp3';
 import incorrectURL from '../../Sounds/incorrect.mp3';
+import { BASE_ID, DATABASE } from '../../utils/constants';
 
 function Quizz(props) {
   /*DOM*/
@@ -32,7 +33,6 @@ function Quizz(props) {
   const audios = [correct, incorrect];
 
   /*DATAS*/
-  const baseID = 'hz2fK3KpYDlCG7af12t9';
   const theme = props.match.params.theme;
   const niveau = props.match.params.niveau > 4 ? '4' : props.match.params.niveau;
   const background = {
@@ -103,8 +103,8 @@ function Quizz(props) {
   useEffect(() => {
     resetQuizz(); // Réinitialise le quizz lorsque le niveau change
     setLoader(true);
-    db.collection('dataBase')
-      .doc(baseID)
+    db.collection(DATABASE)
+      .doc(BASE_ID)
       .get()
       .then((doc) => {
         setLoader(false);

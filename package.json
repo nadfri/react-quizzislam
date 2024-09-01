@@ -1,6 +1,6 @@
 {
   "name": "react-quizz-islam",
-  "version": "1.3.3",
+  "version": "1.4.0",
   "private": true,
   "dependencies": {
     "@emailjs/browser": "^3.11.0",

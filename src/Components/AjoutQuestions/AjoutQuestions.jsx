@@ -4,10 +4,9 @@ import './AjoutQuestions.scss';
 import Modal from '../Modal/Modal';
 import { Link } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
+import { BASE_ID, DATABASE } from '../../utils/constants';
 
 function AjoutQuestions() {
-  const baseID = 'hz2fK3KpYDlCG7af12t9';
-
   //State
   const [questions, setQuestions] = useState([]);
   const [theme, setTheme] = useState('');
@@ -22,8 +21,8 @@ function AjoutQuestions() {
 
   //Chargement de la base de donnée
   useEffect(() => {
-    db.collection('dataBase')
-      .doc(baseID)
+    db.collection(DATABASE)
+      .doc(BASE_ID)
       .get()
       .then((doc) => {
         //console.log(doc.data().questions);
@@ -64,8 +63,8 @@ function AjoutQuestions() {
     const copy = [...questions, newQuestion];
     setQuestions(copy);
 
-    db.collection('dataBase')
-      .doc(baseID)
+    db.collection(DATABASE)
+      .doc(BASE_ID)
       .update({ questions: fireTab.arrayUnion(newQuestion) });
 
     setDisplayModal(true);
@@ -79,10 +78,38 @@ function AjoutQuestions() {
     setInfo('');
   };
 
+  const copyDataBase = async (sourceDocId, targetDocId) => {
+    try {
+      // Récupérer le document source
+      const sourceDocRef = db.collection('dataBase').doc(sourceDocId);
+      const sourceDoc = await sourceDocRef.get();
+
+      if (!sourceDoc.exists) {
+        console.log(`Document ${sourceDocId} non trouvé dans la collection dataBase.`);
+        return;
+      }
+
+      // Copier le document dans la collection 'dataBase-dev'
+      const targetDocRef = db.collection('dataBase-dev').doc(targetDocId);
+      await targetDocRef.set(sourceDoc.data());
+
+      console.log(
+        `Document ${sourceDocId} copié avec succès dans dataBase-dev sous ${targetDocId}.`
+      );
+    } catch (error) {
+      console.error('Erreur lors de la copie du document :', error);
+    }
+  };
+
   /********************Rendu JSX********************/
   return (
     <div className='AjoutQuestions'>
       <h1>Ajout de Questions</h1>
+
+      {/* <button
+        onClick={() => copyDataBase('hz2fK3KpYDlCG7af12t9', 'ai2N9LrVwBWRSbF5tRnW')}>
+        Copy dataBase to DB Dev
+      </button> */}
 
       <form onSubmit={handleSubmit} className='form'>
         <fieldset>
