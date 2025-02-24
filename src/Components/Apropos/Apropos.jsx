@@ -6,7 +6,7 @@ import { FaFacebook } from 'react-icons/fa';
 import { FaInstagram } from 'react-icons/fa';
 import { FaExternalLinkAlt } from 'react-icons/fa';
 import { FaGift } from 'react-icons/fa6';
-import { IoLogoYoutube } from "react-icons/io";
+import { IoLogoYoutube } from 'react-icons/io';
 import './Apropos.scss';
 
 function Apropos() {
@@ -42,13 +42,13 @@ function Apropos() {
 
         <p>
           Si vous avez aimé cette application, vous pouvez faire un don pour la
-          construction d'un collège musulman{' '}{' '}
+          construction d'un {' '}
           <a
-            href='https://masjidbox.com/donations/mosquee-de-savigny-le-temple/travaux-de-finition-dagrandissement-de-lecolecollege-de-la-mosquee-de-savigny-le-temple'
+            href='https://masjidbox.com/donations/mosquee-de-savigny-le-temple/faites-un-don-pour-votre-mosquee'
             target='_blank'
             rel='noreferrer'>
-            <FaGift />
-          </a>{' '}
+            collège musulman <FaGift />
+          </a>
         </p>
 
         <p>
@@ -70,9 +70,9 @@ function Apropos() {
           </a>
         </p>
 
-        <p>Version 1.1.0</p>
+        <p>Version 1.2.0</p>
 
-        <p>2021-2024</p>
+        <p>2021-2025</p>
       </fieldset>
     </div>
   );
