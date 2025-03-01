@@ -4,7 +4,7 @@ import './AjoutQuestions.scss';
 import Modal from '../Modal/Modal';
 import { Link } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
-import { BASE_ID, DATABASE } from '../../utils/constants';
+import { DB_ID, DATABASE } from '../../utils/constants';
 
 function AjoutQuestions() {
   //State
@@ -22,7 +22,7 @@ function AjoutQuestions() {
   //Chargement de la base de donnée
   useEffect(() => {
     db.collection(DATABASE)
-      .doc(BASE_ID)
+      .doc(DB_ID)
       .get()
       .then((doc) => {
         //console.log(doc.data().questions);
@@ -64,7 +64,7 @@ function AjoutQuestions() {
     setQuestions(copy);
 
     db.collection(DATABASE)
-      .doc(BASE_ID)
+      .doc(DB_ID)
       .update({ questions: fireTab.arrayUnion(newQuestion) });
 
     setDisplayModal(true);

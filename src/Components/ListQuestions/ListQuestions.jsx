@@ -8,7 +8,7 @@ import List from './List';
 import ConfirmSupp from './ConfirmSupp';
 import { FaSearch } from 'react-icons/fa';
 import './ListQuestions.scss';
-import { BASE_ID, DATABASE } from '../../utils/constants';
+import { DB_ID, DATABASE } from '../../utils/constants';
 
 export default function ListQuestions() {
   const [questions, setQuestions] = useState([]);
@@ -17,24 +17,26 @@ export default function ListQuestions() {
   const [isSuccessModalVisible, setIsSuccessModalVisible] = useState(false);
   const [isDeletionModalVisible, setIsDeletionModalVisible] = useState(false);
   const [isFormModalVisible, setIsFormModalVisible] = useState(false);
-  
+
   const [filters, setFilters] = useState({
     theme: '',
     level: '',
     isPrivate: '',
     keyword: '',
   });
-  
+
   const [selectedQuestion, setSelectedQuestion] = useState(null);
 
   useEffect(() => {
     setIsLoading(true);
-    
+
     db.collection(DATABASE)
-      .doc(BASE_ID)
+      .doc(DB_ID)
       .get()
       .then((doc) => {
-        const sortedQuestions = doc.data().questions.sort((a, b) => a.theme.localeCompare(b.theme));
+        const sortedQuestions = doc
+          .data()
+          .questions.sort((a, b) => a.theme.localeCompare(b.theme));
         setQuestions(sortedQuestions);
         setIsLoading(false);
       })
@@ -54,7 +56,7 @@ export default function ListQuestions() {
   const deleteQuestion = () => {
     setQuestions(questions.filter((question) => question.id !== selectedQuestion.id));
     db.collection(DATABASE)
-      .doc(BASE_ID)
+      .doc(DB_ID)
       .update({ questions: fireTab.arrayRemove(selectedQuestion) });
 
     setIsDeletionModalVisible(false);
@@ -70,14 +72,14 @@ export default function ListQuestions() {
     setQuestions(updatedQuestions);
 
     db.collection(DATABASE)
-      .doc(BASE_ID)
+      .doc(DB_ID)
       .update({
         questions: fireTab.arrayRemove(selectedQuestion),
       })
       .then(() =>
         db
           .collection(DATABASE)
-          .doc(BASE_ID)
+          .doc(DB_ID)
           .update({ questions: fireTab.arrayUnion(editedQuestion) })
       );
 
@@ -85,8 +87,6 @@ export default function ListQuestions() {
     setSuccessMessage('Modifié avec Succès');
     setIsSuccessModalVisible(true);
   };
-
-
 
   const normalizeString = (str) => str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 
@@ -111,7 +111,7 @@ export default function ListQuestions() {
   }, [questions, filters]);
 
   const handleFilterChange = (filterName, value) => {
-    setFilters(prevFilters => ({ ...prevFilters, [filterName]: value }));
+    setFilters((prevFilters) => ({ ...prevFilters, [filterName]: value }));
   };
 
   /*********************Rendu JSX*********************/
@@ -129,10 +129,9 @@ export default function ListQuestions() {
             <legend>
               <FaSearch className='icon' /> Filtrer
             </legend>
-            <select 
-              value={filters.theme} 
-              onChange={(e) => handleFilterChange('theme', e.target.value)}
-            >
+            <select
+              value={filters.theme}
+              onChange={(e) => handleFilterChange('theme', e.target.value)}>
               <option value=''>Choisir un Thème</option>
               <option value='compagnons'>Les Compagnons</option>
               <option value='coran'>Coran</option>
@@ -146,8 +145,7 @@ export default function ListQuestions() {
 
             <select
               value={filters.level}
-              onChange={(e) => handleFilterChange('level', e.target.value)}
-            >
+              onChange={(e) => handleFilterChange('level', e.target.value)}>
               <option value=''>Choisir un Niveau</option>
               <option value='1'>Débutant</option>
               <option value='2'>Intermédiaire</option>
@@ -156,8 +154,7 @@ export default function ListQuestions() {
 
             <select
               value={filters.isPrivate}
-              onChange={(e) => handleFilterChange('isPrivate', e.target.value)}
-            >
+              onChange={(e) => handleFilterChange('isPrivate', e.target.value)}>
               <option value=''>Caché?</option>
               <option value='oui'>Oui</option>
               <option value='non'>Non</option>
@@ -175,10 +172,10 @@ export default function ListQuestions() {
             </span>
           </fieldset>
 
-          <List 
-            filtered={filteredQuestions} 
-            handleDelete={handleDelete} 
-            handleEdit={handleEdit} 
+          <List
+            filtered={filteredQuestions}
+            handleDelete={handleDelete}
+            handleEdit={handleEdit}
           />
 
           {isFormModalVisible && (
@@ -190,10 +187,7 @@ export default function ListQuestions() {
           )}
 
           {isSuccessModalVisible && (
-            <Modal 
-              h1={successMessage} 
-              close={() => setIsSuccessModalVisible(false)} 
-            />
+            <Modal h1={successMessage} close={() => setIsSuccessModalVisible(false)} />
           )}
 
           {isDeletionModalVisible && (

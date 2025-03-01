@@ -18,7 +18,8 @@ import backText from '../../Backgrounds/background11.webp';
 
 import correctURL from '../../Sounds/correct.mp3';
 import incorrectURL from '../../Sounds/incorrect.mp3';
-import { BASE_ID, DATABASE } from '../../utils/constants';
+import { DB_ID, DATABASE } from '../../utils/constants';
+import { randomize } from '../../utils/randomize';
 
 function Quizz(props) {
   /*DOM*/
@@ -75,17 +76,6 @@ function Quizz(props) {
   const [mute, setMute] = useState(muteStorage);
   const reponses = useRef();
 
-  function randomize(tab) {
-    var i, j, tmp;
-    for (i = tab.length - 1; i > 0; i--) {
-      j = Math.floor(Math.random() * (i + 1));
-      tmp = tab[i];
-      tab[i] = tab[j];
-      tab[j] = tmp;
-    }
-    return tab;
-  }
-
   /***USE EFFECT***/
   const resetQuizz = () => {
     setState([{ choix: [] }]);
@@ -104,7 +94,7 @@ function Quizz(props) {
     resetQuizz(); // Réinitialise le quizz lorsque le niveau change
     setLoader(true);
     db.collection(DATABASE)
-      .doc(BASE_ID)
+      .doc(DB_ID)
       .get()
       .then((doc) => {
         setLoader(false);
@@ -259,7 +249,11 @@ function Quizz(props) {
               </button>
             </>
           )}
-          <div className='erreur' onClick={() => setDisplayFormError(true)}>
+          <div
+            className='erreur'
+            onClick={() => setDisplayFormError(true)}
+            role='button'
+            tabIndex='0'>
             Signaler une erreur?
           </div>
           {/* <div className='erreur'>

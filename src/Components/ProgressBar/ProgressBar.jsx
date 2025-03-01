@@ -1,7 +1,8 @@
+import './ProgressBar.scss';
 import React from 'react';
 import { CountdownCircleTimer } from 'react-countdown-circle-timer';
-import './ProgressBar.scss';
 import chronoURL from '../../Sounds/chrono.mp3';
+import { DURATION } from '../../utils/constants';
 
 const once = true;
 function ProgressBar(props) {
@@ -9,7 +10,7 @@ function ProgressBar(props) {
 		<div className='ProgressBar'>
 			<CountdownCircleTimer
 				isPlaying
-				duration={props.duree}
+				duration={DURATION}
 				colors={[['#1dfd94', 0.5], ['#FFFF00', 0.5], ['#FF0000']]}
 				size={130}
 				strokeWidth={12}

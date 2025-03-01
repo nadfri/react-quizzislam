@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FaSignInAlt } from 'react-icons/fa';
-import { TOP } from '../../utils/constants';
+import { MIN_POINT, TOP, BONUS, MALUS } from '../../utils/constants';
 import './Pseudo.scss';
 
 export default function Pseudo(props) {
@@ -25,7 +25,7 @@ export default function Pseudo(props) {
           maxLength={15}
           required
           pattern='.{0,15}'
-          title='Le pseudo ne doit pas dépasser 20 caractères.'
+          title='Le pseudo ne doit pas dépasser 15 caractères.'
         />
 
         <button>
@@ -37,13 +37,13 @@ export default function Pseudo(props) {
         <p>Répondre à un maximum de questions dans le temps imparti.</p>
 
         <p>
-          Une bonne réponse vaut entre <span className='green'>{props.min}</span> et{' '}
-          <span className='green'>{props.bonus}</span> points, selon votre rapidité.
+          Une bonne réponse vaut entre <span className='green'>{MIN_POINT}</span> et{' '}
+          <span className='green'>{BONUS}</span> points, selon votre rapidité.
         </p>
 
         <p>
           Attention! Une mauvaise réponse fait perdre{' '}
-          <span className='red'>{props.malus}</span> points.
+          <span className='red'>{MALUS}</span> points.
         </p>
 
         <p>

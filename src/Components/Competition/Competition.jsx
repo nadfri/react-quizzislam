@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
 import './Competition.scss';
+import React, { useState, useEffect } from 'react';
 import { db } from '../../firebase';
 import Loader from '../Loader/Loader';
 import correctURL from '../../Sounds/correct.mp3';
@@ -8,7 +8,8 @@ import Speaker from '../Speaker/Speaker';
 import Pseudo from '../Pseudo/Pseudo';
 import ProgressBar from '../ProgressBar/ProgressBar';
 import ScoreFinal from '../ScoreFinal/ScoreFinal';
-import { BASE_ID, DATABASE } from '../../utils/constants';
+import { randomize } from '../../utils/randomize';
+import { DB_ID, BONUS, DATABASE, MALUS, MIN_POINT } from '../../utils/constants';
 
 function Competition() {
   /***GLOBAL VARIABLES***/
@@ -16,11 +17,6 @@ function Competition() {
   let btns = document.querySelectorAll('button');
   let skews = document.querySelectorAll('.skew');
   let interfaceDiv = document.querySelector('.interfaceDiv');
-
-  const duree = 240;
-  const bonus = 1000;
-  const malus = 400;
-  const min = 200;
 
   /*AUDIO*/
   const muteStorage = JSON.parse(localStorage.getItem('mute')) || false;
@@ -43,23 +39,12 @@ function Competition() {
   const [point, setPoint] = useState(null);
   const [goodReponse, setGoodreponse] = useState(0);
 
-  function randomize(tab) {
-    var i, j, tmp;
-    for (i = tab.length - 1; i > 0; i--) {
-      j = Math.floor(Math.random() * (i + 1));
-      tmp = tab[i];
-      tab[i] = tab[j];
-      tab[j] = tmp;
-    }
-    return tab;
-  }
-
   /***Chargement des bases de données***/
   useEffect(() => {
     setLoader(true);
     //Chargement des Questions
     db.collection(DATABASE)
-      .doc(BASE_ID)
+      .doc(DB_ID)
       .get()
       .then((doc) => {
         setLoader(false);
@@ -100,8 +85,8 @@ function Competition() {
       skews[0].classList.add('green');
       skews[1].classList.add('green');
 
-      let newScore = Math.floor(bonus + 100 - (endTime - startTime) / 10) * doublePoint;
-      newScore = newScore < min * doublePoint ? min * doublePoint : newScore;
+      let newScore = Math.floor(BONUS + 100 - (endTime - startTime) / 10) * doublePoint;
+      newScore = newScore < MIN_POINT * doublePoint ? MIN_POINT * doublePoint : newScore;
       //console.log('Score', newScore);
       setPoint('+' + newScore);
       setScore((prev) => prev + newScore);
@@ -112,8 +97,8 @@ function Competition() {
       skews[0].classList.add('red');
       skews[1].classList.add('red');
 
-      setPoint(-malus);
-      setScore((prev) => prev - malus);
+      setPoint(-MALUS);
+      setScore((prev) => prev - MALUS);
       setSkewText('FAUX!');
       incorrect.play();
     }
@@ -161,9 +146,7 @@ function Competition() {
   /***RENDU JSX***/
   return (
     <div className='Competition'>
-      {displayPseudo && (
-        <Pseudo startGame={startGame} bonus={bonus} malus={malus} min={min} />
-      )}
+      {displayPseudo && <Pseudo startGame={startGame} />}
 
       {displayQuizz && minuteur === 'start' && (
         <>
@@ -176,7 +159,7 @@ function Competition() {
               <div className='skew point'>{point}</div>
             </div>
 
-            <ProgressBar duree={duree} over={() => setMinuteur('end')} mute={mute} />
+            <ProgressBar over={() => setMinuteur('end')} mute={mute} />
           </div>
 
           <div className='interfaceDiv slideIn'>

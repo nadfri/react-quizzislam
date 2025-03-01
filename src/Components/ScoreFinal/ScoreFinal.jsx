@@ -1,17 +1,18 @@
+import './ScoreFinal.scss';
 import React, { useState, useEffect } from 'react';
 import { db } from '../../firebase';
-import ListClassement from '../ListClassement/ListClassement';
-import ScrollTop from '../ScrollTop/ScrollTop';
 import bellURL from '../../Sounds/bell.mp3';
 import Loader from './../Loader/Loader';
 import Share from '../Share/Share';
 import { FaTrophy } from 'react-icons/fa';
-import './ScoreFinal.scss';
-import { TOP } from '../../utils/constants';
+import ScrollTop from '../ScrollTop/ScrollTop';
+import ListClassement from '../ListClassement/ListClassement';
+import { CLASSEMENT, CLASSEMENT_ID, TOP } from '../../utils/constants';
 
 function ScoreFinal(props) {
+
+
   const { goodReponse, maxQuestions, score, pseudo } = props;
-  const classementID = 'XXJ9yQ0slzmwKLLEr1fI';
   let couleur, Texte, background;
   const note = `${goodReponse}/${maxQuestions}`;
 
@@ -30,8 +31,8 @@ function ScoreFinal(props) {
 
   useEffect(() => {
     //Chargement du Classement
-    db.collection('classement')
-      .doc(classementID)
+    db.collection(CLASSEMENT)
+      .doc(CLASSEMENT_ID)
       .get({ source: 'server' }) // Forcer la récupération des données depuis le serveur
       .then((doc) => {
         setLoader(false);
@@ -76,7 +77,7 @@ function ScoreFinal(props) {
     setClassementFinal(classement.sort((a, b) => b.score - a.score));
     //set pour ecraser la base de donnée existante aulieu d'update()
     if (navigator.onLine) {
-      db.collection('classement').doc(classementID).set({ classement });
+      db.collection(CLASSEMENT).doc(CLASSEMENT_ID).set({ classement });
       console.log('online');
     } else {
       setOffline(true);
