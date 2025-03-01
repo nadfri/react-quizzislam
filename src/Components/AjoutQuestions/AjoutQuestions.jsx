@@ -78,23 +78,27 @@ function AjoutQuestions() {
     setInfo('');
   };
 
-  const copyDataBase = async (sourceDocId, targetDocId) => {
+  const copyDataBase = async () => {
     try {
       // Récupérer le document source
-      const sourceDocRef = db.collection('dataBase').doc(sourceDocId);
+      const sourceDocRef = db.collection('dataBase').doc(process.env.REACT_APP_DB_ID);
       const sourceDoc = await sourceDocRef.get();
 
       if (!sourceDoc.exists) {
-        console.log(`Document ${sourceDocId} non trouvé dans la collection dataBase.`);
+        console.log(
+          `Document ${process.env.REACT_APP_DB_ID} non trouvé dans la collection dataBase.`
+        );
         return;
       }
 
       // Copier le document dans la collection 'dataBase-dev'
-      const targetDocRef = db.collection('dataBase-dev').doc(targetDocId);
+      const targetDocRef = db
+        .collection('dataBase-dev')
+        .doc(process.env.REACT_APP_DB_ID_DEV);
       await targetDocRef.set(sourceDoc.data());
 
       console.log(
-        `Document ${sourceDocId} copié avec succès dans dataBase-dev sous ${targetDocId}.`
+        `Document ${process.env.REACT_APP_DB_ID} copié avec succès dans dataBase-dev sous ${process.env.REACT_APP_DB_ID_DEV}.`
       );
     } catch (error) {
       console.error('Erreur lors de la copie du document :', error);
@@ -106,8 +110,7 @@ function AjoutQuestions() {
     <div className='AjoutQuestions'>
       <h1>Ajout de Questions</h1>
 
-      {/* <button
-        onClick={() => copyDataBase('hz2fK3KpYDlCG7af12t9', 'ai2N9LrVwBWRSbF5tRnW')}>
+      {/* <button onClick={copyDataBase}>
         Copy dataBase to DB Dev
       </button> */}
 
