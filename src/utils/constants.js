@@ -15,7 +15,7 @@ export const CLASSEMENT_ID =
     : process.env.REACT_APP_CLASSEMENT_ID;
 
 export const TOP = 500;
-export const DURATION = process.env.NODE_ENV === 'development' ? 20 : 240;
+export const DURATION = process.env.NODE_ENV === 'development' ? 15 : 240;
 export const BONUS = 1000;
 export const MALUS = 400;
 export const MIN_POINT = 200;

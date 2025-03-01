@@ -5,18 +5,20 @@ import bellURL from '../../Sounds/bell.mp3';
 import Loader from './../Loader/Loader';
 import Share from '../Share/Share';
 import { FaTrophy } from 'react-icons/fa';
-import ScrollTop from '../ScrollTop/ScrollTop';
 import ListClassement from '../ListClassement/ListClassement';
 import { CLASSEMENT, CLASSEMENT_ID, TOP } from '../../utils/constants';
 
 function ScoreFinal(props) {
-
+  let couleur, Texte, background;
 
   const { goodReponse, maxQuestions, score, pseudo } = props;
-  let couleur, Texte, background;
+
   const note = `${goodReponse}/${maxQuestions}`;
 
-  const [classementFinal, setClassementFinal] = useState(null);
+  // Vérification si le score est strictement positif
+  const isScorePositif = score > 0;
+
+  const [classementFinal, setClassementFinal] = useState([]);
   const [rank, setRank] = useState(null);
   const [loader, setLoader] = useState(true);
   const [notBetter, setNotBetter] = useState(false);
@@ -30,15 +32,25 @@ function ScoreFinal(props) {
   );
 
   useEffect(() => {
+    // Si le score n'est pas positif, ne pas charger le classement
+    if (!isScorePositif) {
+      setLoader(false);
+      return;
+    }
+
     //Chargement du Classement
     db.collection(CLASSEMENT)
       .doc(CLASSEMENT_ID)
       .get({ source: 'server' }) // Forcer la récupération des données depuis le serveur
       .then((doc) => {
         setLoader(false);
+        if (!doc.exists || !doc.data() || !doc.data().classement) {
+          console.log("Document n'existe pas ou est mal formaté");
+          return;
+        }
+
         const classement = doc.data().classement.sort((a, b) => b.score - a.score);
         const indexPlayer = classement.findIndex((user) => user.pseudo === pseudo);
-        //console.log('indexPlayer :>> ', indexPlayer);
 
         //Joueur deja dans le classement
         if (indexPlayer > -1) {
@@ -70,7 +82,10 @@ function ScoreFinal(props) {
           }
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        setLoader(false);
+      });
   }, []);
 
   function updateClassement(classement) {
@@ -95,7 +110,6 @@ function ScoreFinal(props) {
 
     case goodReponse / maxQuestions > 0.75:
       couleur = 'green';
-
       break;
 
     case goodReponse / maxQuestions >= 0.5 && goodReponse / maxQuestions < 0.75:
@@ -112,6 +126,17 @@ function ScoreFinal(props) {
   }
 
   switch (true) {
+    // Cas pour les scores négatifs ou nuls
+    case !isScorePositif:
+      Texte = (
+        <div>
+          Ton score doit être supérieur à 0 pour avoir une chance de rentrer dans le
+          classement. Continue de t'entrainer !
+        </div>
+      );
+      background = 'backRed';
+      break;
+
     case notBetter === true:
       Texte = (
         <div>
@@ -133,26 +158,26 @@ function ScoreFinal(props) {
       );
       background = 'backGreen';
       break;
+
     case rank === 1:
       Texte = (
         <div className='gold'>
           Machallah <span className='colorBlue'>{pseudo}!</span>
-          <div>
-            Tu es 1er
-            <FaTrophy className='icon' />
+          <div className='align-center'>
+            Tu es 1er <FaTrophy className='icon' />
             {offline && offlineText}
           </div>
         </div>
       );
       background = 'backGreen';
       break;
+
     case rank === 2:
       Texte = (
         <div className='silver'>
           Machallah <span className='colorBlue'>{pseudo}!</span>
-          <div>
-            Tu es 2ème
-            <FaTrophy className='icon' />
+          <div className='align-center'>
+            Tu es 2ème <FaTrophy className='icon' />
           </div>
           {offline && offlineText}
         </div>
@@ -164,9 +189,8 @@ function ScoreFinal(props) {
       Texte = (
         <div className='bronze'>
           Machallah <span className='colorBlue'>{pseudo}!</span>
-          <div>
-            Tu es 3ème
-            <FaTrophy className='icon' />
+          <div className='align-center'>
+            Tu es 3ème <FaTrophy className='icon' />
           </div>
           {offline && offlineText}
         </div>
@@ -208,7 +232,7 @@ function ScoreFinal(props) {
 
             <Share TOP={TOP} />
 
-            {classementFinal && (
+            {rank && (
               <ListClassement
                 pseudo={pseudo}
                 score={score}
@@ -216,7 +240,7 @@ function ScoreFinal(props) {
               />
             )}
           </div>
-          {classementFinal && <ScrollTop />}
+
           <audio id='bell' src={bellURL} autoPlay muted={props.mute} />
         </div>
       )}

@@ -19,7 +19,7 @@ function Classement() {
       .doc(CLASSEMENT_ID)
       .get()
       .then((doc) => {
-        console.log(doc.data().classement);
+        // console.log(doc.data().classement);
         setClassement(doc.data().classement);
         setLoader(false);
       })
