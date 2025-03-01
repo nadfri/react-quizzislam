@@ -1,37 +1,44 @@
 .Header {
-	font-family: 'Spirax', cursive;
-	font-style: italic;
-	background-color: black;
-	height: 6%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+  font-family: 'Spirax', cursive;
+  font-style: italic;
+  background-color: black;
+  height: 6%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-	h1 {
-		margin: 0;
-		padding: 0;
-		color: gold;
-		font-size: 1.8rem;
-		background-color: transparent;
-		box-shadow: none;
-	}
+  h1 {
+    margin: 0;
+    padding: 0;
+    color: gold;
+    font-size: 1.8rem;
+    background-color: transparent;
+    box-shadow: none;
+  }
 
-	.ToggleBtn {
-		position: absolute;
-		right: 2px;
+  .ramadan-img {
+    width: 30px;
+		margin-left: 10px;
+		position: relative;
+		bottom: 2px;
+  }
 
-		.toggle {
-			vertical-align: middle;
-		}
+  .ToggleBtn {
+    position: absolute;
+    right: 2px;
 
-		&.hidden {
-			animation: hidden 0.5s forwards;
-		}
-	}
+    .toggle {
+      vertical-align: middle;
+    }
 
-	@keyframes hidden {
-		to {
-			opacity: 0;
-		}
-	}
+    &.hidden {
+      animation: hidden 0.5s forwards;
+    }
+  }
+
+  @keyframes hidden {
+    to {
+      opacity: 0;
+    }
+  }
 }
