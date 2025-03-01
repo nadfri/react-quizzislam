@@ -4,7 +4,7 @@ import './ScrollTop.scss';
 
 function ScrollTop() {
   useEffect(() => {
-    document.body.style.overflowY = 'scroll';
+    document.body.style.overflowY = 'auto';
 
     return () => {
       document.body.style.overflowY = 'initial';

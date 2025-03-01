@@ -17,7 +17,6 @@
         border-radius: 5px;
         background-color: rgba(75, 119, 141, 0.7);
         transform: skewX(-17deg) translate3d(-10px, 0, 0);
-        box-shadow: 0px 0px 5px 1px #191919;
         color: gold;
         margin: 5px 0;
         padding: 0px 5px 0px 25px;
@@ -34,7 +33,6 @@
         margin: 5px 0;
         transform: skewX(-17deg) translate3d(-100vw, 0, 0);
         padding: 5px 10px 5px 0px;
-        box-shadow: 0px 0px 5px 1px #191919;
         transition: all 0.5s;
         font-size: 1.3rem;
         text-align: right;
@@ -119,7 +117,7 @@
       margin: 5px;
       width: 46%;
       font-size: 1.1rem;
-      font-family: "Roboto slab", Arial;
+      font-family: 'Roboto slab', Arial;
       text-shadow: none;
       display: flex;
       align-items: center;
