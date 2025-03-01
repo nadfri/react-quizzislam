@@ -3,7 +3,7 @@ import './Modal.scss';
 
 function Modal(props) {
 	return (
-		<div className='Modal'>
+		<div className='Modal' role="dialog">
 			<div className='box'>
 				<h1>{props.h1}</h1>
 

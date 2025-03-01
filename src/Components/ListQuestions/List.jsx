@@ -44,10 +44,10 @@ function List(props) {
       </ul>
 
       <div className='container-icons'>
-        <div className='icons' onClick={() => props.handleEdit(question)}>
+        <div className='icons' onClick={() => props.handleEdit(question)} role="button" tabIndex="0">
           <MdEdit className="icon" />
         </div>
-        <div className='icons' onClick={() => props.handleDelete(question)}>
+        <div className='icons' onClick={() => props.handleDelete(question)} role="button" tabIndex="0">
           <FaTrashAlt className="icon" />
         </div>
       </div>

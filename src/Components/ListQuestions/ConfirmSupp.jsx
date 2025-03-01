@@ -2,7 +2,7 @@ import React from "react";
 
 function ConfirmSupp(props) {
   return (
-    <div className='Modal'>
+    <div className='Modal' role='dialog'>
       <div className='box'>
         <h1>Confirmer la Suppression ?</h1>
 
