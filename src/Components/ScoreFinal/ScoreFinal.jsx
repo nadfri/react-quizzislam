@@ -212,7 +212,7 @@ function ScoreFinal(props) {
               <ListClassement
                 pseudo={pseudo}
                 score={score}
-                classementFinal={classementFinal}
+                classement={classementFinal}
               />
             )}
           </div>

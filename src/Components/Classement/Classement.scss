@@ -5,6 +5,14 @@
     display: inline-block;
   }
 
+  .classement-zero{
+    background-color: rgba(240, 248, 255, 0.878);
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    font-style: italic;
+  }
+
   //Only for Safari
   @supports (-webkit-hyphens: none) {
     padding-bottom: 8vh;

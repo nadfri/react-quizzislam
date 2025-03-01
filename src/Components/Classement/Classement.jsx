@@ -7,7 +7,7 @@ import { CLASSEMENT, CLASSEMENT_ID, TOP } from '../../utils/constants';
 import './Classement.scss';
 
 function Classement() {
-  const [classement, setClassement] = useState(null);
+  const [classement, setClassement] = useState([]);
   const [loader, setLoader] = useState(false);
 
   // console.log({CLASSEMENT});
@@ -19,7 +19,7 @@ function Classement() {
       .doc(CLASSEMENT_ID)
       .get()
       .then((doc) => {
-        //console.log(doc.data().classement);
+        console.log(doc.data().classement);
         setClassement(doc.data().classement);
         setLoader(false);
       })
@@ -55,9 +55,39 @@ function Classement() {
     }
   };
 
+  // Fonction pour vider le tableau de classement
+  const clearClassement = async () => {
+    try {
+      // Obtenir une référence au document de classement
+      const classementRef = db.collection(CLASSEMENT).doc(CLASSEMENT_ID);
+
+      // Vérifier si le document existe
+      const doc = await classementRef.get();
+      if (!doc.exists) {
+        console.log(
+          `Document ${CLASSEMENT_ID} non trouvé dans la collection ${CLASSEMENT}.`
+        );
+        return;
+      }
+
+      // Mettre à jour le document avec un tableau vide pour le classement
+      await classementRef.update({ classement: [] });
+
+      console.log(
+        `Le classement a été vidé avec succès dans la collection ${CLASSEMENT}.`
+      );
+
+      // Mettre à jour l'état local
+      setClassement([]);
+    } catch (error) {
+      console.error('Erreur lors de la suppression du classement :', error);
+    }
+  };
+
   return (
     <>
-      {/* <button onClick={copyClassement}>Copy Classement to Classement-dev</button> */}
+      {/* <button onClick={copyClassement}>Copy classement</button> */}
+      {/* <button onClick={clearClassement}>Vider le classement</button> */}
 
       <ScrollTop />
       {loader ? (
@@ -65,7 +95,11 @@ function Classement() {
       ) : (
         <div className='Classement'>
           <h1>TOP {TOP}</h1>
-          {classement && <ListClassement classementFinal={classement} />}
+          <ListClassement classement={classement} />
+
+          {classement.length === 0 && (
+            <p className='classement-zero'>Le classement a été remis à zéro</p>
+          )}
         </div>
       )}
     </>

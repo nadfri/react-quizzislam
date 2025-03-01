@@ -3,11 +3,11 @@ import './ListClassement.scss';
 import { FaTrophy } from 'react-icons/fa';
 
 function ListClassement(props) {
-  const { pseudo, score, classementFinal } = props;
-  //console.log(classementFinal);
+  const { pseudo, score, classement } = props;
+
 
   const userID = (user) =>
-    user.pseudo === pseudo && user.score === score ? 'userID' : null;
+    user?.pseudo === pseudo && user?.score === score ? 'userID' : "";
 
   return (
     <div className='ListClassement'>
@@ -25,28 +25,28 @@ function ListClassement(props) {
             <td>
               <FaTrophy className='icon' />
             </td>
-            <td id={userID(classementFinal[0])}>{classementFinal[0].pseudo}</td>
-            <td>{classementFinal[0].score.toLocaleString()}</td>
-            <td>{classementFinal[0].note}</td>
+            <td id={userID(classement[0])}>{classement[0]?.pseudo}</td>
+            <td>{classement[0]?.score?.toLocaleString()}</td>
+            <td>{classement[0]?.note}</td>
           </tr>
           <tr className='silver'>
             <td>
               <FaTrophy className='icon' />
             </td>
 
-            <td id={userID(classementFinal[1])}>{classementFinal[1].pseudo}</td>
-            <td>{classementFinal[1].score.toLocaleString()}</td>
-            <td>{classementFinal[1].note}</td>
+            <td id={userID(classement[1])}>{classement[1]?.pseudo}</td>
+            <td>{classement[1]?.score?.toLocaleString()}</td>
+            <td>{classement[1]?.note}</td>
           </tr>
           <tr className='bronze'>
             <td>
               <FaTrophy className='icon' />
             </td>
-            <td id={userID(classementFinal[2])}>{classementFinal[2].pseudo}</td>
-            <td>{classementFinal[2].score.toLocaleString()}</td>
-            <td>{classementFinal[2].note}</td>
+            <td id={userID(classement[2])}>{classement[2]?.pseudo}</td>
+            <td>{classement[2]?.score.toLocaleString()}</td>
+            <td>{classement[2]?.note}</td>
           </tr>
-          {classementFinal
+          {classement
             .slice(3)
             .filter((user) => user.pseudo !== '')
             .map((user, index) => (
