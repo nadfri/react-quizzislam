@@ -64,8 +64,8 @@
       "label": "Classement"
     },
     {
-      "src": "images/card.webp",
-      "sizes": "794x450",
+      "src": "images/screenshots/card.webp",
+      "sizes": "793x448",
       "type": "image/webp",
       "label": "Quizz",
       "form_factor": "wide"

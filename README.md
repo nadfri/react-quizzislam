@@ -58,15 +58,15 @@ npm start
 ## 📸 Captures d'écran
 
 <div align="center">
-  <img src="https://quizzislam.netlify.app/images/screenshots/home.webp" alt="Screenshot" width="300">
-  <img src="https://quizzislam.netlify.app/images/screenshots/menu.webp" alt="Screenshot" width="300">
-  <img src="https://quizzislam.netlify.app/images/screenshots/settings.webp" alt="Screenshot" width="300">
+  <img src="https://quizzislam.netlify.app/images/screenshots/home.webp" alt="Screenshot" width="275">
+  <img src="https://quizzislam.netlify.app/images/screenshots/menu.webp" alt="Screenshot" width="275">
+  <img src="https://quizzislam.netlify.app/images/screenshots/settings.webp" alt="Screenshot" width="275">
 </div>
 
 <div align="center">
-  <img src="https://quizzislam.netlify.app/images/screenshots/training.webp" alt="Screenshot" width="300">
-  <img src="https://quizzislam.netlify.app/images/screenshots/competition.webp" alt="Screenshot" width="300">
-  <img src="https://quizzislam.netlify.app/images/screenshots/ranking.webp" alt="Screenshot" width="300">
+  <img src="https://quizzislam.netlify.app/images/screenshots/training.webp" alt="Screenshot" width="275">
+  <img src="https://quizzislam.netlify.app/images/screenshots/competition.webp" alt="Screenshot" width="275">
+  <img src="https://quizzislam.netlify.app/images/screenshots/ranking.webp" alt="Screenshot" width="275">
 </div>
 
 ## 📄 Licence
