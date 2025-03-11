@@ -1,30 +1,74 @@
 {
-	"lang": "fr",
-	"theme_color": "#000",
-	"background_color": "#4b778d",
-	"display": "standalone",
-	"orientation": "portrait",
-	"start_url": ".",
-	"name": "Quizz Islam",
-	"short_name": "QuizzIslam",
-	"description": "Quizz sur l'Islam",
-	"icons": [
-		{
-			"src": "images/icons/icon192.png",
-			"sizes": "192x192",
-			"type": "image/png"
-		},
-
-		{
-			"src": "images/icons/icon512.png",
-			"sizes": "512x512",
-			"type": "image/png"
-		},
-		{
-			"src": "images/icons/maskable_icon.png",
-			"sizes": "512x512",
-			"type": "image/png",
-			"purpose": "any maskable"
-		}
-	]
+  "lang": "fr",
+  "theme_color": "#000",
+  "background_color": "#4b778d",
+  "display": "standalone",
+  "orientation": "portrait",
+  "start_url": ".",
+  "name": "Quizz Islam",
+  "short_name": "QuizzIslam",
+  "description": "Quizz sur l'Islam",
+  "icons": [
+    {
+      "src": "images/icons/icon192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "images/icons/icon512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "images/icons/maskable_icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "images/screenshots/home.webp",
+      "sizes": "431x877",
+      "type": "image/webp",
+      "label": "Page d'accueil"
+    },
+    {
+      "src": "images/screenshots/menu.webp",
+      "sizes": "431x877",
+      "type": "image/webp",
+      "label": "Menu principal"
+    },
+    {
+      "src": "images/screenshots/settings.webp",
+      "sizes": "431x877",
+      "type": "image/webp",
+      "label": "Paramètres"
+    },
+    {
+      "src": "images/screenshots/training.webp",
+      "sizes": "431x877",
+      "type": "image/webp",
+      "label": "Mode Entraînement"
+    },
+    {
+      "src": "images/screenshots/competition.webp",
+      "sizes": "431x877",
+      "type": "image/webp",
+      "label": "Mode Compétition"
+    },
+    {
+      "src": "images/screenshots/ranking.webp",
+      "sizes": "431x877",
+      "type": "image/webp",
+      "label": "Classement"
+    },
+    {
+      "src": "images/card.webp",
+      "sizes": "794x450",
+      "type": "image/webp",
+      "label": "Quizz",
+      "form_factor": "wide"
+    }
+  ]
 }
