@@ -11,7 +11,7 @@ Une application interactive de quiz éducatif sur l'Islam développée avec Reac
 **[https://quizzislam.netlify.app/](https://quizzislam.netlify.app/)**
 
 <div align="center">
-  <img src="https://quizzislam.netlify.app/images/card.webp" alt="Screenshot" width="600">
+  <img src="https://quizzislam.netlify.app/images/screenshots/card.webp" alt="Screenshot" width="600">
 </div>
 
 ## 📝 Description
