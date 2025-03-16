@@ -1,5 +1,5 @@
 import './Competition.scss';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { db } from '../../firebase';
 import Loader from '../Loader/Loader';
 import correctURL from '../../Sounds/correct.mp3';
@@ -16,7 +16,7 @@ function Competition() {
   /*DOM*/
   let btns = document.querySelectorAll('button');
   let skews = document.querySelectorAll('.skew');
-  let interfaceDiv = document.querySelector('.interfaceDiv');
+  const interfaceDivRef = useRef(null);
 
   /*AUDIO*/
   const muteStorage = JSON.parse(localStorage.getItem('mute')) || false;
@@ -140,7 +140,7 @@ function Competition() {
 
   /***QUESTION SUIVANTE***/
   const suivant = () => {
-    interfaceDiv = document.querySelector('.interfaceDiv');
+    const interfaceDiv = interfaceDivRef.current;
 
     if (interfaceDiv) {
       btns.forEach((btn) => (btn.className = 'choice'));
@@ -149,8 +149,11 @@ function Competition() {
 
       setTimeout(() => {
         setcountQuestion((count) => count + 1);
+
         interfaceDiv.classList.replace('slideOut', 'slideIn');
+
         setStartTime(Date.now());
+        
         skews[0].className = 'skew';
         skews[1].className = 'skew point';
       }, 300);
@@ -184,6 +187,7 @@ function Competition() {
         <>
           {loader && <Loader />}
           <Speaker toggleMute={toggleMute} mute={mute} />
+
           <div className='etat'>
             <div className='score-container'>
               <div className='score'>{score}</div>
@@ -194,10 +198,10 @@ function Competition() {
             <ProgressBar over={() => setMinuteur('end')} mute={mute} />
           </div>
 
-          <div className='interfaceDiv slideIn'>
+          <div className='interfaceDiv slideIn' ref={interfaceDivRef}>
             <fieldset>
               <legend>
-                Question {countQuestion + 1} {state[countQuestion].private && <Double />}
+                Question {countQuestion + 1} {state[countQuestion]?.private && <Double />}
               </legend>
               <p>{state[countQuestion].question}</p>
             </fieldset>
