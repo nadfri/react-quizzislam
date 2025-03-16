@@ -7,11 +7,12 @@ import Share from '../Share/Share';
 import { FaTrophy } from 'react-icons/fa';
 import ListClassement from '../ListClassement/ListClassement';
 import { CLASSEMENT, CLASSEMENT_ID, TOP } from '../../utils/constants';
+import ScrollTop from '../ScrollTop/ScrollTop';
 
 function ScoreFinal(props) {
   let couleur, Texte, background;
 
-  const { goodReponse, maxQuestions, score, pseudo } = props;
+  const { goodReponse, maxQuestions, score, pseudo, onRestart } = props;
 
   const note = `${goodReponse}/${maxQuestions}`;
 
@@ -151,11 +152,19 @@ function ScoreFinal(props) {
 
       // Mise à jour de l'état local
       setClassementFinal(classement);
-      const newRank =
-        classement.findIndex((user) => user.pseudo === pseudo && user.score === score) +
-        1;
+      const newRank = classement.reduce((acc, user) => {
+        // Si l'utilisateur a un score strictement supérieur
+        if (user.score > score) {
+          return acc + 1;
+        }
+        // En cas d'égalité, départager avec le timestamp (l'utilisateur avec un timestamp inférieur est considéré mieux classé)
+        if (user.score === score && user.timestamp < currentTimestamp) {
+          return acc + 1;
+        }
+        return acc;
+      }, 1);
 
-      setRank(newRank > 0 ? newRank : null);
+      setRank(newRank);
     })
       .then(() => {
         setLoader(false);
@@ -301,7 +310,9 @@ function ScoreFinal(props) {
           </div>
           <div className={`texte ${background}`}>{Texte}</div>
           <div className='links'>
-            <a href='/competition'>Rejouer</a>
+            <button className='btn-replay' onClick={onRestart}>
+              Rejouer
+            </button>
 
             {rank && <a href='#userID'>Voir Ton Classement</a>}
 
@@ -315,6 +326,8 @@ function ScoreFinal(props) {
               />
             )}
           </div>
+
+          {classementFinal && <ScrollTop />}
 
           <audio id='bell' src={bellURL} autoPlay muted={props.mute} />
         </div>

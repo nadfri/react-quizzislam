@@ -84,11 +84,10 @@
     text-transform: capitalize;
   }
 
-  .align-center{
+  .align-center {
     display: flex;
     justify-content: center;
     align-items: center;
-
   }
 
   .colorRed {
@@ -139,17 +138,20 @@
     animation: slideToLeft 0.7s forwards;
     margin-top: 10px;
 
-    a {
+    a,
+    .btn-replay {
       width: 80%;
       max-width: 300px;
       margin: 10px;
       background-color: #4b778d;
       padding: 5px;
       transition: all 0.5s;
+      font-size: 24px;
 
       & > * {
         margin: 0 10px;
       }
+
       &:active,
       &:hover {
         background-color: #0b5b84;

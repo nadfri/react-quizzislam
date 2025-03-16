@@ -25,7 +25,9 @@ function Competition() {
   const audios = [correct, incorrect];
 
   /***STATE HOOKS***/
-  const [state, setState] = useState([{ choix: [] }]);
+  // Cette ligne initialise l'état qui contiendra les questions du quiz
+  const [state, setState] = useState([]);
+  const [originalQuestions, setOriginalQuestions] = useState(null);
   const [countQuestion, setcountQuestion] = useState(0);
   const [score, setScore] = useState(0);
   const [loader, setLoader] = useState(false);
@@ -41,23 +43,53 @@ function Competition() {
 
   /***Chargement des bases de données***/
   useEffect(() => {
+    loadQuestions();
+  }, []);
+
+  const loadQuestions = () => {
     setLoader(true);
-    //Chargement des Questions
+    // Si les questions sont déjà chargées, on ne les recharge pas
+    if (originalQuestions) {
+      const questions = randomize([...originalQuestions]);
+      setState(questions);
+      setLoader(false);
+      return;
+    }
+
+    // Première chargement des Questions depuis Firebase
     db.collection(DATABASE)
       .doc(DB_ID)
       .get()
       .then((doc) => {
         setLoader(false);
-        const questions = randomize(doc.data().questions);
-        //console.table(questions);
-        setState(questions); //questions sans les réponses
+        const questions = doc.data().questions;
+        setOriginalQuestions(questions);
+        setState(randomize([...questions]));
       })
       .catch((err) => console.log('Erreur FireBase: ', err));
-  }, []);
+  };
+
+  // Fonction pour réinitialiser la partie
+  const restartGame = () => {
+    setcountQuestion(0);
+    setScore(0);
+    setGoodreponse(0);
+    setSkewText('');
+    setPoint(null);
+    setMinuteur('start');
+    setStartTime(Date.now());
+
+    // Réorganiser les questions au lieu de les recharger
+    if (originalQuestions) {
+      setState(randomize([...originalQuestions]));
+    } else {
+      loadQuestions();
+    }
+  };
 
   /***GESTION DES CHOIX DES REPONSES***/
   /*Affichage des choix*/
-  const displayChoice = state[countQuestion].choix
+  const displayChoice = state[countQuestion]?.choix
     .filter((choice) => choice !== '')
     .map((choice, index) => (
       <button key={index} onClick={() => handleChoice(index)} className='choice'>
@@ -181,6 +213,7 @@ function Competition() {
           maxQuestions={countQuestion}
           goodReponse={goodReponse}
           mute={mute}
+          onRestart={restartGame}
         />
       )}
     </div>
