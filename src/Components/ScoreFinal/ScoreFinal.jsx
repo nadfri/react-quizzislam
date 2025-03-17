@@ -152,18 +152,10 @@ function ScoreFinal(props) {
 
       // Mise à jour de l'état local
       setClassementFinal(classement);
-      const newRank = classement.reduce((acc, user) => {
-        // Si l'utilisateur a un score strictement supérieur
-        if (user.score > score) {
-          return acc + 1;
-        }
-        // En cas d'égalité, départager avec le timestamp (l'utilisateur avec un timestamp inférieur est considéré mieux classé)
-        if (user.score === score && user.timestamp < currentTimestamp) {
-          return acc + 1;
-        }
-        return acc;
-      }, 1);
-
+      // Remplacer le calcul via reduce par findIndex pour déterminer le rang exact
+      const newRank =
+        classement.findIndex((user) => user.pseudo === pseudo && user.score === score) +
+        1;
       setRank(newRank);
     })
       .then(() => {
