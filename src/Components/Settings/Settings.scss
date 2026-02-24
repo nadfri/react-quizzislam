@@ -9,7 +9,7 @@
   background-position: center;
   background-size: cover;
 
-  a {
+  a, .btn-dl {
     animation: slideIn 0.5s forwards;
     width: 80%;
     max-width: 400px;
@@ -26,5 +26,10 @@
 
   .admin {
     background-color: #4b778d;
+  }
+
+  .btn-dl{
+    background-color: mediumslateblue;
+    font-size: 1.4rem;
   }
 }
