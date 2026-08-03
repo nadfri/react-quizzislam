@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import '../../pages/Settings/Settings';
 import { db } from '../../firebase';
 import { CLASSEMENT, CLASSEMENT_ID } from '../../utils/constants';
 
