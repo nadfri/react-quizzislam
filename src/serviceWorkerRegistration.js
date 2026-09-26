@@ -48,17 +48,8 @@ function registerValidSW(swUrl, config) {
   navigator.serviceWorker
     .register(swUrl)
     .then((registration) => {
-      //------- to update application on startup load
+      // Check for a new service worker when the application starts.
       registration.update();
-      // create interval to update every 5 minutes
-      setInterval(
-        () => {
-          registration.update();
-          console.debug('Checked for update...');
-        },
-        1000 * 60 * 5,
-      );
-      //------- End of update application on startup load
 
       registration.onupdatefound = () => {
         const installingWorker = registration.installing;
