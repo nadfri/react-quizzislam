@@ -19,7 +19,15 @@ clientsClaim();
 // Their URLs are injected into the manifest variable below.
 // This variable must be present somewhere in your service worker file,
 // even if you decide not to use precaching. See https://cra.link/PWA
-precacheAndRoute(self.__WB_MANIFEST);
+//
+// Les images (fonds d'écran, boutons…) sont exclues du précache : sinon chaque
+// nouvelle installation du service worker télécharge les ~12 fonds d'écran
+// (~1,2 Mo) même s'ils ne sont jamais affichés. Elles sont mises en cache à la
+// demande par la route « images » plus bas.
+const LAZY_IMAGES = /\/static\/media\/.+\.(png|jpe?g|webp)$/i;
+precacheAndRoute(
+  self.__WB_MANIFEST.filter((entry) => !LAZY_IMAGES.test(entry.url)),
+);
 
 // Set up App Shell-style routing, so that all navigation requests
 // are fulfilled with your index.html shell. Learn more at
@@ -48,11 +56,11 @@ registerRoute(
 registerRoute(
   ({ url }) =>
     url.origin === self.location.origin &&
-    /\\.(png|jpg|jpeg|webp)$/i.test(url.pathname),
+    /\.(png|jpe?g|webp)$/i.test(url.pathname),
   new CacheFirst({
     cacheName: 'images',
     plugins: [
-      new ExpirationPlugin({ maxEntries: 50 }),
+      new ExpirationPlugin({ maxEntries: 60 }),
     ],
   }),
 );
